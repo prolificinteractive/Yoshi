@@ -23,11 +23,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let menuItemQA = MenuItem(name: "QA")
         let environmentItems = [menuItemProd, menuItemStaging, menuItemQA].map { $0 as YoshiTableViewMenuItem }
 
-        let tableViewMenu:TableViewMenu = TableViewMenu(debugMenuName: "Environment", menuType: YoshiMenuType.TableView, displayItems: environmentItems, didSelectDisplayItem: { (displayItem) in
+        let tableViewMenu = TableViewMenu(debugMenuName: "Environment", menuType: YoshiMenuType.TableView, displayItems: environmentItems, didSelectDisplayItem: { (displayItem) in
             print(displayItem.displayText())
         })
 
-        DebugMenu.setupDebugMenu([tableViewMenu])
+        let setup: () -> () = { Void in
+            print("setup")
+        }
+
+        let completion: () -> () = { Void in
+            print("completed")
+        }
+
+        let customMenu = CustomMenu(debugMenuName: "Custom", menuType:YoshiMenuType.CustomMenu, setup: setup, completion: completion)
+
+        DebugMenu.setupDebugMenu([tableViewMenu, customMenu])
         return true
     }
 

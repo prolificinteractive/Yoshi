@@ -29,7 +29,8 @@ internal class DebugConfigurationManager: NSObject {
             case .DateSelector:
                 print("date Selector")
             case .CustomMenu:
-                print("customMenu")
+                guard let customMenuAction = customMenuAction(menu) else { continue }
+                alertActions.append(customMenuAction)
             }
         }
 
@@ -62,5 +63,14 @@ internal class DebugConfigurationManager: NSObject {
             })
         }
         return alertAction
+    }
+
+    func customMenuAction(menu: YoshiMenu) -> UIAlertAction? {
+        guard let menu = menu as? YoshiCustomMenu else { return nil }
+        menu.setup()
+        return UIAlertAction(title: menu.debugMenuName, style: .Default) { (_) -> Void in
+            menu.completion()
+            self.inDebugMenu = false
+        }
     }
 }

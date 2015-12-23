@@ -31,5 +31,6 @@ public protocol YoshiDateSelectorMenu: YoshiMenu {
 }
 
 public protocol YoshiCustomMenu: YoshiMenu {
-    func setupCustomMenu(setup: () -> (), completion: (completed: Bool) -> ())
+    var setup: () -> () { get }
+    var completion: () -> () { get }
 }

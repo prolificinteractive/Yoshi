@@ -23,3 +23,11 @@ struct TableViewMenu: YoshiMenu, YoshiTableViewMenu {
     var displayItems: [YoshiTableViewMenuItem]
     var didSelectDisplayItem: (displayItem: YoshiTableViewMenuItem) -> ()
 }
+
+struct CustomMenu: YoshiCustomMenu {
+    var debugMenuName: String
+    var menuType: YoshiMenuType
+    
+    var setup: () -> ()
+    var completion: () -> ()
+}
