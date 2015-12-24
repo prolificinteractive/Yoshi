@@ -14,19 +14,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
 
+        // YoshiMenuType.TableView
         let menuItemProd = MenuItem(name: "Production")
         let menuItemStaging = MenuItem(name: "Staging")
         let menuItemQA = MenuItem(name: "QA")
         let environmentItems = [menuItemProd, menuItemStaging, menuItemQA].map { $0 as YoshiTableViewMenuItem }
 
-        let tableViewMenu = TableViewMenu(debugMenuName: "Environment", menuType: YoshiMenuType.TableView, displayItems: environmentItems, didSelectDisplayItem: { (displayItem) in
+        let tableViewMenu = TableViewMenu(debugMenuName: "Environment", menuType: .TableView, displayItems: environmentItems, didSelectDisplayItem: { (displayItem) in
             print(displayItem.displayText())
         })
 
+        // YoshiMenuType.DateSelector
+        let dateSelector = DateSelector(debugMenuName: "Environment Date", menuType: .DateSelector, didUpdateDate: { (dateSelected) in
+            print("dateSelected = \(dateSelected)")
+        })
+
+        // YoshiMenuType.CustomMenu
         let setup: () -> () = { Void in
             print("setup")
         }
@@ -35,9 +41,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("completed")
         }
 
-        let customMenu = CustomMenu(debugMenuName: "Custom", menuType:YoshiMenuType.CustomMenu, setup: setup, completion: completion)
+        let customMenu = CustomMenu(debugMenuName: "Custom", menuType: .CustomMenu, setup: setup, completion: completion)
 
-        DebugMenu.setupDebugMenu([tableViewMenu, customMenu])
+        DebugMenu.setupDebugMenu([tableViewMenu, dateSelector, customMenu])
         return true
     }
 

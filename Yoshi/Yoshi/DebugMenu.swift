@@ -8,10 +8,10 @@
 
 import UIKit
 
-public class DebugMenu: NSObject {
+public class DebugMenu {
 
     /**
-     Must be called in application didFinishLaunchingWithOptions
+     Should be called in application didFinishLaunchingWithOptions
 
      - parameter menuItems: [YoshiMenu] an array of items to be displayed in the Yoshi Debug Action Sheet
      */
@@ -20,23 +20,26 @@ public class DebugMenu: NSObject {
     }
 
     /**
-    Must be called when a motion action is recieved. This will handle showing the hidden debug menu.
+     Should be called when a motion action is recieved. This will handle showing the hidden debug menu.
 
-    - parameter motion: (UIEventSubtype) the motion captured by the original motionBegan call
-    - parameter event:  (UIEvent) the event captured by the original motionBegan call
-    */
+     - parameter motion: (UIEventSubtype) the motion captured by the original motionBegan call
+     - parameter event:  (UIEvent) the event captured by the original motionBegan call
+     */
     public class func motionBegan(motion: UIEventSubtype, withEvent event: UIEvent?) {
-        if (motion == UIEventSubtype.MotionShake
-            && !DebugConfigurationManager.sharedInstance.inDebugMenu)
-        {
-            let window = UIApplication.sharedApplication().windows.last
-            guard let rootViewController = window?.rootViewController else {
-                return
-            }
-            
-            DebugConfigurationManager.sharedInstance.showDebugActionSheetFromViewController(rootViewController)
-        }
+        guard motion == .MotionShake
+            && !DebugConfigurationManager.sharedInstance.inDebugMenu else { return }
+        DebugMenu.showDebugActionSheet()
     }
 
+
+    private class func showDebugActionSheet() {
+        let window = UIApplication.sharedApplication().windows.last
+        guard let rootViewController = window?.rootViewController else {
+            return
+        }
+
+        DebugConfigurationManager.sharedInstance.showDebugActionSheetFromViewController(rootViewController)
+    }
+    
     
 }

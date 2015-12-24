@@ -8,12 +8,20 @@
 
 import UIKit
 
+protocol DebugTableViewControllerDelegate {
+    func shouldDismissDebugTableView(viewController: UIViewController)
+}
+
 internal class DebugTableViewController: UIViewController {
+
+    let yoshiTableViewCellDefaultIdentifier = "YoshiTableViewCellDefaultIdentifier"
 
     @IBOutlet private weak var tableView: UITableView!
 
     var menu: YoshiTableViewMenu?
-    let yoshiTableViewCellDefaultIdentifier = "YoshiTableViewCellDefaultIdentifier"
+    var delegate: DebugTableViewControllerDelegate?
+
+    // MARK: Initializers
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -23,21 +31,23 @@ internal class DebugTableViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    class func nibName() -> String {
-        return NSStringFromClass(DebugTableViewController.self).componentsSeparatedByString(".").last ?? ""
-    }
+    // MARK: Public Methods
 
     func setup(yoshiTableViewMenu: YoshiTableViewMenu) {
         self.menu = yoshiTableViewMenu
     }
+
+    // MARK: ViewController Life Cycle Methods
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = self.menu?.debugMenuName
     }
 
+    // MARK: IBAction Methods
+
     @IBAction private func cancelBarButtonItemTouched(sender: UIBarButtonItem) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.delegate?.shouldDismissDebugTableView(self)
     }
 
 }
@@ -69,8 +79,22 @@ extension DebugTableViewController: UITableViewDelegate {
         }
 
         self.menu?.didSelectDisplayItem(displayItem: selectedItem)
-        DebugConfigurationManager.sharedInstance.inDebugMenu = false
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.delegate?.shouldDismissDebugTableView(self)
     }
     
+}
+
+// MARK: UIViewController extension
+
+extension UIViewController {
+
+    /**
+     The nib name for a view controller
+
+     - returns: (String) the nib name for a view controller
+     */
+    class func nibName() -> String {
+        return NSStringFromClass(self).componentsSeparatedByString(".").last ?? ""
+    }
+
 }

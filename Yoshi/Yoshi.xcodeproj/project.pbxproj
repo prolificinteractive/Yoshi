@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2746E6501C2C7AC3006C1DEF /* DebugDatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2746E64E1C2C7AC3006C1DEF /* DebugDatePickerViewController.swift */; };
+		2746E6511C2C7AC3006C1DEF /* DebugDatePickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2746E64F1C2C7AC3006C1DEF /* DebugDatePickerViewController.xib */; };
 		276BCEA51C29A6EF002138C7 /* Yoshi.h in Headers */ = {isa = PBXBuildFile; fileRef = 276BCEA41C29A6EF002138C7 /* Yoshi.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		276BCEAC1C29A6EF002138C7 /* Yoshi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 276BCEA11C29A6EF002138C7 /* Yoshi.framework */; };
 		276BCEB11C29A6EF002138C7 /* YoshiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276BCEB01C29A6EF002138C7 /* YoshiTests.swift */; };
@@ -28,6 +30,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2746E64E1C2C7AC3006C1DEF /* DebugDatePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DebugDatePickerViewController.swift; path = "View Controllers/Debug Date Picker View Controller/DebugDatePickerViewController.swift"; sourceTree = "<group>"; };
+		2746E64F1C2C7AC3006C1DEF /* DebugDatePickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DebugDatePickerViewController.xib; path = "View Controllers/Debug Date Picker View Controller/DebugDatePickerViewController.xib"; sourceTree = "<group>"; };
 		276BCEA11C29A6EF002138C7 /* Yoshi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Yoshi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		276BCEA41C29A6EF002138C7 /* Yoshi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Yoshi.h; sourceTree = "<group>"; };
 		276BCEA61C29A6EF002138C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -60,6 +64,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2746E64A1C2C7A24006C1DEF /* Debug Table View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				276BCEBC1C29A97E002138C7 /* DebugTableViewController.swift */,
+				276BCEBD1C29A97E002138C7 /* DebugTableViewController.xib */,
+			);
+			name = "Debug Table View Controller";
+			sourceTree = "<group>";
+		};
+		2746E64B1C2C7A2D006C1DEF /* Debug Date Picker View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2746E64E1C2C7AC3006C1DEF /* DebugDatePickerViewController.swift */,
+				2746E64F1C2C7AC3006C1DEF /* DebugDatePickerViewController.xib */,
+			);
+			name = "Debug Date Picker View Controller";
+			sourceTree = "<group>";
+		};
 		276BCE971C29A6EF002138C7 = {
 			isa = PBXGroup;
 			children = (
@@ -103,8 +125,8 @@
 		276BCEBB1C29A8BB002138C7 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				276BCEBC1C29A97E002138C7 /* DebugTableViewController.swift */,
-				276BCEBD1C29A97E002138C7 /* DebugTableViewController.xib */,
+				2746E64B1C2C7A2D006C1DEF /* Debug Date Picker View Controller */,
+				2746E64A1C2C7A24006C1DEF /* Debug Table View Controller */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -200,6 +222,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2746E6511C2C7AC3006C1DEF /* DebugDatePickerViewController.xib in Resources */,
 				276BCEBF1C29A97E002138C7 /* DebugTableViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -218,6 +241,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2746E6501C2C7AC3006C1DEF /* DebugDatePickerViewController.swift in Sources */,
 				27A952411C29F42800F0CCEB /* DebugConfigurationManager.swift in Sources */,
 				276BCEC11C29AEDD002138C7 /* Yoshi.swift in Sources */,
 				276BCEBE1C29A97E002138C7 /* DebugTableViewController.swift in Sources */,
