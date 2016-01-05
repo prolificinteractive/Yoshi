@@ -16,22 +16,24 @@ internal class DebugConfigurationManager {
     var inDebugMenu: Bool = false
     let debugAlertController = UIAlertController(title: AppBundleUtility.appVersionText(), message: nil, preferredStyle: .ActionSheet)
     var yoshiMenuItems = [YoshiMenu]()
-    var presentingViewController: UIViewController?
+    var rootViewController: UIViewController?
 
     func setupDebugMenuOptions(menuItems: [YoshiMenu]) {
         self.yoshiMenuItems = menuItems
 
         for menu in self.yoshiMenuItems {
-            switch menu.menuType {
-            case .TableView:
-                guard let tableViewAction = self.tableViewAction(menu) else { continue }
+            switch menu {
+            case let menuType as YoshiTableViewMenu:
+                guard let tableViewAction = self.tableViewAction(menuType) else { continue }
                 self.debugAlertController.addAction(tableViewAction)
-            case .DateSelector:
-                guard let datePickerAction = self.dateSelectorAction(menu) else { continue }
+            case let menuType as YoshiDateSelectorMenu:
+                guard let datePickerAction = self.dateSelectorAction(menuType) else { continue }
                 self.debugAlertController.addAction(datePickerAction)
-            case .CustomMenu:
-                guard let customMenuAction = self.customMenuAction(menu) else { continue }
+            case let menuType as YoshiCustomMenu:
+                guard let customMenuAction = self.customMenuAction(menuType) else { continue }
                 self.debugAlertController.addAction(customMenuAction)
+            default:
+                continue
             }
         }
 
@@ -42,7 +44,7 @@ internal class DebugConfigurationManager {
     }
 
     func showDebugActionSheetFromViewController(viewController: UIViewController) {
-        self.presentingViewController = viewController
+        self.rootViewController = viewController
         viewController.presentViewController(self.debugAlertController, animated: true, completion: nil)
         self.inDebugMenu = true
     }
@@ -50,7 +52,7 @@ internal class DebugConfigurationManager {
     // MARK: Private Methods
 
     private func presentViewController(viewControllerToDisplay: UIViewController) {
-        guard let presentingViewController = self.presentingViewController else { return }
+        guard let presentingViewController = self.rootViewController else { return }
         presentingViewController.presentViewController(viewControllerToDisplay, animated: true, completion: { () -> Void in
             self.inDebugMenu = false
         })
@@ -62,8 +64,7 @@ internal class DebugConfigurationManager {
         }
     }
 
-    private func tableViewAction(menu: YoshiMenu) -> UIAlertAction? {
-        guard let menu = menu as? YoshiTableViewMenu else { return nil }
+    private func tableViewAction(menu: YoshiTableViewMenu) -> UIAlertAction? {
         return UIAlertAction(title: menu.debugMenuName, style: .Default) { (_) -> Void in
             let bundle = NSBundle(forClass: DebugConfigurationManager.self)
             let tableViewController = DebugTableViewController(nibName: DebugTableViewController.nibName(), bundle: bundle)
@@ -74,8 +75,7 @@ internal class DebugConfigurationManager {
         }
     }
 
-    private func dateSelectorAction(menu: YoshiMenu) -> UIAlertAction? {
-        guard let menu = menu as? YoshiDateSelectorMenu else { return nil }
+    private func dateSelectorAction(menu: YoshiDateSelectorMenu) -> UIAlertAction? {
         return UIAlertAction(title: menu.debugMenuName, style: .Default, handler: { (_) -> Void in
             let bundle = NSBundle(forClass: DebugConfigurationManager.self)
             let datePickerViewController = DebugDatePickerViewController(nibName: DebugDatePickerViewController.nibName(), bundle: bundle)
@@ -86,8 +86,7 @@ internal class DebugConfigurationManager {
         })
     }
 
-    private func customMenuAction(menu: YoshiMenu) -> UIAlertAction? {
-        guard let menu = menu as? YoshiCustomMenu else { return nil }
+    private func customMenuAction(menu: YoshiCustomMenu) -> UIAlertAction? {
         menu.setup()
         return UIAlertAction(title: menu.debugMenuName, style: .Default) { (_) -> Void in
             menu.completion()

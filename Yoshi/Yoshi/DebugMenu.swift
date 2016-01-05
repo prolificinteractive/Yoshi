@@ -20,7 +20,7 @@ public class DebugMenu {
     }
 
     /**
-     Should be called when a motion action is recieved. This will handle showing the hidden debug menu.
+     Should be called when a motion action is received. This will handle showing the hidden debug menu.
 
      - parameter motion: (UIEventSubtype) the motion captured by the original motionBegan call
      - parameter event:  (UIEvent) the event captured by the original motionBegan call
@@ -32,7 +32,7 @@ public class DebugMenu {
     }
 
     /**
-     Should be called when touches are recieved. This will handle showing the hidden debug menu.
+     Should be called when touches are received. This will handle showing the hidden debug menu.
 
      - parameter touches:                 Set<UITouch> the touches received by the origininal touchesBegan
      - parameter event:                   (UIEvent) the event captured by the original motionBegan call

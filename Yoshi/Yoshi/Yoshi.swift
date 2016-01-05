@@ -6,15 +6,8 @@
 //  Copyright © 2015 Prolific Interactive. All rights reserved.
 //
 
-public enum YoshiMenuType {
-    case TableView
-    case DateSelector
-    case CustomMenu
-}
-
 public protocol YoshiMenu {
     var debugMenuName: String { get }
-    var menuType: YoshiMenuType { get }
 }
 
 public protocol YoshiTableViewMenuItem {

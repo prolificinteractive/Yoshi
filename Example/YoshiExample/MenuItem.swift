@@ -17,22 +17,19 @@ struct MenuItem: YoshiTableViewMenuItem {
     }
 }
 
-struct TableViewMenu: YoshiMenu, YoshiTableViewMenu {
+struct TableViewMenu: YoshiTableViewMenu {
     var debugMenuName: String
-    var menuType: YoshiMenuType
     var displayItems: [YoshiTableViewMenuItem]
     var didSelectDisplayItem: (displayItem: YoshiTableViewMenuItem) -> ()
 }
 
 struct CustomMenu: YoshiCustomMenu {
     var debugMenuName: String
-    var menuType: YoshiMenuType
     var setup: () -> ()
     var completion: () -> ()
 }
 
 struct DateSelector: YoshiDateSelectorMenu {
     var debugMenuName: String
-    var menuType: YoshiMenuType
     var didUpdateDate: (dateSelected: NSDate) -> ()
 }
