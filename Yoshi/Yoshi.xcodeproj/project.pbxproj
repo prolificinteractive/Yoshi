@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		27100A991C3B1A9400074B2A /* AppBundleUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27100A981C3B1A9400074B2A /* AppBundleUtility.swift */; };
 		2746E6501C2C7AC3006C1DEF /* DebugDatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2746E64E1C2C7AC3006C1DEF /* DebugDatePickerViewController.swift */; };
 		2746E6511C2C7AC3006C1DEF /* DebugDatePickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2746E64F1C2C7AC3006C1DEF /* DebugDatePickerViewController.xib */; };
 		276BCEA51C29A6EF002138C7 /* Yoshi.h in Headers */ = {isa = PBXBuildFile; fileRef = 276BCEA41C29A6EF002138C7 /* Yoshi.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -30,6 +31,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		27100A981C3B1A9400074B2A /* AppBundleUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppBundleUtility.swift; path = Utility/AppBundleUtility.swift; sourceTree = "<group>"; };
 		2746E64E1C2C7AC3006C1DEF /* DebugDatePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DebugDatePickerViewController.swift; path = "View Controllers/Debug Date Picker View Controller/DebugDatePickerViewController.swift"; sourceTree = "<group>"; };
 		2746E64F1C2C7AC3006C1DEF /* DebugDatePickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DebugDatePickerViewController.xib; path = "View Controllers/Debug Date Picker View Controller/DebugDatePickerViewController.xib"; sourceTree = "<group>"; };
 		276BCEA11C29A6EF002138C7 /* Yoshi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Yoshi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -64,6 +66,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		27100A9A1C3B1A9800074B2A /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				27100A981C3B1A9400074B2A /* AppBundleUtility.swift */,
+			);
+			name = Utility;
+			sourceTree = "<group>";
+		};
 		2746E64A1C2C7A24006C1DEF /* Debug Table View Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -108,6 +118,7 @@
 				276BCEA61C29A6EF002138C7 /* Info.plist */,
 				276BCEC01C29AEDD002138C7 /* Yoshi.swift */,
 				27A9523E1C29F29C00F0CCEB /* DebugMenu.swift */,
+				27100A9A1C3B1A9800074B2A /* Utility */,
 				27A952401C29F42800F0CCEB /* DebugConfigurationManager.swift */,
 			);
 			path = Yoshi;
@@ -243,6 +254,7 @@
 			files = (
 				2746E6501C2C7AC3006C1DEF /* DebugDatePickerViewController.swift in Sources */,
 				27A952411C29F42800F0CCEB /* DebugConfigurationManager.swift in Sources */,
+				27100A991C3B1A9400074B2A /* AppBundleUtility.swift in Sources */,
 				276BCEC11C29AEDD002138C7 /* Yoshi.swift in Sources */,
 				276BCEBE1C29A97E002138C7 /* DebugTableViewController.swift in Sources */,
 				27A9523F1C29F29C00F0CCEB /* DebugMenu.swift in Sources */,

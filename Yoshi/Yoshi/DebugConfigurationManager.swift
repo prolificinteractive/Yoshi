@@ -14,7 +14,7 @@ internal class DebugConfigurationManager {
 
     var currentDate = NSDate()
     var inDebugMenu: Bool = false
-    let debugAlertController = UIAlertController(title: "Yoshi Debug", message: nil, preferredStyle: .ActionSheet)
+    let debugAlertController = UIAlertController(title: AppBundleUtility.appVersionText(), message: nil, preferredStyle: .ActionSheet)
     var yoshiMenuItems = [YoshiMenu]()
     var presentingViewController: UIViewController?
 
