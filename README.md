@@ -8,8 +8,7 @@
 [![Cocoapods Compatible](https://img.shields.io/cocoapods/v/Yoshi.svg?style=flat-square)](https://img.shields.io/cocoapods/v/Yoshi.svg)
 [![Platform](https://img.shields.io/cocoapods/p/Yoshi.svg?style=flat-square)](http://cocoadocs.org/docsets/Yoshi)
 [![Docs](https://img.shields.io/cocoapods/metrics/doc-percent/Yoshi.svg?style=flat-square)](http://cocoadocs.org/docsets/Yoshi)
-
-Remove [Carthage's](https://github.com/Carthage/) badge if it's not supported
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 ## Description
 
@@ -43,7 +42,7 @@ If you wish to contribute to the project, fork this repo and submit a pull reque
 
 ## License
 
-Yoshi is Copyright (c) 2015 Prolific Interactive. It may be redistributed under the terms specified in the [LICENSE] file.
+Yoshi is Copyright (c) 2016 Prolific Interactive. It may be redistributed under the terms specified in the [LICENSE] file.
 
 [LICENSE]: /LICENSE
 
