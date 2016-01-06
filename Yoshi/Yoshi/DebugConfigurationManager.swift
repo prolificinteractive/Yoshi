@@ -45,8 +45,9 @@ internal class DebugConfigurationManager {
 
     func showDebugActionSheetFromViewController(viewController: UIViewController) {
         self.rootViewController = viewController
-        viewController.presentViewController(self.debugAlertController, animated: true, completion: nil)
-        self.inDebugMenu = true
+        viewController.presentViewController(self.debugAlertController, animated: true, completion: { () -> Void in
+            self.inDebugMenu = true
+        })
     }
 
     // MARK: Private Methods
