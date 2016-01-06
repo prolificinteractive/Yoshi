@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let menuItemProd = MenuItem(name: "Production")
         let menuItemStaging = MenuItem(name: "Staging")
         let menuItemQA = MenuItem(name: "QA")
-        let environmentItems = [menuItemProd, menuItemStaging, menuItemQA].map { $0 as YoshiTableViewMenuItem }
+        let environmentItems: [YoshiTableViewMenuItem] = [menuItemProd, menuItemStaging, menuItemQA]
 
         let tableViewMenu = TableViewMenu(debugMenuName: "Environment", displayItems: environmentItems, didSelectDisplayItem: { (displayItem) in
             NSNotificationCenter.defaultCenter().postNotificationName(Notifications.EnvironmentUpdatedNotification, object: displayItem.displayText())
