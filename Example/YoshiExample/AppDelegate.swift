@@ -22,7 +22,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
 
-        self.setupDebugMenu()
+        #if DEBUG
+            setupDebugMenu()
+        #endif
+        
         return true
     }
 
@@ -52,16 +55,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         let customMenu = CustomMenu(debugMenuName: "Custom", setup: setup, completion: completion)
-
-        DebugMenu.setupDebugMenu([tableViewMenu, dateSelector, customMenu])
+        DebugMenu.startWithInvokeEvent(.ShakeMotion, menuItems: [tableViewMenu, dateSelector, customMenu])
     }
-
-    override func motionBegan(motion: UIEventSubtype, withEvent event: UIEvent?) {
-        DebugMenu.motionBegan(motion, withEvent: event)
-    }
-
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        DebugMenu.touchesBegan(touches, withEvent: event)
-    }
+    
 }
 
