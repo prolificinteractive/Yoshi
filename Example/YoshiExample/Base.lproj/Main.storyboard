@@ -18,54 +18,78 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="1E1-uU-DPc">
-                                <rect key="frame" x="20" y="275" width="560" height="50"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Ca0-o8-Ufh">
-                                        <rect key="frame" x="0.0" y="0.0" width="280" height="50"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Environment:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rgN-qB-zwZ">
-                                                <rect key="frame" x="0.0" y="0.0" width="280" height="25"/>
-                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Environment Date:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zpa-vq-ZVH">
-                                                <rect key="frame" x="0.0" y="25" width="280" height="25"/>
-                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="t7I-6D-ihS">
-                                        <rect key="frame" x="280" y="0.0" width="280" height="50"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wln-Kr-fbl" userLabel="Environment">
-                                                <rect key="frame" x="0.0" y="0.0" width="280" height="25"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eUX-Fc-fPW" userLabel="EnvironmentDate">
-                                                <rect key="frame" x="0.0" y="25" width="280" height="25"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                    </stackView>
-                                </subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Environment:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rgN-qB-zwZ">
+                                <rect key="frame" x="20" y="320" width="274" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="ocN-Hy-JBf"/>
+                                    <constraint firstAttribute="height" constant="25" id="JDg-5Y-J39"/>
                                 </constraints>
-                            </stackView>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="JDg-5Y-J39"/>
+                                    </mask>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Environment Date:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zpa-vq-ZVH">
+                                <rect key="frame" x="20" y="260" width="274" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="WOT-BP-AgW"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="WOT-BP-AgW"/>
+                                    </mask>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wln-Kr-fbl" userLabel="Environment">
+                                <rect key="frame" x="307" y="330" width="273" height="0.0"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="lGH-wq-eOU"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="lGH-wq-eOU"/>
+                                    </mask>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eUX-Fc-fPW" userLabel="EnvironmentDate">
+                                <rect key="frame" x="307" y="270" width="273" height="0.0"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="KGr-H9-4H2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="KGr-H9-4H2"/>
+                                    </mask>
+                                </variation>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="1E1-uU-DPc" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="POS-iW-bbp"/>
-                            <constraint firstItem="1E1-uU-DPc" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="aBp-30-QTP"/>
-                            <constraint firstItem="1E1-uU-DPc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="qRa-bX-N0S"/>
+                            <constraint firstItem="eUX-Fc-fPW" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="1L4-6D-teZ"/>
+                            <constraint firstItem="eUX-Fc-fPW" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-30" id="8ZB-qa-rgN"/>
+                            <constraint firstItem="wln-Kr-fbl" firstAttribute="leading" secondItem="rgN-qB-zwZ" secondAttribute="trailing" constant="13" id="AoJ-6Q-cUH"/>
+                            <constraint firstItem="rgN-qB-zwZ" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="30" id="BtK-tx-s4b"/>
+                            <constraint firstItem="eUX-Fc-fPW" firstAttribute="leading" secondItem="Zpa-vq-ZVH" secondAttribute="trailing" constant="13" id="FLl-YN-wkw"/>
+                            <constraint firstItem="rgN-qB-zwZ" firstAttribute="width" secondItem="Zpa-vq-ZVH" secondAttribute="width" id="HPP-g5-7IF"/>
+                            <constraint firstItem="wln-Kr-fbl" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="IRe-mB-MQE"/>
+                            <constraint firstItem="rgN-qB-zwZ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="MRG-vM-4ag"/>
+                            <constraint firstItem="Zpa-vq-ZVH" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-30" id="PpU-3h-TrG"/>
+                            <constraint firstItem="wln-Kr-fbl" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="30" id="is6-32-TKo"/>
+                            <constraint firstItem="Zpa-vq-ZVH" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="rTm-qF-SBD"/>
+                            <constraint firstItem="wln-Kr-fbl" firstAttribute="width" secondItem="Zpa-vq-ZVH" secondAttribute="width" id="rc1-UI-E79"/>
+                            <constraint firstItem="eUX-Fc-fPW" firstAttribute="width" secondItem="Zpa-vq-ZVH" secondAttribute="width" id="yYK-54-0wU"/>
                         </constraints>
                     </view>
                     <connections>
