@@ -14,11 +14,16 @@ internal class DebugConfigurationManager {
 
     var currentDate = NSDate()
     var inDebugMenu: Bool = false
-    let debugAlertController = UIAlertController(title: AppBundleUtility.appVersionText(), message: nil, preferredStyle: .ActionSheet)
+    var invocationEvent: InvocationEvent = .ShakeMotion
+    let touchInvocationminimumTouchRequirement = 3
+    let debugAlertController =
+    UIAlertController(title: AppBundleUtility.appVersionText(), message: nil, preferredStyle: .ActionSheet)
     var yoshiMenuItems = [YoshiMenu]()
     var rootViewController: UIViewController?
 
-    func setupDebugMenuOptions(menuItems: [YoshiMenu]) {
+    func startWithInvokeEvent(invocationEvent: InvocationEvent, menuItems: [YoshiMenu]) {
+        self.invocationEvent = invocationEvent
+
         self.yoshiMenuItems = menuItems
 
         for menu in self.yoshiMenuItems {
@@ -43,18 +48,24 @@ internal class DebugConfigurationManager {
         self.debugAlertController.addAction(cancelAction)
     }
 
-    func showDebugActionSheetFromViewController(viewController: UIViewController) {
-        self.rootViewController = viewController
-        viewController.presentViewController(self.debugAlertController, animated: true, completion: { () -> Void in
+    // MARK: Private Methods
+
+    private func showDebugActionSheet() {
+        let window = UIApplication.sharedApplication().windows.last
+        guard let rootViewController = window?.rootViewController else {
+            return
+        }
+
+        self.rootViewController = rootViewController
+        rootViewController.presentViewController(self.debugAlertController, animated: true, completion: { () -> Void in
             self.inDebugMenu = true
         })
     }
 
-    // MARK: Private Methods
-
     private func presentViewController(viewControllerToDisplay: UIViewController) {
         guard let presentingViewController = self.rootViewController else { return }
-        presentingViewController.presentViewController(viewControllerToDisplay, animated: true, completion: { () -> Void in
+        presentingViewController
+            .presentViewController(viewControllerToDisplay, animated: true, completion: { () -> Void in
             self.inDebugMenu = false
         })
     }
@@ -68,7 +79,8 @@ internal class DebugConfigurationManager {
     private func tableViewAction(menu: YoshiTableViewMenu) -> UIAlertAction {
         return UIAlertAction(title: menu.debugMenuName, style: .Default) { (_) -> Void in
             let bundle = NSBundle(forClass: DebugConfigurationManager.self)
-            let tableViewController = DebugTableViewController(nibName: DebugTableViewController.nibName(), bundle: bundle)
+            let tableViewController =
+            DebugTableViewController(nibName: DebugTableViewController.nibName(), bundle: bundle)
             tableViewController.modalPresentationStyle = .FullScreen
             tableViewController.setup(menu)
             tableViewController.delegate = self
@@ -79,7 +91,8 @@ internal class DebugConfigurationManager {
     private func dateSelectorAction(menu: YoshiDateSelectorMenu) -> UIAlertAction {
         return UIAlertAction(title: menu.debugMenuName, style: .Default, handler: { (_) -> Void in
             let bundle = NSBundle(forClass: DebugConfigurationManager.self)
-            let datePickerViewController = DebugDatePickerViewController(nibName: DebugDatePickerViewController.nibName(), bundle: bundle)
+            let datePickerViewController =
+            DebugDatePickerViewController(nibName: DebugDatePickerViewController.nibName(), bundle: bundle)
             datePickerViewController.setup(menu)
             datePickerViewController.delegate = self
             datePickerViewController.date = self.currentDate
@@ -117,6 +130,97 @@ extension DebugConfigurationManager: DebugTableViewControllerDelegate {
 
     func shouldDismissDebugTableView(viewController: UIViewController) {
         self.dismiss(viewController)
+    }
+
+}
+
+extension UIResponder {
+    public override class func initialize() {
+        struct Static {
+            static var token: dispatch_once_t = 0
+        }
+
+        // make sure this isn't a subclass
+        if self !== UIResponder.self {
+            return
+        }
+
+        dispatch_once(&Static.token) {
+            UIResponder.setupSwizzle(
+                Selector("motionBegan:withEvent:"),
+                swizzledSelector: Selector("debugMotionBegan:withEvent:"))
+            UIResponder.setupSwizzle(
+                Selector("touchesBegan:withEvent:"),
+                swizzledSelector: Selector("debugTouchesBegan:withEvent:"))
+            UIResponder.setupSwizzle(
+                Selector("touchesMoved:withEvent:"),
+                swizzledSelector: Selector("debugTouchesMoved:withEvent:"))
+        }
+    }
+
+    private class func setupSwizzle(originalSelector: Selector, swizzledSelector: Selector) {
+        let originalMethod = class_getInstanceMethod(self, originalSelector)
+        let swizzledMethod = class_getInstanceMethod(self, swizzledSelector)
+
+        let didAddMethod = class_addMethod(
+            self,
+            originalSelector,
+            method_getImplementation(swizzledMethod),
+            method_getTypeEncoding(swizzledMethod)
+        )
+
+        guard didAddMethod else { method_exchangeImplementations(originalMethod, swizzledMethod); return }
+
+        class_replaceMethod(
+            self,
+            swizzledSelector,
+            method_getImplementation(originalMethod),
+            method_getTypeEncoding(originalMethod)
+        )
+    }
+
+    // MARK: - Method Swizzling
+    func debugMotionBegan(motion: UIEventSubtype, withEvent event: UIEvent?) {
+        guard DebugConfigurationManager.sharedInstance.invocationEvent == InvocationEvent.ShakeMotion
+            && !DebugConfigurationManager.sharedInstance.inDebugMenu else { return }
+        DebugConfigurationManager.sharedInstance.showDebugActionSheet()
+        debugMotionBegan(motion, withEvent: event)
+    }
+
+    func debugTouchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        switch DebugConfigurationManager.sharedInstance.invocationEvent {
+        case .MultiTouch:
+            showDebugMenuForMultiTouch(touches)
+        case .ForceTouch:
+            showDebugMenuForForceTouch(touches)
+        default:
+            break
+        }
+
+        debugTouchesBegan(touches, withEvent: event)
+    }
+
+    func debugTouchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        showDebugMenuForForceTouch(touches)
+        debugTouchesMoved(touches, withEvent: event)
+    }
+
+    private func showDebugMenuForMultiTouch(touches: Set<UITouch>) {
+        guard DebugConfigurationManager.sharedInstance.invocationEvent == InvocationEvent.MultiTouch
+            && touches.count >= DebugConfigurationManager.sharedInstance.touchInvocationminimumTouchRequirement
+            && !DebugConfigurationManager.sharedInstance.inDebugMenu else { return }
+        DebugConfigurationManager.sharedInstance.showDebugActionSheet()
+    }
+
+    private func showDebugMenuForForceTouch(touches: Set<UITouch>) {
+        guard DebugConfigurationManager.sharedInstance.invocationEvent == InvocationEvent.ForceTouch
+            && touches.filter({ (touch) -> Bool in
+                guard #available(iOS 9.0, *) else { return false }
+                print("force = \(touch.force)")
+                return touch.force >= touch.maximumPossibleForce / 2
+            }).count > 0
+            && !DebugConfigurationManager.sharedInstance.inDebugMenu else { return }
+        DebugConfigurationManager.sharedInstance.showDebugActionSheet()
     }
     
 }

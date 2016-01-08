@@ -53,15 +53,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let customMenu = CustomMenu(debugMenuName: "Custom", setup: setup, completion: completion)
 
-        DebugMenu.setupDebugMenu([tableViewMenu, dateSelector, customMenu])
+        DebugMenu.startWithInvokeEvent(.ShakeMotion, menuItems: [tableViewMenu, dateSelector, customMenu])
     }
 
-    override func motionBegan(motion: UIEventSubtype, withEvent event: UIEvent?) {
-        DebugMenu.motionBegan(motion, withEvent: event)
-    }
-
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        DebugMenu.touchesBegan(touches, withEvent: event)
-    }
 }
 
