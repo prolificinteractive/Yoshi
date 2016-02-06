@@ -22,7 +22,7 @@ In app debug panel for iOS
 
   s.homepage         = "https://github.com/prolificinteractive/Yoshi"
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
-  s.license          = { :file => 'LICENSE' }
+  s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { "Michael Campbell" => "Michael@prolificinteractive.com" }
   s.source           = { :git => "https://github.com/prolificinteractive/Yoshi.git", :tag => s.version.to_s }
 
