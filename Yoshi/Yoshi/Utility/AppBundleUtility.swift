@@ -15,7 +15,9 @@ let appBuildNumberDictionaryKey = "CFBundleVersion"
 internal class AppBundleUtility: NSObject {
 
     class func appVersionText() -> String {
-        return "\(AppBundleUtility.appDisplayName()) | Version \(AppBundleUtility.appVersionNumber()) (\(AppBundleUtility.appBuildNumber()))"
+        return "\(AppBundleUtility.appDisplayName())"
+            + " | Version \(AppBundleUtility.appVersionNumber())"
+            + " (\(AppBundleUtility.appBuildNumber()))"
     }
 
     private class func appDisplayName() -> String {

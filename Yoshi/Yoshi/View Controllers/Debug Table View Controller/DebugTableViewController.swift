@@ -64,7 +64,6 @@ extension DebugTableViewController: UITableViewDataSource {
         let cell =
         UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: yoshiTableViewCellDefaultIdentifier)
         cell.textLabel?.text = yoshiTableViewMenu?.displayItems[indexPath.row].displayText()
-
         return cell
     }
 
@@ -81,6 +80,6 @@ extension DebugTableViewController: UITableViewDelegate {
 
         yoshiTableViewMenu?.didSelectDisplayItem(displayItem: selectedItem)
         tableViewControllerDelegate?.shouldDismissDebugTableView(self)
-    }
+   }
 
 }
