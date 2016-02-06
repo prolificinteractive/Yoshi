@@ -261,7 +261,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Run Linter.\npushd $PROJECT_DIR > /dev/null\n./Scripts/SwiftLint/swiftlint\nif [ $? -gt 0 ]\nthen\nexit 1\nfi\npopd > /dev/null";
+			shellScript = "# Run Linter.\npushd $PROJECT_DIR > /dev/null\n../Scripts/SwiftLint/swiftlint\nif [ $? -gt 0 ]\nthen\nexit 1\nfi\npopd > /dev/null";
 		};
 /* End PBXShellScriptBuildPhase section */
 
