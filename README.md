@@ -50,11 +50,11 @@ let tableViewMenu = TableViewMenu(debugMenuName: "Environment", displayItems: en
 DebugMenu.startWithInvokeEvent(.ShakeMotion, menuItems: [tableViewMenu])
 ```
 
-## Contributing
+## Contributing to Yoshi
 
 To report a bug or enhancement request, feel free to file an issue under the respective heading.
 
-If you wish to contribute to the project, fork this repo and submit a pull request.
+If you wish to contribute to the project, fork this repo and submit a pull request. Code contributions should follow the standards specified in the [Prolific Swift Style Guide](https://github.com/prolificinteractive/swift-style-guide).
 
 ## License
 
