@@ -16,18 +16,27 @@ internal class DebugConfigurationManager {
     var inDebugMenu: Bool = false
     var didInvokeStart: Bool = false
     var yoshiInvocationEvent: InvocationEvent = .ShakeMotion
-    let debugAlertController =
-    UIAlertController(title: AppBundleUtility.appVersionText(), message: nil, preferredStyle: .ActionSheet)
+    lazy var debugAlertController: UIAlertController = {
+        var preferredStyle: UIAlertControllerStyle
+
+        switch UIDevice.currentDevice().userInterfaceIdiom {
+        case .Phone:
+            preferredStyle = .ActionSheet
+        default:
+            preferredStyle = .Alert
+        }
+        return UIAlertController(title: AppBundleUtility.appVersionText(), message: nil, preferredStyle: preferredStyle)
+    }()
+
     var yoshiMenuItems = [YoshiMenu]()
-    var yoshiRootViewController: UIViewController?
 
     func startWithInvokeEvent(invocationEvent: InvocationEvent, menuItems: [YoshiMenu]) {
         yoshiInvocationEvent = invocationEvent
         yoshiMenuItems = menuItems
         didInvokeStart = true
 
-        for menu in yoshiMenuItems {
-            switch menu {
+        for menuItem in yoshiMenuItems {
+            switch menuItem {
             case let menuType as YoshiTableViewMenu:
                 let tableViewAction = self.tableViewAction(menuType)
                 debugAlertController.addAction(tableViewAction)
@@ -49,27 +58,20 @@ internal class DebugConfigurationManager {
     }
 
     func showDebugActionSheet() {
-        let window = UIApplication.sharedApplication().windows.last
-        guard let rootViewController = window?.rootViewController else {
-            return
+        presentViewController(debugAlertController) { () -> Void in
+            self.inDebugMenu = true
         }
-
-        yoshiRootViewController = rootViewController
-        rootViewController.presentViewController(debugAlertController, animated: true, completion: { () -> Void in
-            self.inDebugMenu = false
-        })
     }
 
     // MARK: Private Methods
 
-    private func presentViewController(viewControllerToDisplay: UIViewController) {
-        guard let presentingViewController = yoshiRootViewController else {
+    private func presentViewController(viewControllerToDisplay: UIViewController, presentedCompletion: () -> Void) {
+        let window = UIApplication.sharedApplication().keyWindow
+        guard let rootViewController = window?.rootViewController else {
             return
         }
-        presentingViewController
-            .presentViewController(viewControllerToDisplay, animated: true, completion: { () -> Void in
-            self.inDebugMenu = true
-        })
+        rootViewController
+            .presentViewController(viewControllerToDisplay, animated: true, completion: presentedCompletion)
     }
 
     private func dismiss(viewController: UIViewController) {
@@ -86,7 +88,9 @@ internal class DebugConfigurationManager {
             tableViewController.modalPresentationStyle = .FullScreen
             tableViewController.setup(menu)
             tableViewController.tableViewControllerDelegate = self
-            self.presentViewController(tableViewController)
+            self.presentViewController(tableViewController) {
+                self.inDebugMenu = true
+            }
         }
     }
 
@@ -98,7 +102,9 @@ internal class DebugConfigurationManager {
             datePickerViewController.setup(menu)
             datePickerViewController.datePickerViewControllerDelegate = self
             datePickerViewController.date = self.currentDate
-            self.presentViewController(datePickerViewController)
+            self.presentViewController(datePickerViewController) {
+                self.inDebugMenu = true
+            }
         })
     }
 
@@ -136,6 +142,8 @@ extension DebugConfigurationManager: DebugTableViewControllerDelegate {
 
 }
 
+// MARK: - Method Swizzling
+
 private struct Static {
     static var token: dispatch_once_t = 0
 }
@@ -146,10 +154,6 @@ extension UIResponder {
 
         // make sure this isn't a subclass
         if self !== UIResponder.self {
-            return
-        }
-
-        guard DebugConfigurationManager.sharedInstance.yoshiInvocationEvent == .ShakeMotion else {
             return
         }
 
@@ -184,11 +188,11 @@ extension UIResponder {
         )
     }
 
-    // MARK: - Method Swizzling
     func debugMotionBegan(motion: UIEventSubtype, withEvent event: UIEvent?) {
         guard !DebugConfigurationManager.sharedInstance.inDebugMenu
-        && DebugConfigurationManager.sharedInstance.didInvokeStart else {
-            return
+            && DebugConfigurationManager.sharedInstance.yoshiInvocationEvent == .ShakeMotion
+            && DebugConfigurationManager.sharedInstance.didInvokeStart else {
+                return
         }
 
         DebugConfigurationManager.sharedInstance.showDebugActionSheet()
