@@ -28,12 +28,18 @@ class ViewController: UIViewController {
     }
 
     func didUpdateEnvironment(notification: NSNotification) {
-        guard let environment = notification.object as? String else { return }
+        guard let environment = notification.object as? String else {
+            return
+        }
+
         self.environment.text = environment
     }
 
     func didUpdateEnvironmentDate(notification: NSNotification) {
-        guard let environmentDate = notification.object as? NSDate else { return }
+        guard let environmentDate = notification.object as? NSDate else {
+            return
+        }
+
         self.environmentDate.text = environmentDate.description
     }
 
