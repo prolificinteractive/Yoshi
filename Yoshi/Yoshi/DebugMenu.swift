@@ -59,7 +59,7 @@ public class DebugMenu {
      - parameter event:                   (UIEvent) the event captured by the original touchesMoved call
      - parameter minimumForcePercent:     (Int) the minimum force percent required to show the debug menu.
      */
-    public class func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?, minimumForcePercent: Float = 60.0) {
+    public class func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?, minimumForcePercent: Float = 60) {
         guard #available(iOS 9.0, *) else {
             return
         }
@@ -84,5 +84,5 @@ public class DebugMenu {
     public class func showDebugActionSheet() {
         DebugConfigurationManager.sharedInstance.showDebugActionSheet()
     }
-    
+
 }

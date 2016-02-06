@@ -83,7 +83,7 @@ internal class DebugConfigurationManager {
         return UIAlertAction(title: menu.debugMenuName, style: .Default) { (_) -> Void in
             let bundle = NSBundle(forClass: DebugConfigurationManager.self)
             let tableViewController =
-            DebugTableViewController(nibName: String(DebugTableViewController), bundle: bundle)
+                DebugTableViewController(nibName: String(DebugTableViewController), bundle: bundle)
             tableViewController.modalPresentationStyle = .FormSheet
             tableViewController.setup(menu)
             tableViewController.tableViewControllerDelegate = self
@@ -97,7 +97,7 @@ internal class DebugConfigurationManager {
         return UIAlertAction(title: menu.debugMenuName, style: .Default, handler: { (_) -> Void in
             let bundle = NSBundle(forClass: DebugConfigurationManager.self)
             let datePickerViewController =
-            DebugDatePickerViewController(nibName: String(DebugDatePickerViewController), bundle: bundle)
+                DebugDatePickerViewController(nibName: String(DebugDatePickerViewController), bundle: bundle)
             datePickerViewController.modalPresentationStyle = .FormSheet
             datePickerViewController.setup(menu)
             datePickerViewController.datePickerViewControllerDelegate = self
@@ -139,5 +139,5 @@ extension DebugConfigurationManager: DebugTableViewControllerDelegate {
     func shouldDismissDebugTableView(viewController: UIViewController) {
         dismiss(viewController)
     }
-    
+
 }
