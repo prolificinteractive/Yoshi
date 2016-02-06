@@ -18,8 +18,8 @@ internal class DebugTableViewController: UIViewController {
 
     @IBOutlet private weak var tableView: UITableView!
 
-    var menu: YoshiTableViewMenu?
-    var delegate: DebugTableViewControllerDelegate?
+    var yoshiTableViewMenu: YoshiTableViewMenu?
+    var tableViewControllerDelegate: DebugTableViewControllerDelegate?
 
     // MARK: Initializers
 
@@ -34,20 +34,20 @@ internal class DebugTableViewController: UIViewController {
     // MARK: Public Methods
 
     func setup(yoshiTableViewMenu: YoshiTableViewMenu) {
-        self.menu = yoshiTableViewMenu
+        self.yoshiTableViewMenu = yoshiTableViewMenu
     }
 
     // MARK: ViewController Life Cycle Methods
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = self.menu?.debugMenuName
+        navigationItem.title = yoshiTableViewMenu?.debugMenuName
     }
 
     // MARK: IBAction Methods
 
     @IBAction private func cancelBarButtonItemTouched(sender: UIBarButtonItem) {
-        self.delegate?.shouldDismissDebugTableView(self)
+        tableViewControllerDelegate?.shouldDismissDebugTableView(self)
     }
 
 }
@@ -57,12 +57,13 @@ internal class DebugTableViewController: UIViewController {
 extension DebugTableViewController: UITableViewDataSource {
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.menu?.displayItems.count ?? 0
+        return yoshiTableViewMenu?.displayItems.count ?? 0
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell =  UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: yoshiTableViewCellDefaultIdentifier)
-        cell.textLabel?.text = self.menu?.displayItems[indexPath.row].displayText()
+        let cell =
+        UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: yoshiTableViewCellDefaultIdentifier)
+        cell.textLabel?.text = yoshiTableViewMenu?.displayItems[indexPath.row].displayText()
 
         return cell
     }
@@ -74,14 +75,14 @@ extension DebugTableViewController: UITableViewDataSource {
 extension DebugTableViewController: UITableViewDelegate {
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        guard let selectedItem = self.menu?.displayItems[indexPath.row] else {
+        guard let selectedItem = yoshiTableViewMenu?.displayItems[indexPath.row] else {
             return
         }
 
-        self.menu?.didSelectDisplayItem(displayItem: selectedItem)
-        self.delegate?.shouldDismissDebugTableView(self)
+        yoshiTableViewMenu?.didSelectDisplayItem(displayItem: selectedItem)
+        tableViewControllerDelegate?.shouldDismissDebugTableView(self)
     }
-    
+
 }
 
 // MARK: UIViewController extension

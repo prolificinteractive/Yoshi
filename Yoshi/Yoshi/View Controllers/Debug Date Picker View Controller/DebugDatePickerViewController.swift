@@ -28,7 +28,7 @@ internal class DebugDatePickerViewController: UIViewController {
 
     @IBOutlet private weak var datePicker: UIDatePicker!
 
-    var delegate: DebugDatePickerViewControllerDelegate?
+    var datePickerViewControllerDelegate: DebugDatePickerViewControllerDelegate?
     var date = NSDate()
     var selectorMenu: YoshiDateSelectorMenu?
 
@@ -46,7 +46,7 @@ internal class DebugDatePickerViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupDatePicker()
+        setupDatePicker()
     }
 
     // MARK: Public Methods
@@ -57,27 +57,27 @@ internal class DebugDatePickerViewController: UIViewController {
     - parameter yoshiDateSelectorMenu: (YoshiDateSelectorMenu) the selector menu data
     */
     func setup(yoshiDateSelectorMenu: YoshiDateSelectorMenu) {
-        self.selectorMenu = yoshiDateSelectorMenu
+        selectorMenu = yoshiDateSelectorMenu
     }
 
     // MARK: Private Methods
 
     private func setupDatePicker() {
-        self.datePicker.date = self.date
-        self.navigationItem.title = self.selectorMenu?.debugMenuName
+        datePicker.date = date
+        navigationItem.title = selectorMenu?.debugMenuName
     }
 
     // MARK: IBAction Methods
 
     @IBAction func cancelBarButtonItemTouched(sender: UIBarButtonItem) {
-        self.delegate?.shouldDismissDatePickerView(self)
+        datePickerViewControllerDelegate?.shouldDismissDatePickerView(self)
     }
 
     @IBAction func applyBarButtonItemTouched(sender: UIBarButtonItem) {
-        let date = self.datePicker.date
-        self.delegate?.didUpdateDate(date)
-        self.selectorMenu?.didUpdateDate(dateSelected:date)
-        self.delegate?.shouldDismissDatePickerView(self)
+        let date = datePicker.date
+        datePickerViewControllerDelegate?.didUpdateDate(date)
+        selectorMenu?.didUpdateDate(dateSelected:date)
+        datePickerViewControllerDelegate?.shouldDismissDatePickerView(self)
     }
 
 }

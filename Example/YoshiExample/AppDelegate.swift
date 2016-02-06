@@ -19,10 +19,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(application: UIApplication, didFinishLaunchingWithOptions
+        launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
 
-        self.setupDebugMenu()
+        #if DEBUG
+            setupDebugMenu()
+        #endif
+
         return true
     }
 
@@ -33,35 +37,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let menuItemQA = MenuItem(name: "QA")
         let environmentItems: [YoshiTableViewMenuItem] = [menuItemProd, menuItemStaging, menuItemQA]
 
-        let tableViewMenu = TableViewMenu(debugMenuName: "Environment", displayItems: environmentItems, didSelectDisplayItem: { (displayItem) in
-            NSNotificationCenter.defaultCenter().postNotificationName(Notifications.EnvironmentUpdatedNotification, object: displayItem.displayText())
+        let tableViewMenu = TableViewMenu(debugMenuName: "Environment",
+            displayItems: environmentItems, didSelectDisplayItem: { (displayItem) in
+            NSNotificationCenter.defaultCenter()
+                .postNotificationName(Notifications.EnvironmentUpdatedNotification, object: displayItem.displayText())
         })
 
         // YoshiMenuType.DateSelector
         let dateSelector = DateSelector(debugMenuName: "Environment Date", didUpdateDate: { (dateSelected) in
-            NSNotificationCenter.defaultCenter().postNotificationName(Notifications.EnvironmentDateUpdatedNotification, object: dateSelected)
+            NSNotificationCenter.defaultCenter()
+                .postNotificationName(Notifications.EnvironmentDateUpdatedNotification, object: dateSelected)
         })
 
         // YoshiMenuType.CustomMenu
-        let setup: () -> () = { Void in
+        let setup: () -> () = {
             print("setup")
         }
 
-        let completion: () -> () = { Void in
+        let completion: () -> () = {
             print("completed")
         }
 
         let customMenu = CustomMenu(debugMenuName: "Custom", setup: setup, completion: completion)
-
-        DebugMenu.setupDebugMenu([tableViewMenu, dateSelector, customMenu])
+        DebugMenu.startWithInvokeEvent(.ShakeMotion, menuItems: [tableViewMenu, dateSelector, customMenu])
     }
 
-    override func motionBegan(motion: UIEventSubtype, withEvent event: UIEvent?) {
-        DebugMenu.motionBegan(motion, withEvent: event)
-    }
-
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        DebugMenu.touchesBegan(touches, withEvent: event)
-    }
 }
-
