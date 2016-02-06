@@ -10,47 +10,79 @@ import UIKit
 
 public class DebugMenu {
 
-    /**
-     Should be called in application didFinishLaunchingWithOptions
+    // MARK: Setup
 
-     - parameter menuItems: [YoshiMenu] an array of items to be displayed in the Yoshi Debug Action Sheet
-     */
+    /**
+    Should be called in application didFinishLaunchingWithOptions
+
+    - parameter menuItems: [YoshiMenu] an array of items to be displayed in the Yoshi Debug Action Sheet
+    */
     public class func setupDebugMenu(menuItems: [YoshiMenu]) {
         DebugConfigurationManager.sharedInstance.setupDebugMenuOptions(menuItems)
     }
 
-    /**
-     Should be called when a motion action is received. This will handle showing the hidden debug menu.
+    // MARK: Invocation Functions
 
-     - parameter motion: (UIEventSubtype) the motion captured by the original motionBegan call
-     - parameter event:  (UIEvent) the event captured by the original motionBegan call
-     */
+    /**
+    Should be called when a motion event is received. This will handle showing the hidden debug menu.
+
+    - parameter motion: (UIEventSubtype) the motion captured by the original motionBegan call
+    - parameter event:  (UIEvent) the event captured by the original motionBegan call
+    */
     public class func motionBegan(motion: UIEventSubtype, withEvent event: UIEvent?) {
-        guard motion == .MotionShake
-            && !DebugConfigurationManager.sharedInstance.inDebugMenu else { return }
-        DebugMenu.showDebugActionSheet()
-    }
-
-    /**
-     Should be called when touches are received. This will handle showing the hidden debug menu.
-
-     - parameter touches:                 Set<UITouch> the touches received by the origininal touchesBegan
-     - parameter event:                   (UIEvent) the event captured by the original motionBegan call
-     - parameter minimumTouchRequirement: (Int) the minimum number of touches required to show the debug menu.
-     */
-    public class func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?, minimumTouchRequirement: Int = 3) {
-        guard event?.allTouches()?.count >= minimumTouchRequirement
-            && !DebugConfigurationManager.sharedInstance.inDebugMenu else { return }
-        DebugMenu.showDebugActionSheet()
-    }
-
-    private class func showDebugActionSheet() {
-        let window = UIApplication.sharedApplication().windows.last
-        guard let rootViewController = window?.rootViewController else {
+        guard motion == .MotionShake else {
             return
         }
 
-        DebugConfigurationManager.sharedInstance.showDebugActionSheetFromViewController(rootViewController)
+        DebugMenu.showDebugActionSheet()
     }
 
+    /**
+     Should be called when touch events are received. This will handle showing the hidden debug menu.
+
+     - parameter touches:                 Set<UITouch> the touches received by the original touchesBegan
+     - parameter event:                   (UIEvent) the event captured by the original touchesBegan call
+     - parameter minimumTouchRequirement: (Int) the minimum number of touches required to show the debug menu.
+     */
+    public class func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?, minimumTouchRequirement: Int = 3) {
+        guard event?.allTouches()?.count >= minimumTouchRequirement else {
+            return
+        }
+
+        DebugMenu.showDebugActionSheet()
+    }
+
+    /**
+     Should be called when touches moved. This will handle showing the hidden debug menu.
+
+     - parameter touches:                 Set<UITouch> the touches received by the original touchesMoved
+     - parameter event:                   (UIEvent) the event captured by the original touchesMoved call
+     - parameter minimumForcePercent:     (Int) the minimum force percent required to show the debug menu.
+     */
+    public class func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?, minimumForcePercent: Float = 60.0) {
+        guard #available(iOS 9.0, *) else {
+            return
+        }
+
+        let eventTouches = event?.allTouches()?.filter({ (touch) -> Bool in
+            guard let percent: CGFloat = CGFloat(minimumForcePercent) else {
+                return false
+            }
+            return touch.force >= touch.maximumPossibleForce * (percent / 100)
+        })
+
+        guard let touches = eventTouches where touches.count > 0 else {
+            return
+        }
+
+        DebugMenu.showDebugActionSheet()
+    }
+
+    /**
+     Should be called directly only if you want to manually invoke Yoshi
+     */
+    public class func showDebugActionSheet() {
+        DebugConfigurationManager.sharedInstance.showDebugActionSheet()
+    }
+    
 }

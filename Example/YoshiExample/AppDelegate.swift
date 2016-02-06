@@ -46,11 +46,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         })
 
         // YoshiMenuType.CustomMenu
-        let setup: () -> () = { Void in
+        let setup: () -> () = {
             print("setup")
         }
 
-        let completion: () -> () = { Void in
+        let completion: () -> () = {
             print("completed")
         }
 
@@ -59,12 +59,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         DebugMenu.setupDebugMenu([tableViewMenu, dateSelector, customMenu])
     }
 
+    // Implement the functionality you want!
+
     override func motionBegan(motion: UIEventSubtype, withEvent event: UIEvent?) {
         DebugMenu.motionBegan(motion, withEvent: event)
     }
 
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         DebugMenu.touchesBegan(touches, withEvent: event)
+    }
+
+    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        DebugMenu.touchesMoved(touches, withEvent: event)
     }
 }
 
