@@ -60,20 +60,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let customMenu = CustomMenu(debugMenuName: "Custom", setup: setup, completion: completion)
 
-        DebugMenu.setupDebugMenu([tableViewMenu, dateSelector, customMenu])
-    }
+        let menuItems: [YoshiMenu] = [tableViewMenu, dateSelector, customMenu]
 
-    // Implement the functionality you want!
-
-    override func motionBegan(motion: UIEventSubtype, withEvent event: UIEvent?) {
-        DebugMenu.motionBegan(motion, withEvent: event)
-    }
-
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        DebugMenu.touchesBegan(touches, withEvent: event)
-    }
-
-    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        DebugMenu.touchesMoved(touches, withEvent: event)
+        if #available(iOS 9.0, *) {
+            DebugMenu.startWithInvokeEvent(.ForceTouch, menuItems: menuItems)
+        } else {
+            DebugMenu.startWithInvokeEvent(.ShakeMotion, menuItems: menuItems)
+        }
     }
 }

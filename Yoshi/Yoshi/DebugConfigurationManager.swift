@@ -12,8 +12,12 @@ internal class DebugConfigurationManager {
 
     static let sharedInstance = DebugConfigurationManager()
 
+    var yoshiInvocationEvent: InvocationEvent = .ShakeMotion
+    var touchInvocationminimumTouchRequirement = 3
+    var inDebugMenu: Bool = false
+    var didInvokeStart: Bool = false
+
     private var currentDate = NSDate()
-    private var inDebugMenu: Bool = false
     private lazy var debugAlertController: UIAlertController = {
         var preferredStyle: UIAlertControllerStyle
 
@@ -28,8 +32,10 @@ internal class DebugConfigurationManager {
 
     private var yoshiMenuItems = [YoshiMenu]()
 
-    func setupDebugMenuOptions(menuItems: [YoshiMenu]) {
+    func startWithInvokeEvent(invocationEvent: InvocationEvent, menuItems: [YoshiMenu]) {
+        yoshiInvocationEvent = invocationEvent
         yoshiMenuItems = menuItems
+        didInvokeStart = true
 
         for menuItem in yoshiMenuItems {
             switch menuItem {
@@ -139,5 +145,5 @@ extension DebugConfigurationManager: DebugTableViewControllerDelegate {
     func shouldDismissDebugTableView(viewController: UIViewController) {
         dismiss(viewController)
     }
-
+    
 }

@@ -8,6 +8,14 @@
 
 import UIKit
 
+public enum InvocationEvent {
+    case ShakeMotion
+    case MultiTouch
+
+    @available(iOS 9, *)
+    case ForceTouch
+}
+
 public class DebugMenu {
 
     // MARK: Setup
@@ -17,8 +25,15 @@ public class DebugMenu {
 
     - parameter menuItems: [YoshiMenu] an array of items to be displayed in the Yoshi Debug Action Sheet
     */
-    public class func setupDebugMenu(menuItems: [YoshiMenu]) {
-        DebugConfigurationManager.sharedInstance.setupDebugMenuOptions(menuItems)
+
+    /**
+     Should be called in application didFinishLaunchingWithOptions
+
+     - parameter invocationEvent: [InvocationEvent]
+     - parameter menuItems:       [YoshiMenu] an array of items to be displayed in the Yoshi Debug Action Sheet
+     */
+    public class func startWithInvokeEvent(invocationEvent: InvocationEvent = .ShakeMotion, menuItems: [YoshiMenu]) {
+        DebugConfigurationManager.sharedInstance.startWithInvokeEvent(invocationEvent, menuItems: menuItems)
     }
 
     // MARK: Invocation Functions

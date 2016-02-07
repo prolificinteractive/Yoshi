@@ -6,9 +6,9 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   Yoshi:
-    :path: "../"
+    :path: ../
 
 SPEC CHECKSUMS:
-  Yoshi: c72d7ab825483c0ae033238ce7073f7a546ce6a3
+  Yoshi: 80885a8a0fd9def56d4a60a1d538a8ca6d4a076b
 
 COCOAPODS: 0.39.0
