@@ -44,10 +44,13 @@ let menuItemStaging = MenuItem(name: "Staging")
 let environmentItems: [YoshiTableViewMenuItem] = [menuItemProd, menuItemStaging]
 
 let tableViewMenu = TableViewMenu(debugMenuName: "Environment", displayItems: environmentItems, didSelectDisplayItem: { (displayItem) in
-  // Switch environment here.
+  // Switch environment here
 })
 
-DebugMenu.startWithInvokeEvent(.ShakeMotion, menuItems: [tableViewMenu])
+Yoshi.setupDebugMenu([tableViewMenu])
+
+// Invoke Yoshi
+Yoshi.showDebugActionSheet()
 ```
 
 ## Contributing to Yoshi
