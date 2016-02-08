@@ -10,26 +10,35 @@ import UIKit
 import Yoshi
 
 struct MenuItem: YoshiTableViewMenuItem {
+
     var name: String
 
-    func displayText() -> String {
-        return name
-    }
 }
 
 struct TableViewMenu: YoshiTableViewMenu {
-    var debugMenuName: String
+
+    var title: String
+    var subtitle: String?
     var displayItems: [YoshiTableViewMenuItem]
     var didSelectDisplayItem: (displayItem: YoshiTableViewMenuItem) -> ()
-}
 
-struct CustomMenu: YoshiCustomMenu {
-    var debugMenuName: String
-    var setup: () -> ()
-    var completion: () -> ()
 }
 
 struct DateSelector: YoshiDateSelectorMenu {
-    var debugMenuName: String
+
+    var title: String
+    var subtitle: String?
     var didUpdateDate: (dateSelected: NSDate) -> ()
+
+}
+
+
+struct TestMenuItem: YoshiMenu {
+    let title = "Test"
+    let subtitle: String? = nil
+
+    func execute() -> YoshiActionResult {
+        print ("Executed")
+        return YoshiActionResult()
+    }
 }

@@ -8,28 +8,11 @@
 
 import UIKit
 
-protocol DebugTableViewControllerDelegate {
-    func shouldDismissDebugTableView(viewController: UIViewController)
-}
+internal final class DebugTableViewController: UIViewController {
 
-internal class DebugTableViewController: UIViewController {
-
-    let yoshiTableViewCellDefaultIdentifier = "YoshiTableViewCellDefaultIdentifier"
-
+    private let yoshiTableViewCellDefaultIdentifier = "YoshiTableViewCellDefaultIdentifier"
     @IBOutlet private weak var tableView: UITableView!
-
-    var yoshiTableViewMenu: YoshiTableViewMenu?
-    var tableViewControllerDelegate: DebugTableViewControllerDelegate?
-
-    // MARK: Initializers
-
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    private var yoshiTableViewMenu: YoshiTableViewMenu?
 
     // MARK: Public Methods
 
@@ -41,15 +24,8 @@ internal class DebugTableViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = yoshiTableViewMenu?.debugMenuName
+        navigationItem.title = yoshiTableViewMenu?.title
     }
-
-    // MARK: IBAction Methods
-
-    @IBAction private func cancelBarButtonItemTouched(sender: UIBarButtonItem) {
-        tableViewControllerDelegate?.shouldDismissDebugTableView(self)
-    }
-
 }
 
 // MARK: UITableViewDataSource
@@ -63,7 +39,7 @@ extension DebugTableViewController: UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell =
         UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: yoshiTableViewCellDefaultIdentifier)
-        cell.textLabel?.text = yoshiTableViewMenu?.displayItems[indexPath.row].displayText()
+        cell.textLabel?.text = yoshiTableViewMenu?.displayItems[indexPath.row].name
         return cell
     }
 
@@ -79,7 +55,7 @@ extension DebugTableViewController: UITableViewDelegate {
         }
 
         yoshiTableViewMenu?.didSelectDisplayItem(displayItem: selectedItem)
-        tableViewControllerDelegate?.shouldDismissDebugTableView(self)
+        navigationController?.popViewControllerAnimated(true)
    }
 
 }

@@ -1,0 +1,138 @@
+//
+//  DebugViewController.swift
+//  Yoshi
+//
+//  Created by Christopher Jones on 2/8/16.
+//  Copyright © 2016 Prolific Interactive. All rights reserved.
+//
+
+/// A debug menu.
+internal final class DebugViewController: UIViewController {
+
+    let completionHandler: () -> Void
+
+    private let tableView = UITableView()
+    private let options: [YoshiMenu]
+
+    init(options: [YoshiMenu], completion: () -> Void) {
+        self.options = options
+        self.completionHandler = completion
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override func loadView() {
+        view = UIView()
+        setupNavigationController()
+        setupTableView()
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+
+    private func setupTableView() {
+        view.addSubview(tableView)
+
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+
+        let topConstraint = NSLayoutConstraint(item: tableView, attribute: .Top,
+            relatedBy: .Equal, toItem: view, attribute: .Top, multiplier: 1.0, constant: 0)
+        let leadingConstraint = NSLayoutConstraint(item: tableView, attribute: .Leading,
+            relatedBy: .Equal, toItem: view, attribute: .Leading, multiplier: 1.0, constant: 0)
+        let trailingConstraint = NSLayoutConstraint(item: tableView,
+            attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .Trailing, multiplier: 1.0, constant: 0.0)
+        let bottomConstraint = NSLayoutConstraint(item: tableView, attribute: .Bottom,
+            relatedBy: .Equal, toItem: bottomLayoutGuide, attribute: .Top, multiplier: 1.0, constant: 0.0)
+
+        view.addConstraints([topConstraint, leadingConstraint, trailingConstraint, bottomConstraint])
+
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.tableHeaderView = tableViewHeader()
+    }
+
+    private func tableViewHeader() -> UIView {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 100))
+        let imageView = UIImageView(image: AppBundleUtility.icon())
+        view.addSubview(imageView)
+
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        let centerXConstraint = NSLayoutConstraint(item: imageView, attribute: .CenterX,
+            relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1.0, constant: 0.0)
+        let topConstraint = NSLayoutConstraint(item: imageView, attribute: .Top, relatedBy: .Equal,
+            toItem: view, attribute: .Top, multiplier: 1.0, constant: 8.0)
+
+        view.addConstraints([centerXConstraint, topConstraint])
+
+        let versionLabel = UILabel()
+        versionLabel.text = AppBundleUtility.appVersionText()
+        versionLabel.textColor = Color(105, 105, 105).toUIColor()
+        versionLabel.font = UIFont.systemFontOfSize(12)
+        versionLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(versionLabel)
+
+        let labelCenterXConstraint = NSLayoutConstraint(item: versionLabel, attribute: .CenterX,
+            relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1.0, constant: 0.0)
+        let labelTopConstraint = NSLayoutConstraint(item: versionLabel, attribute: .Top, relatedBy: .Equal,
+            toItem: imageView, attribute: .Bottom, multiplier: 1.0, constant: 8.0)
+        view.addConstraints([labelCenterXConstraint, labelTopConstraint])
+
+        return view
+    }
+
+    private func setupNavigationController() {
+        let closeButton = UIBarButtonItem(title: "Close", style: .Plain, target: self, action: "close:")
+        navigationItem.leftBarButtonItem = closeButton
+        navigationItem.title = AppBundleUtility.appDisplayName()
+    }
+
+    @objc private func close(sender: UIBarButtonItem) {
+        completionHandler()
+    }
+}
+
+extension DebugViewController: UITableViewDataSource {
+
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return options.count
+    }
+
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cellIdentifier = "DebugViewControllerTableViewCellIdentifier"
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) ??
+            UITableViewCell(style: .Subtitle, reuseIdentifier: cellIdentifier)
+
+        let option = options[indexPath.row]
+        cell.textLabel?.text = option.title
+        cell.detailTextLabel?.text = option.subtitle
+
+        return cell
+    }
+
+}
+
+extension DebugViewController: UITableViewDelegate {
+
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 80
+    }
+
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let selectedOption = options[indexPath.row]
+        let result = selectedOption.execute()
+
+        if let viewController = result.viewController where result.result == .PresentViewController {
+            navigationController?.pushViewController(viewController, animated: true)
+        }
+    }
+
+}
