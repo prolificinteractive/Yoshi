@@ -1,0 +1,14 @@
+PODS:
+  - Yoshi (0.1.0)
+
+DEPENDENCIES:
+  - Yoshi (from `../`)
+
+EXTERNAL SOURCES:
+  Yoshi:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Yoshi: c72d7ab825483c0ae033238ce7073f7a546ce6a3
+
+COCOAPODS: 0.39.0
