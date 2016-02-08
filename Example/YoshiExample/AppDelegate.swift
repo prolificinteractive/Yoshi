@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #if DEBUG
             setupDebugMenu()
         #endif
-        
+
         return true
     }
 
@@ -60,20 +60,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let customMenu = CustomMenu(debugMenuName: "Custom", setup: setup, completion: completion)
 
-        DebugMenu.setupDebugMenu([tableViewMenu, dateSelector, customMenu])
+        Yoshi.setupDebugMenu([tableViewMenu, dateSelector, customMenu])
     }
 
     // Implement the functionality you want!
 
     override func motionBegan(motion: UIEventSubtype, withEvent event: UIEvent?) {
-        DebugMenu.motionBegan(motion, withEvent: event)
+        Yoshi.motionBegan(motion, withEvent: event)
     }
 
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        DebugMenu.touchesBegan(touches, withEvent: event)
+        Yoshi.touchesBegan(touches, withEvent: event)
     }
 
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        DebugMenu.touchesMoved(touches, withEvent: event)
+        Yoshi.touchesMoved(touches, withEvent: event)
     }
 }

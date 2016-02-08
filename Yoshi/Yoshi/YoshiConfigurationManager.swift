@@ -8,9 +8,9 @@
 
 import UIKit
 
-internal class DebugConfigurationManager {
+internal final class YoshiConfigurationManager {
 
-    static let sharedInstance = DebugConfigurationManager()
+    static let sharedInstance = YoshiConfigurationManager()
 
     private var currentDate = NSDate()
     private var inDebugMenu: Bool = false
@@ -81,7 +81,7 @@ internal class DebugConfigurationManager {
 
     private func tableViewAction(menu: YoshiTableViewMenu) -> UIAlertAction {
         return UIAlertAction(title: menu.debugMenuName, style: .Default) { (_) -> Void in
-            let bundle = NSBundle(forClass: DebugConfigurationManager.self)
+            let bundle = NSBundle(forClass: YoshiConfigurationManager.self)
             let tableViewController =
                 DebugTableViewController(nibName: String(DebugTableViewController), bundle: bundle)
             tableViewController.modalPresentationStyle = .FormSheet
@@ -95,7 +95,7 @@ internal class DebugConfigurationManager {
 
     private func datePickerAction(menu: YoshiDateSelectorMenu) -> UIAlertAction {
         return UIAlertAction(title: menu.debugMenuName, style: .Default, handler: { (_) -> Void in
-            let bundle = NSBundle(forClass: DebugConfigurationManager.self)
+            let bundle = NSBundle(forClass: YoshiConfigurationManager.self)
             let datePickerViewController =
                 DebugDatePickerViewController(nibName: String(DebugDatePickerViewController), bundle: bundle)
             datePickerViewController.modalPresentationStyle = .FormSheet
@@ -120,7 +120,7 @@ internal class DebugConfigurationManager {
 
 // MARK: DebugDatePickerViewControllerDelegate
 
-extension DebugConfigurationManager: DebugDatePickerViewControllerDelegate {
+extension YoshiConfigurationManager: DebugDatePickerViewControllerDelegate {
 
     func didUpdateDate(date: NSDate) {
         currentDate = date
@@ -134,7 +134,7 @@ extension DebugConfigurationManager: DebugDatePickerViewControllerDelegate {
 
 // MARK: DebugTableViewControllerDelegate
 
-extension DebugConfigurationManager: DebugTableViewControllerDelegate {
+extension YoshiConfigurationManager: DebugTableViewControllerDelegate {
 
     func shouldDismissDebugTableView(viewController: UIViewController) {
         dismiss(viewController)
