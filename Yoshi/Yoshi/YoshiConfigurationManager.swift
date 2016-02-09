@@ -30,7 +30,7 @@ internal final class YoshiConfigurationManager {
 
     func setupDebugMenuOptions(menuItems: [YoshiMenu]) {
         yoshiMenuItems = menuItems
-
+        
         for menuItem in yoshiMenuItems {
             switch menuItem {
             case let menuType as YoshiTableViewMenu:
@@ -46,8 +46,8 @@ internal final class YoshiConfigurationManager {
                 continue
             }
         }
-
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (alertAction) -> Void in
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { [unowned self] (_) -> Void in
             self.inDebugMenu = false
         }
         debugAlertController.addAction(cancelAction)
@@ -80,7 +80,7 @@ internal final class YoshiConfigurationManager {
     }
 
     private func tableViewAction(menu: YoshiTableViewMenu) -> UIAlertAction {
-        return UIAlertAction(title: menu.debugMenuName, style: .Default) { (_) -> Void in
+        return UIAlertAction(title: menu.debugMenuName, style: .Default) { [unowned self] (_) -> Void in
             let bundle = NSBundle(forClass: YoshiConfigurationManager.self)
             let tableViewController =
                 DebugTableViewController(nibName: String(DebugTableViewController), bundle: bundle)
@@ -94,7 +94,7 @@ internal final class YoshiConfigurationManager {
     }
 
     private func datePickerAction(menu: YoshiDateSelectorMenu) -> UIAlertAction {
-        return UIAlertAction(title: menu.debugMenuName, style: .Default, handler: { (_) -> Void in
+        return UIAlertAction(title: menu.debugMenuName, style: .Default, handler: { [unowned self] (_) -> Void in
             let bundle = NSBundle(forClass: YoshiConfigurationManager.self)
             let datePickerViewController =
                 DebugDatePickerViewController(nibName: String(DebugDatePickerViewController), bundle: bundle)
@@ -110,7 +110,7 @@ internal final class YoshiConfigurationManager {
 
     private func customMenuAction(menu: YoshiCustomMenu) -> UIAlertAction {
         menu.setup()
-        return UIAlertAction(title: menu.debugMenuName, style: .Default) { (_) -> Void in
+        return UIAlertAction(title: menu.debugMenuName, style: .Default) { [unowned self] (_) -> Void in
             menu.completion()
             self.inDebugMenu = false
         }
