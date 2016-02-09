@@ -41,9 +41,9 @@ internal final class DebugViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
 
         let topConstraint = NSLayoutConstraint(item: tableView, attribute: .Top,
-            relatedBy: .Equal, toItem: view, attribute: .Top, multiplier: 1.0, constant: 0)
+            relatedBy: .Equal, toItem: view, attribute: .Top, multiplier: 1.0, constant: 0.0)
         let leadingConstraint = NSLayoutConstraint(item: tableView, attribute: .Leading,
-            relatedBy: .Equal, toItem: view, attribute: .Leading, multiplier: 1.0, constant: 0)
+            relatedBy: .Equal, toItem: view, attribute: .Leading, multiplier: 1.0, constant: 0.0)
         let trailingConstraint = NSLayoutConstraint(item: tableView,
             attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .Trailing, multiplier: 1.0, constant: 0.0)
         let bottomConstraint = NSLayoutConstraint(item: tableView, attribute: .Bottom,
@@ -57,7 +57,7 @@ internal final class DebugViewController: UIViewController {
     }
 
     private func tableViewHeader() -> UIView {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 100))
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 160))
         let imageView = UIImageView(image: AppBundleUtility.icon())
         view.addSubview(imageView)
 
@@ -65,7 +65,7 @@ internal final class DebugViewController: UIViewController {
         let centerXConstraint = NSLayoutConstraint(item: imageView, attribute: .CenterX,
             relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1.0, constant: 0.0)
         let topConstraint = NSLayoutConstraint(item: imageView, attribute: .Top, relatedBy: .Equal,
-            toItem: view, attribute: .Top, multiplier: 1.0, constant: 8.0)
+            toItem: view, attribute: .Top, multiplier: 1.0, constant: 38.0)
 
         view.addConstraints([centerXConstraint, topConstraint])
 
@@ -81,6 +81,19 @@ internal final class DebugViewController: UIViewController {
         let labelTopConstraint = NSLayoutConstraint(item: versionLabel, attribute: .Top, relatedBy: .Equal,
             toItem: imageView, attribute: .Bottom, multiplier: 1.0, constant: 8.0)
         view.addConstraints([labelCenterXConstraint, labelTopConstraint])
+        
+        let separatorLine = UIView()
+        separatorLine.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(separatorLine)
+        
+        separatorLine.backgroundColor = tableView.separatorColor
+        let lineBottomConstraint = NSLayoutConstraint(item: separatorLine, attribute: .Bottom,
+            relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: 0.0)
+        let lineWidthConstraint = NSLayoutConstraint(item: separatorLine, attribute: .Width,
+            relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 1.0, constant: 0.0)
+        let lineHeightConstraint = NSLayoutConstraint(item: separatorLine, attribute: .Height,
+            relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 0.5)
+        view.addConstraints([lineBottomConstraint, lineWidthConstraint, lineHeightConstraint])
 
         return view
     }
@@ -114,6 +127,8 @@ extension DebugViewController: UITableViewDataSource {
         let option = options[indexPath.row]
         cell.textLabel?.text = option.title
         cell.detailTextLabel?.text = option.subtitle
+        
+        cell.accessoryType = .DisclosureIndicator
 
         return cell
     }
@@ -127,6 +142,8 @@ extension DebugViewController: UITableViewDelegate {
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
         let selectedOption = options[indexPath.row]
         let result = selectedOption.execute()
 
