@@ -30,7 +30,7 @@ internal final class YoshiConfigurationManager {
 
     func setupDebugMenuOptions(menuItems: [YoshiMenu]) {
         yoshiMenuItems = menuItems
-
+        
         for menuItem in yoshiMenuItems {
             switch menuItem {
             case let menuType as YoshiTableViewMenu:
@@ -46,9 +46,9 @@ internal final class YoshiConfigurationManager {
                 continue
             }
         }
-
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (alertAction) -> Void in
-            self.inDebugMenu = false
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { [weak self] (_) -> Void in
+            self?.inDebugMenu = true
         }
         debugAlertController.addAction(cancelAction)
     }
@@ -80,39 +80,43 @@ internal final class YoshiConfigurationManager {
     }
 
     private func tableViewAction(menu: YoshiTableViewMenu) -> UIAlertAction {
-        return UIAlertAction(title: menu.debugMenuName, style: .Default) { (_) -> Void in
+        return UIAlertAction(title: menu.debugMenuName, style: .Default) { [weak self] (_) -> Void in
             let bundle = NSBundle(forClass: YoshiConfigurationManager.self)
             let tableViewController =
                 DebugTableViewController(nibName: String(DebugTableViewController), bundle: bundle)
             tableViewController.modalPresentationStyle = .FormSheet
             tableViewController.setup(menu)
             tableViewController.tableViewControllerDelegate = self
-            self.presentViewController(tableViewController) {
-                self.inDebugMenu = true
+            self?.presentViewController(tableViewController) {
+                self?.inDebugMenu = true
             }
         }
     }
 
     private func datePickerAction(menu: YoshiDateSelectorMenu) -> UIAlertAction {
-        return UIAlertAction(title: menu.debugMenuName, style: .Default, handler: { (_) -> Void in
+        return UIAlertAction(title: menu.debugMenuName, style: .Default, handler: { [weak self] (_) -> Void in
+            guard let nonOptionalSelf = self else {
+                return
+            }
+            
             let bundle = NSBundle(forClass: YoshiConfigurationManager.self)
             let datePickerViewController =
                 DebugDatePickerViewController(nibName: String(DebugDatePickerViewController), bundle: bundle)
             datePickerViewController.modalPresentationStyle = .FormSheet
             datePickerViewController.setup(menu)
             datePickerViewController.datePickerViewControllerDelegate = self
-            datePickerViewController.date = self.currentDate
-            self.presentViewController(datePickerViewController) {
-                self.inDebugMenu = true
+            datePickerViewController.date = nonOptionalSelf.currentDate
+            nonOptionalSelf.presentViewController(datePickerViewController) {
+                nonOptionalSelf.inDebugMenu = true
             }
         })
     }
 
     private func customMenuAction(menu: YoshiCustomMenu) -> UIAlertAction {
         menu.setup()
-        return UIAlertAction(title: menu.debugMenuName, style: .Default) { (_) -> Void in
+        return UIAlertAction(title: menu.debugMenuName, style: .Default) { [weak self] (_) -> Void in
             menu.completion()
-            self.inDebugMenu = false
+            self?.inDebugMenu = false
         }
     }
 
