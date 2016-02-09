@@ -47,7 +47,7 @@ internal final class YoshiConfigurationManager {
 
         let window = UIWindow()
         window.rootViewController = navigationController
-        window.windowLevel = UIWindowLevelAlert
+        window.windowLevel = UIWindowLevelNormal
         presentingWindow = window
 
         window.makeKeyAndVisible()
