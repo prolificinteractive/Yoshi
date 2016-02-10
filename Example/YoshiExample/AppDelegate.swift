@@ -37,30 +37,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let menuItemQA = MenuItem(name: "QA")
         let environmentItems: [YoshiTableViewMenuItem] = [menuItemProd, menuItemStaging, menuItemQA]
 
-        let tableViewMenu = TableViewMenu(debugMenuName: "Environment",
+        let tableViewMenu = TableViewMenu(title: "Environment",
+            subtitle: nil,
             displayItems: environmentItems, didSelectDisplayItem: { (displayItem) in
             NSNotificationCenter.defaultCenter()
-                .postNotificationName(Notifications.EnvironmentUpdatedNotification, object: displayItem.displayText())
+                .postNotificationName(Notifications.EnvironmentUpdatedNotification, object: displayItem.name)
         })
 
         // YoshiMenuType.DateSelector
-        let dateSelector = DateSelector(debugMenuName: "Environment Date", didUpdateDate: { (dateSelected) in
+        let dateSelector = DateSelector(title: "Environment Date",
+            subtitle: nil,
+            didUpdateDate: { (dateSelected) in
             NSNotificationCenter.defaultCenter()
                 .postNotificationName(Notifications.EnvironmentDateUpdatedNotification, object: dateSelected)
         })
 
-        // YoshiMenuType.CustomMenu
-        let setup: () -> () = {
-            print("setup")
-        }
-
-        let completion: () -> () = {
-            print("completed")
-        }
-
-        let customMenu = CustomMenu(debugMenuName: "Custom", setup: setup, completion: completion)
-
-        Yoshi.setupDebugMenu([tableViewMenu, dateSelector, customMenu])
+        Yoshi.setupDebugMenu([tableViewMenu, dateSelector, TestMenuItem()])
     }
 
     // Implement the functionality you want!

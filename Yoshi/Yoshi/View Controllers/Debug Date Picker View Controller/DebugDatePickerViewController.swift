@@ -8,29 +8,12 @@
 
 import UIKit
 
-protocol DebugDatePickerViewControllerDelegate {
-    /**
-     Delegate method that informs a delegate when the date selection has changed
-
-     - parameter date: (NSDate) the new date
-     */
-    func didUpdateDate(date: NSDate)
-
-    /**
-     Delegate method that informs a delegate when the date picker should be dismissed
-
-     - parameter viewController: (UIViewController) the view controller to be dismissed
-     */
-    func shouldDismissDatePickerView(viewController: UIViewController)
-}
-
 internal class DebugDatePickerViewController: UIViewController {
 
-    @IBOutlet private weak var datePicker: UIDatePicker!
-
-    var datePickerViewControllerDelegate: DebugDatePickerViewControllerDelegate?
     var date = NSDate()
     var selectorMenu: YoshiDateSelectorMenu?
+
+    @IBOutlet private weak var datePicker: UIDatePicker!
 
     // MARK: Initializers
 
@@ -64,20 +47,18 @@ internal class DebugDatePickerViewController: UIViewController {
 
     private func setupDatePicker() {
         datePicker.date = date
-        navigationItem.title = selectorMenu?.debugMenuName
+        navigationItem.title = selectorMenu?.title
+
+        let closeButton = UIBarButtonItem(title: "Apply", style: .Plain, target: self, action: "apply:")
+        navigationItem.rightBarButtonItem = closeButton
     }
 
     // MARK: IBAction Methods
 
-    @IBAction func cancelBarButtonItemTouched(sender: UIBarButtonItem) {
-        datePickerViewControllerDelegate?.shouldDismissDatePickerView(self)
-    }
-
-    @IBAction func applyBarButtonItemTouched(sender: UIBarButtonItem) {
+    @objc private func apply(sender: UIBarButtonItem) {
         let date = datePicker.date
-        datePickerViewControllerDelegate?.didUpdateDate(date)
         selectorMenu?.didUpdateDate(dateSelected:date)
-        datePickerViewControllerDelegate?.shouldDismissDatePickerView(self)
+        navigationController?.popViewControllerAnimated(true)
     }
 
 }

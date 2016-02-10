@@ -8,136 +8,65 @@
 
 import UIKit
 
+/// The configuration manager for the debug menu.
 internal final class YoshiConfigurationManager {
 
+    /// The default instance.
     static let sharedInstance = YoshiConfigurationManager()
 
-    private var currentDate = NSDate()
-    private var inDebugMenu: Bool = false
-    private lazy var debugAlertController: UIAlertController = {
-        var preferredStyle: UIAlertControllerStyle
-
-        switch UIDevice.currentDevice().userInterfaceIdiom {
-        case .Phone:
-            preferredStyle = .ActionSheet
-        default:
-            preferredStyle = .Alert
-        }
-        return UIAlertController(title: AppBundleUtility.appVersionText(), message: nil, preferredStyle: preferredStyle)
-    }()
-
     private var yoshiMenuItems = [YoshiMenu]()
+    private var presentingWindow: UIWindow?
 
+    /**
+     Sets the debug options to use for presenting the debug menu.
+
+     - parameter menuItems: The menu items for presentation.
+     */
     func setupDebugMenuOptions(menuItems: [YoshiMenu]) {
         yoshiMenuItems = menuItems
-
-        for menuItem in yoshiMenuItems {
-            switch menuItem {
-            case let menuType as YoshiTableViewMenu:
-                let tableViewAction = self.tableViewAction(menuType)
-                debugAlertController.addAction(tableViewAction)
-            case let menuType as YoshiDateSelectorMenu:
-                let datePickerAction = self.datePickerAction(menuType)
-                debugAlertController.addAction(datePickerAction)
-            case let menuType as YoshiCustomMenu:
-                let customMenuAction = self.customMenuAction(menuType)
-                debugAlertController.addAction(customMenuAction)
-            default:
-                continue
-            }
-        }
-
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (alertAction) -> Void in
-            self.inDebugMenu = false
-        }
-        debugAlertController.addAction(cancelAction)
     }
 
+    /**
+     Invokes the display of the debug menu.
+     */
     func showDebugActionSheet() {
-        guard !inDebugMenu else {
+        guard presentingWindow == nil else {
             return
         }
-        presentViewController(debugAlertController) { () -> Void in
-            self.inDebugMenu = true
+
+        let navigationController = UINavigationController()
+        let debugViewController = DebugViewController(options: yoshiMenuItems, completion: { [weak self] in
+            self?.animate({
+                    self?.presentingWindow?.alpha = 0.0
+                }, completed: {
+                    self?.presentingWindow = nil
+            })
+        })
+
+        navigationController.setViewControllers([debugViewController], animated: false)
+
+        let window = UIWindow()
+        window.rootViewController = navigationController
+        window.windowLevel = UIWindowLevelNormal
+        presentingWindow = window
+
+        window.makeKeyAndVisible()
+        window.alpha = 0.0
+        window.rootViewController?.view.layoutIfNeeded()
+        animate {
+            window.alpha = 1
         }
     }
 
-    // MARK: Private Methods
-
-    private func presentViewController(viewControllerToDisplay: UIViewController, presentedCompletion: () -> Void) {
-        let window = UIApplication.sharedApplication().keyWindow
-        guard let rootViewController = window?.rootViewController else {
-            return
-        }
-        rootViewController
-            .presentViewController(viewControllerToDisplay, animated: true, completion: presentedCompletion)
+    private func animate(animations: () -> Void) {
+        animate(animations, completed: nil)
     }
 
-    private func dismiss(viewController: UIViewController) {
-        viewController.dismissViewControllerAnimated(true) { () -> Void in
-            self.inDebugMenu = false
-        }
-    }
-
-    private func tableViewAction(menu: YoshiTableViewMenu) -> UIAlertAction {
-        return UIAlertAction(title: menu.debugMenuName, style: .Default) { (_) -> Void in
-            let bundle = NSBundle(forClass: YoshiConfigurationManager.self)
-            let tableViewController =
-                DebugTableViewController(nibName: String(DebugTableViewController), bundle: bundle)
-            tableViewController.modalPresentationStyle = .FormSheet
-            tableViewController.setup(menu)
-            tableViewController.tableViewControllerDelegate = self
-            self.presentViewController(tableViewController) {
-                self.inDebugMenu = true
-            }
-        }
-    }
-
-    private func datePickerAction(menu: YoshiDateSelectorMenu) -> UIAlertAction {
-        return UIAlertAction(title: menu.debugMenuName, style: .Default, handler: { (_) -> Void in
-            let bundle = NSBundle(forClass: YoshiConfigurationManager.self)
-            let datePickerViewController =
-                DebugDatePickerViewController(nibName: String(DebugDatePickerViewController), bundle: bundle)
-            datePickerViewController.modalPresentationStyle = .FormSheet
-            datePickerViewController.setup(menu)
-            datePickerViewController.datePickerViewControllerDelegate = self
-            datePickerViewController.date = self.currentDate
-            self.presentViewController(datePickerViewController) {
-                self.inDebugMenu = true
-            }
+    private func animate(animations: () -> Void, completed: ( () -> Void)?) {
+        UIView.animateWithDuration(0.3, animations: {
+                animations()
+            }, completion: { _ in
+                completed?()
         })
     }
-
-    private func customMenuAction(menu: YoshiCustomMenu) -> UIAlertAction {
-        menu.setup()
-        return UIAlertAction(title: menu.debugMenuName, style: .Default) { (_) -> Void in
-            menu.completion()
-            self.inDebugMenu = false
-        }
-    }
-
-}
-
-// MARK: DebugDatePickerViewControllerDelegate
-
-extension YoshiConfigurationManager: DebugDatePickerViewControllerDelegate {
-
-    func didUpdateDate(date: NSDate) {
-        currentDate = date
-    }
-
-    func shouldDismissDatePickerView(viewController: UIViewController) {
-        dismiss(viewController)
-    }
-
-}
-
-// MARK: DebugTableViewControllerDelegate
-
-extension YoshiConfigurationManager: DebugTableViewControllerDelegate {
-
-    func shouldDismissDebugTableView(viewController: UIViewController) {
-        dismiss(viewController)
-    }
-
 }

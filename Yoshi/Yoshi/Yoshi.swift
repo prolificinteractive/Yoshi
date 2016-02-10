@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// The Debug Menu interface.
 public final class Yoshi {
 
     // MARK: Setup

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -16,23 +16,6 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e0U-TY-Lac">
-                    <rect key="frame" x="0.0" y="20" width="600" height="44"/>
-                    <items>
-                        <navigationItem title="Change Date" id="Qf2-Nm-1d8">
-                            <barButtonItem key="leftBarButtonItem" title="Cancel" id="NTG-OE-Vgc">
-                                <connections>
-                                    <action selector="cancelBarButtonItemTouched:" destination="-1" id="1PT-B2-unz"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem key="rightBarButtonItem" title="Apply" id="HDP-gu-4Dk">
-                                <connections>
-                                    <action selector="applyBarButtonItemTouched:" destination="-1" id="sEA-g6-bB3"/>
-                                </connections>
-                            </barButtonItem>
-                        </navigationItem>
-                    </items>
-                </navigationBar>
                 <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="4dn-Jr-bWM">
                     <rect key="frame" x="0.0" y="192" width="600" height="216"/>
                     <date key="date" timeIntervalSinceReferenceDate="458236190.98282897">
@@ -42,20 +25,11 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="e0U-TY-Lac" firstAttribute="top" secondItem="Zti-hz-4XX" secondAttribute="top" constant="20" id="5wP-Ph-ETd"/>
-                <constraint firstItem="e0U-TY-Lac" firstAttribute="top" secondItem="Zti-hz-4XX" secondAttribute="top" id="GRE-MW-Y5T"/>
                 <constraint firstItem="4dn-Jr-bWM" firstAttribute="leading" secondItem="Zti-hz-4XX" secondAttribute="leading" id="RkS-gB-7RI"/>
                 <constraint firstAttribute="centerY" secondItem="4dn-Jr-bWM" secondAttribute="centerY" id="afj-Q9-Lo4"/>
-                <constraint firstAttribute="trailing" secondItem="e0U-TY-Lac" secondAttribute="trailing" id="o5c-iG-0Q2"/>
                 <constraint firstAttribute="trailing" secondItem="4dn-Jr-bWM" secondAttribute="trailing" id="rOc-zM-rra"/>
-                <constraint firstItem="e0U-TY-Lac" firstAttribute="leading" secondItem="Zti-hz-4XX" secondAttribute="leading" id="v38-GH-gIy"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
-            <variation key="default">
-                <mask key="constraints">
-                    <exclude reference="GRE-MW-Y5T"/>
-                </mask>
-            </variation>
         </view>
     </objects>
 </document>
