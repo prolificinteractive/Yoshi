@@ -15,7 +15,6 @@ internal final class YoshiConfigurationManager {
     static let sharedInstance = YoshiConfigurationManager()
 
     private var yoshiMenuItems = [YoshiMenu]()
-    private var presentingWindow: UIWindow?
 
     /**
      Sets the debug options to use for presenting the debug menu.
@@ -30,43 +29,26 @@ internal final class YoshiConfigurationManager {
      Invokes the display of the debug menu.
      */
     func showDebugActionSheet() {
-        guard presentingWindow == nil else {
+
+        let navigationController = UINavigationController()
+        navigationController.modalPresentationStyle = .FormSheet
+
+        let window = UIApplication.sharedApplication().keyWindow
+        guard var rootViewController = window?.rootViewController else {
             return
         }
 
-        let navigationController = UINavigationController()
-        let debugViewController = DebugViewController(options: yoshiMenuItems, completion: { [weak self] in
-            self?.animate({
-                    self?.presentingWindow?.alpha = 0.0
-                }, completed: {
-                    self?.presentingWindow = nil
+        if let presentedViewController = rootViewController.presentedViewController {
+            rootViewController = presentedViewController
+        }
+
+        let debugViewController = DebugViewController(options: yoshiMenuItems, completion: {
+            navigationController.dismissViewControllerAnimated(true, completion: nil)
             })
-        })
 
         navigationController.setViewControllers([debugViewController], animated: false)
 
-        let window = UIWindow()
-        window.rootViewController = navigationController
-        window.windowLevel = UIWindowLevelNormal
-        presentingWindow = window
-
-        window.makeKeyAndVisible()
-        window.alpha = 0.0
-        window.rootViewController?.view.layoutIfNeeded()
-        animate {
-            window.alpha = 1
-        }
-    }
-
-    private func animate(animations: () -> Void) {
-        animate(animations, completed: nil)
-    }
-
-    private func animate(animations: () -> Void, completed: ( () -> Void)?) {
-        UIView.animateWithDuration(0.3, animations: {
-                animations()
-            }, completion: { _ in
-                completed?()
-        })
+       rootViewController
+            .presentViewController(navigationController, animated: true, completion: nil)
     }
 }

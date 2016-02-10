@@ -16,6 +16,5 @@ public enum YoshiResult {
 
     case Handled
     case PresentViewController
-    
-}
 
+}
