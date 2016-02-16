@@ -24,6 +24,11 @@ public struct YoshiActionResult {
         viewController = nil
     }
 
+    public init(action: () -> Void) {
+        result = .AsyncAfterDismissing(action)
+        viewController = nil
+    }
+
     /**
      A result indicating a view controller is required to handle the action.
 

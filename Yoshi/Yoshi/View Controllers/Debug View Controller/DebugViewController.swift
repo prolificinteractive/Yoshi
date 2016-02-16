@@ -6,15 +6,17 @@
 //  Copyright © 2016 Prolific Interactive. All rights reserved.
 //
 
+internal typealias VoidCompletionBlock = Void -> Void
+
 /// A debug menu.
 internal final class DebugViewController: UIViewController {
 
-    let completionHandler: () -> Void
+    let completionHandler: (completed: VoidCompletionBlock? ) -> Void
 
     private let tableView = UITableView()
     private let options: [YoshiMenu]
 
-    init(options: [YoshiMenu], completion: () -> Void) {
+    init(options: [YoshiMenu], completion: (VoidCompletionBlock?) -> Void) {
         self.options = options
         self.completionHandler = completion
         super.init(nibName: nil, bundle: nil)
@@ -105,7 +107,7 @@ internal final class DebugViewController: UIViewController {
     }
 
     @objc private func close(sender: UIBarButtonItem) {
-        completionHandler()
+        completionHandler(completed: nil)
     }
 }
 
@@ -149,6 +151,8 @@ extension DebugViewController: UITableViewDelegate {
 
         if let viewController = result.viewController where result.result == .PresentViewController {
             navigationController?.pushViewController(viewController, animated: true)
+        } else if result.result == YoshiResult.AsyncAfterDismissing({ }) {
+            completionHandler(completed: result.result.asyncBlock())
         }
     }
 

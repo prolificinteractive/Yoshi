@@ -57,9 +57,10 @@ internal final class YoshiConfigurationManager {
     private func presentDebugViewController() {
         if let rootViewController = presentingWindow?.rootViewController {
             let navigationController = UINavigationController()
-            let debugViewController = DebugViewController(options: yoshiMenuItems, completion: { [weak self] in
+            let debugViewController = DebugViewController(options: yoshiMenuItems, completion: { [weak self]  completionBlock in
                 rootViewController.dismissViewControllerAnimated(true, completion: { () -> Void in
                     self?.presentingWindow = nil
+                    completionBlock?()
                 })
             })
             
