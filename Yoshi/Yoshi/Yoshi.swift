@@ -66,9 +66,13 @@ public final class Yoshi {
         }
 
         let eventTouches = event?.allTouches()?.filter({ (touch) -> Bool in
-            guard let percent: CGFloat = CGFloat(minimumForcePercent) else {
+            // Guarding against touch.maximumPossibleForce > 0
+            // because this value is 0 on non-3D touch capable devices
+            guard touch.maximumPossibleForce > 0 else {
                 return false
             }
+
+            let percent = CGFloat(minimumForcePercent)
             return touch.force >= touch.maximumPossibleForce * (percent / 100)
         })
 
