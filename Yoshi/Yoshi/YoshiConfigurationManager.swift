@@ -44,29 +44,30 @@ internal final class YoshiConfigurationManager {
 
         window.rootViewController = rootViewController
         window.makeKeyAndVisible()
-        
+
         presentingWindow = window
-        
+
         // iOS doesn't like when modals are presented right away after a window's been made key and visible.
         // We need to delay presenting the debug controller a bit to suppress the warning.
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
             self.presentDebugViewController()
         }
     }
-    
+
     private func presentDebugViewController() {
         if let rootViewController = presentingWindow?.rootViewController {
             let navigationController = UINavigationController()
-            let debugViewController = DebugViewController(options: yoshiMenuItems, completion: { [weak self]  completionBlock in
+            let debugViewController = DebugViewController(options: yoshiMenuItems,
+                completion: { [weak self]  completionBlock in
                 rootViewController.dismissViewControllerAnimated(true, completion: { () -> Void in
                     self?.presentingWindow = nil
                     completionBlock?()
                 })
             })
-            
+
             navigationController.modalPresentationStyle = .FormSheet
             navigationController.setViewControllers([debugViewController], animated: false)
-            
+
             rootViewController.presentViewController(navigationController, animated: true, completion: nil)
         }
     }

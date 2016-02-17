@@ -21,10 +21,9 @@
 		F902ED361C694529007975F5 /* YoshiMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = F902ED301C694529007975F5 /* YoshiMenu.swift */; };
 		F902ED371C694529007975F5 /* YoshiTableViewMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = F902ED311C694529007975F5 /* YoshiTableViewMenu.swift */; };
 		F902ED381C694529007975F5 /* YoshiTableViewMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F902ED321C694529007975F5 /* YoshiTableViewMenuItem.swift */; };
-		F902ED481C6A3B18007975F5 /* YoshiActionResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = F902ED471C6A3B18007975F5 /* YoshiActionResult.swift */; };
 		F902ED4E1C6A3B2D007975F5 /* DebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F902ED4D1C6A3B2D007975F5 /* DebugViewController.swift */; };
 		F902ED521C6A6FE6007975F5 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = F902ED511C6A6FE6007975F5 /* Color.swift */; };
-		F902ED541C6A831A007975F5 /* YoshiResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = F902ED531C6A831A007975F5 /* YoshiResult.swift */; };
+		F902ED541C6A831A007975F5 /* YoshiActionResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = F902ED531C6A831A007975F5 /* YoshiActionResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,10 +54,9 @@
 		F902ED301C694529007975F5 /* YoshiMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoshiMenu.swift; sourceTree = "<group>"; };
 		F902ED311C694529007975F5 /* YoshiTableViewMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoshiTableViewMenu.swift; sourceTree = "<group>"; };
 		F902ED321C694529007975F5 /* YoshiTableViewMenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoshiTableViewMenuItem.swift; sourceTree = "<group>"; };
-		F902ED471C6A3B18007975F5 /* YoshiActionResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoshiActionResult.swift; sourceTree = "<group>"; };
 		F902ED4D1C6A3B2D007975F5 /* DebugViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebugViewController.swift; sourceTree = "<group>"; };
 		F902ED511C6A6FE6007975F5 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
-		F902ED531C6A831A007975F5 /* YoshiResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoshiResult.swift; sourceTree = "<group>"; };
+		F902ED531C6A831A007975F5 /* YoshiActionResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoshiActionResult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,8 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				276BCEC01C29AEDD002138C7 /* Yoshi.swift */,
-				F902ED471C6A3B18007975F5 /* YoshiActionResult.swift */,
-				F902ED531C6A831A007975F5 /* YoshiResult.swift */,
+				F902ED531C6A831A007975F5 /* YoshiActionResult.swift */,
 				F902ED2D1C694529007975F5 /* YoshiConfigurationManager.swift */,
 				F902ED2F1C694529007975F5 /* YoshiDateSelectorMenu.swift */,
 				F902ED301C694529007975F5 /* YoshiMenu.swift */,
@@ -309,9 +306,8 @@
 				F902ED4E1C6A3B2D007975F5 /* DebugViewController.swift in Sources */,
 				2746E6501C2C7AC3006C1DEF /* DebugDatePickerViewController.swift in Sources */,
 				27100A991C3B1A9400074B2A /* AppBundleUtility.swift in Sources */,
-				F902ED481C6A3B18007975F5 /* YoshiActionResult.swift in Sources */,
 				276BCEC11C29AEDD002138C7 /* Yoshi.swift in Sources */,
-				F902ED541C6A831A007975F5 /* YoshiResult.swift in Sources */,
+				F902ED541C6A831A007975F5 /* YoshiActionResult.swift in Sources */,
 				276BCEBE1C29A97E002138C7 /* DebugTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,42 +1,23 @@
 //
-//  YoshiActionResult.swift
+//  YoshiResult.swift
 //  Yoshi
 //
-//  Created by Christopher Jones on 2/8/16.
+//  Created by Christopher Jones on 2/9/16.
 //  Copyright © 2016 Prolific Interactive. All rights reserved.
 //
 
 /**
- A debug menu option result
- */
-public struct YoshiActionResult {
+The result types for a debug menu action.
 
-    /// The result of the action.
-    let result: YoshiResult
-    /// A view controller; this will be nil in the event that the result is .Handled.
-    let viewController: UIViewController?
+- Handled:               Indicates that the action was handled and nothing else is required.
+- PresentViewController: Indicates that a view is required to complete the action, returning the view controller to present.
+- AsyncAfterDismissing:  Indicates that the action should be handled asynchronously after the view is dismissed.
+*/
+public enum YoshiActionResult {
 
-    /**
-     An empty result, indicating that the action was handled and no further work is necessary.
-     */
-    public init() {
-        result = .Handled
-        viewController = nil
-    }
-
-    public init(action: () -> Void) {
-        result = .AsyncAfterDismissing(action)
-        viewController = nil
-    }
-
-    /**
-     A result indicating a view controller is required to handle the action.
-
-     - parameter viewController: The view controller to present.
-     */
-    public init(forPresentingViewController viewController: UIViewController) {
-        result = .PresentViewController
-        self.viewController = viewController
-    }
+    case Handled
+    case PresentViewController(UIViewController)
+    case AsyncAfterDismissing(() -> Void)
 
 }
+

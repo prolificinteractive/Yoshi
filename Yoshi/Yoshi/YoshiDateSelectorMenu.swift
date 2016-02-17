@@ -26,7 +26,7 @@ public extension YoshiDateSelectorMenu {
         datePickerViewController.setup(self)
         datePickerViewController.date = NSDate()
 
-        return YoshiActionResult(forPresentingViewController: datePickerViewController)
+        return .PresentViewController(datePickerViewController)
     }
 
 }
