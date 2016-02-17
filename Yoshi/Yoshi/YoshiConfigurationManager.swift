@@ -49,8 +49,8 @@ internal final class YoshiConfigurationManager {
         
         // iOS doesn't like when modals are presented right away after a window's been made key and visible.
         // We need to delay presenting the debug controller a bit to suppress the warning.
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) { [weak self] in
-            self?.presentDebugViewController()
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
+            self.presentDebugViewController()
         }
     }
     
