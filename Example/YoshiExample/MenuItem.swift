@@ -39,6 +39,6 @@ struct TestMenuItem: YoshiMenu {
 
     func execute() -> YoshiActionResult {
         print ("Executed")
-        return YoshiActionResult()
+        return .Handled
     }
 }

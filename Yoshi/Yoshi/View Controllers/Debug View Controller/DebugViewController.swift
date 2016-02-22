@@ -83,11 +83,11 @@ internal final class DebugViewController: UIViewController {
         let labelTopConstraint = NSLayoutConstraint(item: versionLabel, attribute: .Top, relatedBy: .Equal,
             toItem: imageView, attribute: .Bottom, multiplier: 1.0, constant: 8.0)
         view.addConstraints([labelCenterXConstraint, labelTopConstraint])
-        
+
         let separatorLine = UIView()
         separatorLine.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(separatorLine)
-        
+
         separatorLine.backgroundColor = tableView.separatorColor
         let lineBottomConstraint = NSLayoutConstraint(item: separatorLine, attribute: .Bottom,
             relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: 0.0)
@@ -129,7 +129,7 @@ extension DebugViewController: UITableViewDataSource {
         let option = options[indexPath.row]
         cell.textLabel?.text = option.title
         cell.detailTextLabel?.text = option.subtitle
-        
+
         cell.accessoryType = .DisclosureIndicator
 
         return cell
@@ -145,14 +145,17 @@ extension DebugViewController: UITableViewDelegate {
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        
-        let selectedOption = options[indexPath.row]
-        let result = selectedOption.execute()
 
-        if let viewController = result.viewController where result.result == .PresentViewController {
+        let selectedOption = options[indexPath.row]
+        switch selectedOption.execute() {
+        case .PresentViewController(let viewController):
             navigationController?.pushViewController(viewController, animated: true)
-        } else if result.result == YoshiResult.AsyncAfterDismissing({ }) {
-            completionHandler(completed: result.result.asyncBlock())
+            break
+        case .AsyncAfterDismissing(let asyncAction):
+            completionHandler(completed: asyncAction)
+            break
+        default:
+            return
         }
     }
 
