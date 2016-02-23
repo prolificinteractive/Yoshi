@@ -34,7 +34,7 @@ internal class AppBundleUtility: NSObject {
         guard let icons = NSBundle.mainBundle().infoDictionary?[appBundleIconsKey] as? [String: AnyObject],
             let primaryIcons = icons[appBundlePrimaryIconKey] as? [String: AnyObject],
             let iconFiles = primaryIcons[iconFilesKey] as? [String],
-            let iconImageName = iconFiles.first else {
+            let iconImageName = iconFiles.last else {
             return nil
         }
 
