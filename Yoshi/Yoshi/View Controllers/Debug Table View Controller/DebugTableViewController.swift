@@ -50,7 +50,8 @@ extension DebugTableViewController: UITableViewDataSource {
 extension DebugTableViewController: UITableViewDelegate {
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        guard let selectedItem = yoshiTableViewMenu?.displayItems[indexPath.row] else {
+        guard let selectedItem = yoshiTableViewMenu?.displayItems[indexPath.row] where !selectedItem.selected else {
+            navigationController?.popViewControllerAnimated(true)
             return
         }
 
