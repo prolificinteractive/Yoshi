@@ -54,8 +54,25 @@ extension DebugTableViewController: UITableViewDelegate {
             return
         }
 
+        // Deselect all items that can not be selected at the same time
+        for item in yoshiTableViewMenu?.displayItems ?? [] {
+            if let item = item as? YoshiTableViewSelectable {
+                item.selected = false
+            }
+        }
+        
+        // Select the newly selected item
+        selectedItem.selected = true
+        
         yoshiTableViewMenu?.didSelectDisplayItem(displayItem: selectedItem)
         navigationController?.popViewControllerAnimated(true)
    }
 
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell,
+                   forRowAtIndexPath indexPath: NSIndexPath) {
+        guard let selectedItem = yoshiTableViewMenu?.displayItems[indexPath.row] where selectedItem.selected else {
+            return
+        }
+        cell.accessoryType = .Checkmark
+    }
 }

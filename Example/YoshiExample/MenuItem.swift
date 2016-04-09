@@ -9,9 +9,16 @@
 import UIKit
 import Yoshi
 
-struct MenuItem: YoshiTableViewMenuItem {
+class MenuItem: YoshiTableViewMenuItem {
 
     var name: String
+    var selected: Bool
+
+    init(name: String,
+         selected: Bool) {
+        self.name = name
+        self.selected = selected
+    }
 
 }
 

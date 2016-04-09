@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0879391D1CB9952400C42F77 /* YoshiTableViewSelectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0879391C1CB9952400C42F77 /* YoshiTableViewSelectable.swift */; };
 		27100A991C3B1A9400074B2A /* AppBundleUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27100A981C3B1A9400074B2A /* AppBundleUtility.swift */; };
 		2746E6501C2C7AC3006C1DEF /* DebugDatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2746E64E1C2C7AC3006C1DEF /* DebugDatePickerViewController.swift */; };
 		2746E6511C2C7AC3006C1DEF /* DebugDatePickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2746E64F1C2C7AC3006C1DEF /* DebugDatePickerViewController.xib */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0879391C1CB9952400C42F77 /* YoshiTableViewSelectable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoshiTableViewSelectable.swift; sourceTree = "<group>"; };
 		27100A981C3B1A9400074B2A /* AppBundleUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppBundleUtility.swift; path = Utility/AppBundleUtility.swift; sourceTree = "<group>"; };
 		2746E64E1C2C7AC3006C1DEF /* DebugDatePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DebugDatePickerViewController.swift; path = "View Controllers/Debug Date Picker View Controller/DebugDatePickerViewController.swift"; sourceTree = "<group>"; };
 		2746E64F1C2C7AC3006C1DEF /* DebugDatePickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DebugDatePickerViewController.xib; path = "View Controllers/Debug Date Picker View Controller/DebugDatePickerViewController.xib"; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				F902ED301C694529007975F5 /* YoshiMenu.swift */,
 				F902ED311C694529007975F5 /* YoshiTableViewMenu.swift */,
 				F902ED321C694529007975F5 /* YoshiTableViewMenuItem.swift */,
+				0879391C1CB9952400C42F77 /* YoshiTableViewSelectable.swift */,
 				276BCEBB1C29A8BB002138C7 /* View Controllers */,
 				276BCEA41C29A6EF002138C7 /* Yoshi.h */,
 				276BCEA61C29A6EF002138C7 /* Info.plist */,
@@ -307,6 +310,7 @@
 				2746E6501C2C7AC3006C1DEF /* DebugDatePickerViewController.swift in Sources */,
 				27100A991C3B1A9400074B2A /* AppBundleUtility.swift in Sources */,
 				276BCEC11C29AEDD002138C7 /* Yoshi.swift in Sources */,
+				0879391D1CB9952400C42F77 /* YoshiTableViewSelectable.swift in Sources */,
 				F902ED541C6A831A007975F5 /* YoshiActionResult.swift in Sources */,
 				276BCEBE1C29A97E002138C7 /* DebugTableViewController.swift in Sources */,
 			);

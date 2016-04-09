@@ -32,9 +32,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func setupDebugMenu() {
         // YoshiMenuType.TableView
-        let menuItemProd = MenuItem(name: "Production")
-        let menuItemStaging = MenuItem(name: "Staging")
-        let menuItemQA = MenuItem(name: "QA")
+        let menuItemProd = MenuItem(name: "Production", selected: false)
+        let menuItemStaging = MenuItem(name: "Staging", selected: false)
+        let menuItemQA = MenuItem(name: "QA", selected: false)
         let environmentItems: [YoshiTableViewMenuItem] = [menuItemProd, menuItemStaging, menuItemQA]
 
         let tableViewMenu = TableViewMenu(title: "Environment",

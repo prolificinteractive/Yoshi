@@ -9,7 +9,7 @@
 /**
 A table view menu item.
 */
-public protocol YoshiTableViewMenuItem {
+public protocol YoshiTableViewMenuItem: YoshiTableViewSelectable {
 
     /**
      The display text for the table view menu item.
