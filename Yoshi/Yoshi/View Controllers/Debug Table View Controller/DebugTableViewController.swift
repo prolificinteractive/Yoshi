@@ -56,7 +56,7 @@ extension DebugTableViewController: UITableViewDelegate {
         }
 
         // Deselect all items that can not be selected at the same time
-        for item in yoshiTableViewMenu?.displayItems ?? [] {
+        yoshiTableViewMenu?.displayItems.forEach { item in
             item.selected = false
         }
         
