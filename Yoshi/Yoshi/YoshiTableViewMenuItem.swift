@@ -9,11 +9,14 @@
 /**
 A table view menu item.
 */
-public protocol YoshiTableViewMenuItem: YoshiTableViewSelectable {
+public protocol YoshiTableViewMenuItem: class {
 
     /**
      The display text for the table view menu item.
      */
     var name: String { get }
+    
+    // Indicates whether or not this item is selectable.
+    var selected: Bool { get set }
 
 }
