@@ -10,7 +10,8 @@
 The result types for a debug menu action.
 
 - Handled:               Indicates that the action was handled and nothing else is required.
-- PresentViewController: Indicates that a view is required to complete the action, returning the view controller to present.
+- PresentViewController: Indicates that a view is required to complete the action,
+    returning the view controller to present.
 - AsyncAfterDismissing:  Indicates that the action should be handled asynchronously after the view is dismissed.
 */
 public enum YoshiActionResult {
@@ -20,4 +21,3 @@ public enum YoshiActionResult {
     case AsyncAfterDismissing(() -> Void)
 
 }
-

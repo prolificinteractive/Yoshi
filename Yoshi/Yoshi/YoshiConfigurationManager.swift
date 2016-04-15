@@ -16,6 +16,7 @@ internal final class YoshiConfigurationManager {
 
     private var yoshiMenuItems = [YoshiMenu]()
     private var presentingWindow: UIWindow?
+    private weak var debugViewController: DebugViewController?
 
     /**
      Sets the debug options to use for presenting the debug menu.
@@ -29,7 +30,7 @@ internal final class YoshiConfigurationManager {
     /**
      Invokes the display of the debug menu.
      */
-    func showDebugActionSheet() {
+    func show() {
         guard presentingWindow == nil else {
             return
         }
@@ -54,6 +55,15 @@ internal final class YoshiConfigurationManager {
         }
     }
 
+    /**
+     Dismisses the debug view controller, if possible.
+
+     - parameter action: The action to take upon completion.
+     */
+    func dismiss(action: VoidCompletionBlock? = nil) {
+        debugViewController?.completionHandler(completed: action)
+    }
+
     private func presentDebugViewController() {
         if let rootViewController = presentingWindow?.rootViewController {
             let navigationController = UINavigationController()
@@ -69,6 +79,7 @@ internal final class YoshiConfigurationManager {
             navigationController.setViewControllers([debugViewController], animated: false)
 
             rootViewController.presentViewController(navigationController, animated: true, completion: nil)
+            self.debugViewController = debugViewController
         }
     }
 }
