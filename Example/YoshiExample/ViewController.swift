@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+internal final class ViewController: UIViewController {
 
     @IBOutlet private weak var environment: UILabel!
     @IBOutlet private weak var environmentDate: UILabel!
@@ -16,11 +16,17 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("didUpdateEnvironment:"),
-            name: Notifications.EnvironmentUpdatedNotification, object: nil)
+        NSNotificationCenter.defaultCenter()
+            .addObserver(self,
+                         selector: #selector(ViewController.didUpdateEnvironment(_:)),
+                         name: Notifications.EnvironmentUpdatedNotification,
+                         object: nil)
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("didUpdateEnvironmentDate:"),
-            name: Notifications.EnvironmentDateUpdatedNotification, object: nil)
+        NSNotificationCenter.defaultCenter()
+            .addObserver(self,
+                         selector: #selector(ViewController.didUpdateEnvironmentDate(_:)),
+                         name: Notifications.EnvironmentDateUpdatedNotification,
+                         object: nil)
     }
 
     deinit {
