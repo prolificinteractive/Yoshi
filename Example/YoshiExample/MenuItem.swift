@@ -8,9 +8,16 @@
 
 import Yoshi
 
-struct MenuItem: YoshiTableViewMenuItem {
+internal final class MenuItem: YoshiTableViewMenuItem {
 
-    var name: String
+    let name: String
+    var selected: Bool
+
+    init(name: String,
+         selected: Bool = false) {
+        self.name = name
+        self.selected = selected
+    }
 
 }
 

@@ -50,12 +50,28 @@ extension DebugTableViewController: UITableViewDataSource {
 extension DebugTableViewController: UITableViewDelegate {
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        guard let selectedItem = yoshiTableViewMenu?.displayItems[indexPath.row] else {
+        guard let selectedItem = yoshiTableViewMenu?.displayItems[indexPath.row] where !selectedItem.selected else {
+            navigationController?.popViewControllerAnimated(true)
             return
         }
 
+        // Deselect all items that can not be selected at the same time
+        yoshiTableViewMenu?.displayItems.forEach { item in
+            item.selected = false
+        }
+        
+        // Select the newly selected item
+        selectedItem.selected = true
+        
         yoshiTableViewMenu?.didSelectDisplayItem(displayItem: selectedItem)
         navigationController?.popViewControllerAnimated(true)
    }
 
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell,
+                   forRowAtIndexPath indexPath: NSIndexPath) {
+        guard let selectedItem = yoshiTableViewMenu?.displayItems[indexPath.row] where selectedItem.selected else {
+            return
+        }
+        cell.accessoryType = .Checkmark
+    }
 }
