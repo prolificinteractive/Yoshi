@@ -29,7 +29,7 @@ In app debug panel for iOS
   s.platform     = :ios, '8.0'
   s.requires_arc = true
 
-  s.source_files = 'Yoshi/Yoshi/**/*.{swift}'
-  s.resources = 'Yoshi/**/*.{png,jpeg,jpg,storyboard,xib}'
+  s.source_files = 'Sources/Yoshi/**/*.{h,swift}'
+  s.resources = 'Sources/**/*.{png,jpeg,jpg,storyboard,xib}'
 
 end
