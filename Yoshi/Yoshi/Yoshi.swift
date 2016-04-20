@@ -6,30 +6,28 @@
 //  Copyright © 2015 Prolific Interactive. All rights reserved.
 //
 
-import UIKit
-
 /// The Debug Menu interface.
 public final class Yoshi {
 
-    // MARK: Setup
+    // MARK: - Setup
 
     /**
-    Should be called in application didFinishLaunchingWithOptions
+     Should be called in application didFinishLaunchingWithOptions
 
-    - parameter menuItems: [YoshiMenu] an array of items to be displayed in the Yoshi Debug Action Sheet
-    */
+     - parameter menuItems: [YoshiMenu] an array of items to be displayed in the Yoshi Debug Action Sheet
+     */
     public class func setupDebugMenu(menuItems: [YoshiMenu]) {
         YoshiConfigurationManager.sharedInstance.setupDebugMenuOptions(menuItems)
     }
 
-    // MARK: Invocation Functions
+    // MARK: - Invocation Functions
 
     /**
-    Should be called when a motion event is received. This will handle showing the hidden debug menu.
+     Should be called when a motion event is received. This will handle showing the hidden debug menu.
 
-    - parameter motion: (UIEventSubtype) the motion captured by the original motionBegan call
-    - parameter event:  (UIEvent) the event captured by the original motionBegan call
-    */
+     - parameter motion: (UIEventSubtype) the motion captured by the original motionBegan call
+     - parameter event:  (UIEvent) the event captured by the original motionBegan call
+     */
     public class func motionBegan(motion: UIEventSubtype, withEvent event: UIEvent?) {
         guard motion == .MotionShake else {
             return

@@ -6,16 +6,17 @@
 //  Copyright © 2015 Prolific Interactive. All rights reserved.
 //
 
-import UIKit
-
+/// The date picker view controller.
 internal class DebugDatePickerViewController: UIViewController {
 
+    /// The initial date.
     var date = NSDate()
-    var selectorMenu: YoshiDateSelectorMenu?
+
+    private var selectorMenu: YoshiDateSelectorMenu?
 
     @IBOutlet private weak var datePicker: UIDatePicker!
 
-    // MARK: Initializers
+    // MARK: - Initializers
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -25,14 +26,14 @@ internal class DebugDatePickerViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    // MARK: ViewController Life Cycle Methods
+    // MARK: - View Lifecycle Functions
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupDatePicker()
     }
 
-    // MARK: Public Methods
+    // MARK: - Public Functions
 
     /**
     Sets up the DebugDatePickerViewController
@@ -43,7 +44,7 @@ internal class DebugDatePickerViewController: UIViewController {
         selectorMenu = yoshiDateSelectorMenu
     }
 
-    // MARK: Private Methods
+    // MARK: - Private Functions
 
     private func setupDatePicker() {
         datePicker.date = date
@@ -53,7 +54,7 @@ internal class DebugDatePickerViewController: UIViewController {
         navigationItem.rightBarButtonItem = closeButton
     }
 
-    // MARK: IBAction Methods
+    // MARK: - IBAction
 
     @objc private func apply(sender: UIBarButtonItem) {
         let date = datePicker.date

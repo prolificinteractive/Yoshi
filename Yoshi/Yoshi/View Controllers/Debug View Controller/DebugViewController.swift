@@ -130,7 +130,14 @@ extension DebugViewController: UITableViewDataSource {
         cell.textLabel?.text = option.title
         cell.detailTextLabel?.text = option.subtitle
 
-        cell.accessoryType = .DisclosureIndicator
+        switch option {
+        case _ as YoshiDateSelectorMenu:
+            cell.accessoryType = .DisclosureIndicator
+        case _ as YoshiTableViewMenu:
+            cell.accessoryType = .DisclosureIndicator
+        default:
+            cell.accessoryType = .None
+        }
 
         return cell
     }
