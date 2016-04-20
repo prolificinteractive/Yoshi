@@ -9,7 +9,10 @@
 /**
  Protocol for defining a menu option for choosing a date.
  */
-public protocol YoshiDateSelectorMenu: YoshiMenu {
+public protocol YoshiDateSelectorMenu: class, YoshiMenu {
+    
+    /// The selected date.
+    var selectedDate: NSDate { get set }
 
     /// Function to handle the date selection.
     var didUpdateDate: (dateSelected: NSDate) -> () { get }
@@ -29,7 +32,6 @@ public extension YoshiDateSelectorMenu {
             DebugDatePickerViewController(nibName: String(DebugDatePickerViewController), bundle: bundle)
         datePickerViewController.modalPresentationStyle = .FormSheet
         datePickerViewController.setup(self)
-        datePickerViewController.date = NSDate()
 
         return .PresentViewController(datePickerViewController)
     }
