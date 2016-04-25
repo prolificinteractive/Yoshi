@@ -35,7 +35,7 @@ public final class Yoshi {
             return
         }
 
-        showDebugActionSheet()
+        show()
     }
 
     /**
@@ -50,7 +50,7 @@ public final class Yoshi {
             return
         }
 
-        showDebugActionSheet()
+        show()
     }
 
     /**
@@ -80,14 +80,23 @@ public final class Yoshi {
             return
         }
 
-        showDebugActionSheet()
+        show()
     }
 
     /**
      Should be called directly only if you want to manually invoke Yoshi
      */
-    public class func showDebugActionSheet() {
-        YoshiConfigurationManager.sharedInstance.showDebugActionSheet()
+    public class func show() {
+        YoshiConfigurationManager.sharedInstance.show()
+    }
+
+    /**
+     Dismisses the debug menu, if it is opened. The input block is executed after it has dismissed.
+
+     - parameter completion: The block to execute upon completion of dismissal.
+     */
+    public class func dismiss(completion: (Void -> Void)? = nil) {
+        YoshiConfigurationManager.sharedInstance.dismiss(completion)
     }
 
 }
