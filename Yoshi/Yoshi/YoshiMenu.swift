@@ -7,8 +7,8 @@
 //
 
 /**
-Defines an object as a debug menu option
-*/
+ Defines an object as a debug menu option
+ */
 public protocol YoshiMenu {
 
     /// The display name for the menu option.

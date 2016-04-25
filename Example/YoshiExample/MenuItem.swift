@@ -8,6 +8,9 @@
 
 import Yoshi
 
+/**
+ *  A custom menu item to be displayed in a YoshiTableViewMenu.
+ */
 internal final class MenuItem: YoshiTableViewMenuItem {
 
     let name: String
@@ -21,6 +24,9 @@ internal final class MenuItem: YoshiTableViewMenuItem {
 
 }
 
+/**
+ *  A menu item to be displayed in Yoshi.
+ */
 struct TableViewMenu: YoshiTableViewMenu {
 
     var title: String
@@ -30,6 +36,9 @@ struct TableViewMenu: YoshiTableViewMenu {
 
 }
 
+/**
+ *  A date selector menu item to be displayed in Yoshi.
+ */
 struct DateSelector: YoshiDateSelectorMenu {
 
     var title: String
@@ -38,13 +47,15 @@ struct DateSelector: YoshiDateSelectorMenu {
 
 }
 
-
+/**
+ *  A custom menu item to be displayed in Yoshi.
+ */
 struct TestMenuItem: YoshiMenu {
-    let title = "Test"
-    let subtitle: String? = nil
+    let title = "Custom Action"
+    let subtitle: String? = "Runs a custom action"
 
     func execute() -> YoshiActionResult {
-        print ("Executed")
+        print ("Executed custom functionality.")
         return .Handled
     }
 }

@@ -6,21 +6,22 @@
 //  Copyright © 2015 Prolific Interactive. All rights reserved.
 //
 
-import UIKit
-
+/// The debug table view controller.
 internal final class DebugTableViewController: UIViewController {
 
     private let yoshiTableViewCellDefaultIdentifier = "YoshiTableViewCellDefaultIdentifier"
+
     @IBOutlet private weak var tableView: UITableView!
+
     private var yoshiTableViewMenu: YoshiTableViewMenu?
 
-    // MARK: Public Methods
+    // MARK: - Public Functions
 
     func setup(yoshiTableViewMenu: YoshiTableViewMenu) {
         self.yoshiTableViewMenu = yoshiTableViewMenu
     }
 
-    // MARK: ViewController Life Cycle Methods
+    // MARK: - View Lifecycle Functions
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +29,7 @@ internal final class DebugTableViewController: UIViewController {
     }
 }
 
-// MARK: UITableViewDataSource
+// MARK: - UITableViewDataSource
 
 extension DebugTableViewController: UITableViewDataSource {
 
@@ -45,7 +46,7 @@ extension DebugTableViewController: UITableViewDataSource {
 
 }
 
-// MARK: UITableViewDelegate
+// MARK: - UITableViewDelegate
 
 extension DebugTableViewController: UITableViewDelegate {
 
@@ -59,10 +60,10 @@ extension DebugTableViewController: UITableViewDelegate {
         yoshiTableViewMenu?.displayItems.forEach { item in
             item.selected = false
         }
-        
+
         // Select the newly selected item
         selectedItem.selected = true
-        
+
         yoshiTableViewMenu?.didSelectDisplayItem(displayItem: selectedItem)
         navigationController?.popViewControllerAnimated(true)
    }
@@ -72,6 +73,8 @@ extension DebugTableViewController: UITableViewDelegate {
         guard let selectedItem = yoshiTableViewMenu?.displayItems[indexPath.row] where selectedItem.selected else {
             return
         }
+
         cell.accessoryType = .Checkmark
     }
+
 }

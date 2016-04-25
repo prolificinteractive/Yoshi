@@ -6,8 +6,6 @@
 //  Copyright © 2015 Prolific Interactive. All rights reserved.
 //
 
-import UIKit
-
 /// The configuration manager for the debug menu.
 internal final class YoshiConfigurationManager {
 
@@ -68,12 +66,14 @@ internal final class YoshiConfigurationManager {
         if let rootViewController = presentingWindow?.rootViewController {
             let navigationController = UINavigationController()
             let debugViewController = DebugViewController(options: yoshiMenuItems,
-                completion: { [weak self]  completionBlock in
-                rootViewController.dismissViewControllerAnimated(true, completion: { () -> Void in
-                    self?.presentingWindow = nil
-                    completionBlock?()
+                                                          completion: { [weak self] completionBlock in
+                                                            rootViewController
+                                                                .dismissViewControllerAnimated(true,
+                                                                    completion: { () -> Void in
+                                                                        self?.presentingWindow = nil
+                                                                        completionBlock?()
+                                                                })
                 })
-            })
 
             navigationController.modalPresentationStyle = .FormSheet
             navigationController.setViewControllers([debugViewController], animated: false)
@@ -82,4 +82,5 @@ internal final class YoshiConfigurationManager {
             self.debugViewController = debugViewController
         }
     }
+
 }

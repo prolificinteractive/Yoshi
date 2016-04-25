@@ -7,8 +7,8 @@
 //
 
 /**
-A menu item for displaying a table view.
-*/
+ A menu item for displaying a table view.
+ */
 public protocol YoshiTableViewMenu: YoshiMenu {
 
     /// The items to display in the table view.
@@ -21,6 +21,11 @@ public protocol YoshiTableViewMenu: YoshiMenu {
 
 public extension YoshiTableViewMenu {
 
+    /**
+     Function to execute when the menu item is seleted.
+
+     - returns: A result for handling the selected menu item.
+     */
     func execute() -> YoshiActionResult {
         let bundle = NSBundle(forClass: YoshiConfigurationManager.self)
         let tableViewController =

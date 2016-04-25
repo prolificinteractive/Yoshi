@@ -7,8 +7,8 @@
 //
 
 /**
-A color object
-*/
+ A color object
+ */
 internal struct Color {
 
     /// The red value.
@@ -50,8 +50,9 @@ internal struct Color {
 
         let maxValue = CGFloat(UInt8.max)
         return UIColor(red: (rFloat / maxValue),
-            green: (gFloat / maxValue),
-            blue: (bFloat / maxValue),
-            alpha: CGFloat(alpha))
+                       green: (gFloat / maxValue),
+                       blue: (bFloat / maxValue),
+                       alpha: CGFloat(alpha))
     }
+
 }

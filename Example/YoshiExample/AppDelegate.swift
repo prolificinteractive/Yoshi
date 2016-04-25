@@ -31,13 +31,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func setupDebugMenu() {
         // YoshiMenuType.TableView
-        let menuItemProd = MenuItem(name: "Production")
+        let menuItemProd = MenuItem(name: "Production", selected: true)
         let menuItemStaging = MenuItem(name: "Staging")
         let menuItemQA = MenuItem(name: "QA")
         let environmentItems: [YoshiTableViewMenuItem] = [menuItemProd, menuItemStaging, menuItemQA]
 
         let tableViewMenu = TableViewMenu(title: "Environment",
-            subtitle: nil,
+            subtitle: "Use to switch backend environments",
             displayItems: environmentItems, didSelectDisplayItem: { (displayItem) in
             NSNotificationCenter.defaultCenter()
                 .postNotificationName(Notifications.EnvironmentUpdatedNotification, object: displayItem.name)
@@ -45,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // YoshiMenuType.DateSelector
         let dateSelector = DateSelector(title: "Environment Date",
-            subtitle: nil,
+            subtitle: "Use to switch the date sent in HTTP headers",
             didUpdateDate: { (dateSelected) in
             NSNotificationCenter.defaultCenter()
                 .postNotificationName(Notifications.EnvironmentDateUpdatedNotification, object: dateSelected)
