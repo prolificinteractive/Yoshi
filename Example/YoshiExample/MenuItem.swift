@@ -39,12 +39,22 @@ struct TableViewMenu: YoshiTableViewMenu {
 /**
  *  A date selector menu item to be displayed in Yoshi.
  */
-struct DateSelector: YoshiDateSelectorMenu {
+internal final class DateSelector: YoshiDateSelectorMenu {
 
     var title: String
     var subtitle: String?
+    var selectedDate: NSDate
     var didUpdateDate: (dateSelected: NSDate) -> ()
 
+    init(title: String,
+         subtitle: String? = nil,
+         selectedDate: NSDate = NSDate(),
+         didUpdateDate: (NSDate) -> ()) {
+        self.title = title
+        self.subtitle = subtitle
+        self.selectedDate = selectedDate
+        self.didUpdateDate = didUpdateDate
+    }
 }
 
 /**
