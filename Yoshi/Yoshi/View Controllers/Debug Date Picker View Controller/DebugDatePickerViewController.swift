@@ -47,7 +47,10 @@ internal class DebugDatePickerViewController: UIViewController {
         datePicker.date = selectorMenu?.selectedDate ?? NSDate()
         navigationItem.title = selectorMenu?.title
 
-        let closeButton = UIBarButtonItem(title: "Apply", style: .Plain, target: self, action: "apply:")
+        let closeButton = UIBarButtonItem(title: "Apply",
+                                          style: .Plain,
+                                          target: self,
+                                          action: #selector(DebugDatePickerViewController.apply(_:)))
         navigationItem.rightBarButtonItem = closeButton
     }
 
