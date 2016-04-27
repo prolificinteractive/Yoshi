@@ -17,7 +17,9 @@ Pod::Spec.new do |s|
 #   * Write the description between the DESC delimiters below.
 #   * Finally, don't worry about the indent, CocoaPods strips it!
   s.description      = <<-DESC
-In app debug panel for iOS
+		       A helpful companion for your iOS app.
+
+		       Yoshi is a convenient wrapper around the UI code that is often needed for displaying debug menus. Out of the box, Yoshi provides easy-to-implement date, list and custom menus.
                        DESC
 
   s.homepage         = "https://github.com/prolificinteractive/Yoshi"
