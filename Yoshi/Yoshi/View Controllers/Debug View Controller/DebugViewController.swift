@@ -15,6 +15,8 @@ internal final class DebugViewController: UIViewController {
 
     private let tableView = UITableView()
     private let options: [YoshiMenu]
+    
+    private let dateFormatter: NSDateFormatter = NSDateFormatter()
 
     init(options: [YoshiMenu], completion: (VoidCompletionBlock?) -> Void) {
         self.options = options
@@ -30,6 +32,11 @@ internal final class DebugViewController: UIViewController {
         view = UIView()
         setupNavigationController()
         setupTableView()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupDateFormatter()
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -108,6 +115,11 @@ internal final class DebugViewController: UIViewController {
         navigationItem.leftBarButtonItem = closeButton
         navigationItem.title = AppBundleUtility.appDisplayName()
     }
+    
+    private func setupDateFormatter() {
+        dateFormatter.dateStyle = .MediumStyle
+        dateFormatter.timeStyle = .ShortStyle
+    }
 
     @objc private func close(sender: UIBarButtonItem) {
         completionHandler(completed: nil)
@@ -137,14 +149,10 @@ extension DebugViewController: UITableViewDataSource {
         } else {
             switch option {
             case let dateSelectorMenu as YoshiDateSelectorMenu:
-                cell.detailTextLabel?.text = dateSelectorMenu.selectedDate.description
-            case let tableViewMenu as YoshiTableViewMenu:                
-                for displayItem in tableViewMenu.displayItems {
-                    if displayItem.selected == true {
-                        cell.detailTextLabel?.text = displayItem.name
-                        break
-                    }
-                }
+                cell.detailTextLabel?.text = dateFormatter.stringFromDate(dateSelectorMenu.selectedDate)
+            case let tableViewMenu as YoshiTableViewMenu:
+                let selectedDisplayItem = tableViewMenu.displayItems.filter { $0.selected == true }.first
+                cell.detailTextLabel?.text = selectedDisplayItem?.name
             default:
                 cell.detailTextLabel?.text = nil
             }

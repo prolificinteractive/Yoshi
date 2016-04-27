@@ -13,8 +13,13 @@ internal final class ViewController: UIViewController {
     @IBOutlet private weak var environment: UILabel!
     @IBOutlet private weak var environmentDate: UILabel!
 
+    private let dateFormatter: NSDateFormatter = NSDateFormatter()
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        dateFormatter.dateStyle = .MediumStyle
+        dateFormatter.timeStyle = .ShortStyle
 
         NSNotificationCenter.defaultCenter()
             .addObserver(self,
@@ -46,7 +51,7 @@ internal final class ViewController: UIViewController {
             return
         }
 
-        self.environmentDate.text = environmentDate.description
+        self.environmentDate.text = dateFormatter.stringFromDate(environmentDate)
     }
 
 }
