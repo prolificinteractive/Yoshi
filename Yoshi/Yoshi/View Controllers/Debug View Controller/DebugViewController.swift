@@ -131,8 +131,25 @@ extension DebugViewController: UITableViewDataSource {
 
         let option = options[indexPath.row]
         cell.textLabel?.text = option.title
-        cell.detailTextLabel?.text = option.subtitle
-
+        
+        if let subtitle = option.subtitle {
+            cell.detailTextLabel?.text = subtitle
+        } else {
+            switch option {
+            case let dateSelectorMenu as YoshiDateSelectorMenu:
+                cell.detailTextLabel?.text = dateSelectorMenu.selectedDate.description
+            case let tableViewMenu as YoshiTableViewMenu:                
+                for displayItem in tableViewMenu.displayItems {
+                    if displayItem.selected == true {
+                        cell.detailTextLabel?.text = displayItem.name
+                        break
+                    }
+                }
+            default:
+                cell.detailTextLabel?.text = nil
+            }
+        }
+        
         switch option {
         case _ as YoshiDateSelectorMenu:
             cell.accessoryType = .DisclosureIndicator
