@@ -10,6 +10,18 @@
 		27100A991C3B1A9400074B2A /* AppBundleUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27100A981C3B1A9400074B2A /* AppBundleUtility.swift */; };
 		2746E6501C2C7AC3006C1DEF /* DebugDatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2746E64E1C2C7AC3006C1DEF /* DebugDatePickerViewController.swift */; };
 		2746E6511C2C7AC3006C1DEF /* DebugDatePickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2746E64F1C2C7AC3006C1DEF /* DebugDatePickerViewController.xib */; };
+		276B31B61CD19AA60040F907 /* Yoshi.swift in Headers */ = {isa = PBXBuildFile; fileRef = 276BCEC01C29AEDD002138C7 /* Yoshi.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		276B31B71CD19AC40040F907 /* YoshiActionResult.swift in Headers */ = {isa = PBXBuildFile; fileRef = F902ED531C6A831A007975F5 /* YoshiActionResult.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		276B31B81CD19AC40040F907 /* YoshiConfigurationManager.swift in Headers */ = {isa = PBXBuildFile; fileRef = F902ED2D1C694529007975F5 /* YoshiConfigurationManager.swift */; };
+		276B31B91CD19AC40040F907 /* YoshiDateSelectorMenu.swift in Headers */ = {isa = PBXBuildFile; fileRef = F902ED2F1C694529007975F5 /* YoshiDateSelectorMenu.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		276B31BA1CD19AC40040F907 /* YoshiMenu.swift in Headers */ = {isa = PBXBuildFile; fileRef = F902ED301C694529007975F5 /* YoshiMenu.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		276B31BB1CD19AC40040F907 /* YoshiTableViewMenu.swift in Headers */ = {isa = PBXBuildFile; fileRef = F902ED311C694529007975F5 /* YoshiTableViewMenu.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		276B31BC1CD19AC40040F907 /* YoshiTableViewMenuItem.swift in Headers */ = {isa = PBXBuildFile; fileRef = F902ED321C694529007975F5 /* YoshiTableViewMenuItem.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		276B31BD1CD19AC40040F907 /* DebugViewController.swift in Headers */ = {isa = PBXBuildFile; fileRef = F902ED4D1C6A3B2D007975F5 /* DebugViewController.swift */; };
+		276B31BE1CD19AC40040F907 /* DebugDatePickerViewController.swift in Headers */ = {isa = PBXBuildFile; fileRef = 2746E64E1C2C7AC3006C1DEF /* DebugDatePickerViewController.swift */; };
+		276B31BF1CD19AC40040F907 /* DebugTableViewController.swift in Headers */ = {isa = PBXBuildFile; fileRef = 276BCEBC1C29A97E002138C7 /* DebugTableViewController.swift */; };
+		276B31C01CD19AC40040F907 /* AppBundleUtility.swift in Headers */ = {isa = PBXBuildFile; fileRef = 27100A981C3B1A9400074B2A /* AppBundleUtility.swift */; };
+		276B31C11CD19AC40040F907 /* Color.swift in Headers */ = {isa = PBXBuildFile; fileRef = F902ED511C6A6FE6007975F5 /* Color.swift */; };
 		276BCEA51C29A6EF002138C7 /* Yoshi.h in Headers */ = {isa = PBXBuildFile; fileRef = 276BCEA41C29A6EF002138C7 /* Yoshi.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		276BCEAC1C29A6EF002138C7 /* Yoshi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 276BCEA11C29A6EF002138C7 /* Yoshi.framework */; };
 		276BCEB11C29A6EF002138C7 /* YoshiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276BCEB01C29A6EF002138C7 /* YoshiTests.swift */; };
@@ -177,6 +189,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				276BCEA51C29A6EF002138C7 /* Yoshi.h in Headers */,
+				276B31B61CD19AA60040F907 /* Yoshi.swift in Headers */,
+				276B31B71CD19AC40040F907 /* YoshiActionResult.swift in Headers */,
+				276B31BA1CD19AC40040F907 /* YoshiMenu.swift in Headers */,
+				276B31BB1CD19AC40040F907 /* YoshiTableViewMenu.swift in Headers */,
+				276B31B91CD19AC40040F907 /* YoshiDateSelectorMenu.swift in Headers */,
+				276B31BC1CD19AC40040F907 /* YoshiTableViewMenuItem.swift in Headers */,
+				276B31B81CD19AC40040F907 /* YoshiConfigurationManager.swift in Headers */,
+				276B31BD1CD19AC40040F907 /* DebugViewController.swift in Headers */,
+				276B31BE1CD19AC40040F907 /* DebugDatePickerViewController.swift in Headers */,
+				276B31BF1CD19AC40040F907 /* DebugTableViewController.swift in Headers */,
+				276B31C01CD19AC40040F907 /* AppBundleUtility.swift in Headers */,
+				276B31C11CD19AC40040F907 /* Color.swift in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
