@@ -15,7 +15,7 @@ internal final class DebugViewController: UIViewController {
 
     private let tableView = UITableView()
     private let options: [YoshiMenu]
-    
+
     private let dateFormatter: NSDateFormatter = NSDateFormatter()
 
     init(options: [YoshiMenu], completion: (VoidCompletionBlock?) -> Void) {
@@ -33,7 +33,7 @@ internal final class DebugViewController: UIViewController {
         setupNavigationController()
         setupTableView()
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupDateFormatter()
@@ -115,7 +115,7 @@ internal final class DebugViewController: UIViewController {
         navigationItem.leftBarButtonItem = closeButton
         navigationItem.title = AppBundleUtility.appDisplayName()
     }
-    
+
     private func setupDateFormatter() {
         dateFormatter.dateStyle = .MediumStyle
         dateFormatter.timeStyle = .ShortStyle
@@ -143,7 +143,7 @@ extension DebugViewController: UITableViewDataSource {
 
         let option = options[indexPath.row]
         cell.textLabel?.text = option.title
-        
+
         if let subtitle = option.subtitle {
             cell.detailTextLabel?.text = subtitle
         } else {
@@ -157,7 +157,7 @@ extension DebugViewController: UITableViewDataSource {
                 cell.detailTextLabel?.text = nil
             }
         }
-        
+
         switch option {
         case _ as YoshiDateSelectorMenu:
             cell.accessoryType = .DisclosureIndicator
