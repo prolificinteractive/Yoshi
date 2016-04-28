@@ -101,7 +101,10 @@ internal final class DebugViewController: UIViewController {
     }
 
     private func setupNavigationController() {
-        let closeButton = UIBarButtonItem(title: "Close", style: .Plain, target: self, action: "close:")
+        let closeButton = UIBarButtonItem(title: "Close",
+                                          style: .Plain,
+                                          target: self,
+                                          action: #selector(DebugViewController.close(_:)))
         navigationItem.leftBarButtonItem = closeButton
         navigationItem.title = AppBundleUtility.appDisplayName()
     }

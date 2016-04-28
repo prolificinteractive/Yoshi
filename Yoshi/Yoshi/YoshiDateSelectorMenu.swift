@@ -10,7 +10,7 @@
  Protocol for defining a menu option for choosing a date.
  */
 public protocol YoshiDateSelectorMenu: class, YoshiMenu {
-    
+
     /// The selected date.
     var selectedDate: NSDate { get set }
 
