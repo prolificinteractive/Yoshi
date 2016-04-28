@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let environmentItems: [YoshiTableViewMenuItem] = [menuItemProd, menuItemStaging, menuItemQA]
 
         let tableViewMenu = TableViewMenu(title: "Environment",
-            subtitle: "Use to switch backend environments",
+            subtitle: nil,
             displayItems: environmentItems, didSelectDisplayItem: { (displayItem) in
             NSNotificationCenter.defaultCenter()
                 .postNotificationName(Notifications.EnvironmentUpdatedNotification, object: displayItem.name)
@@ -45,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // YoshiMenuType.DateSelector
         let dateSelector = DateSelector(title: "Environment Date",
-            subtitle: "Use to switch the date sent in HTTP headers",
+            subtitle: nil,
             didUpdateDate: { (dateSelected) in
             NSNotificationCenter.defaultCenter()
                 .postNotificationName(Notifications.EnvironmentDateUpdatedNotification, object: dateSelected)
