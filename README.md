@@ -31,7 +31,7 @@ pod "Yoshi"
 You can also add Yoshi to your project using [Carthage](https://github.com/Carthage/Carthage). Add the following to your `Cartfile`:
 
 ```ruby
-github "prolificInteractive/Yoshi"
+github "prolificinteractive/Yoshi"
 ```
 
 ## Usage
