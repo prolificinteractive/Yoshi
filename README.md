@@ -46,7 +46,7 @@ Yoshi can be set up to display any sort of menu as long as the menu object confo
 
 ### List Menu
 
-To display a list menu, create two types that conform to `YoshiTableViewMenu` to `YoshiTableViewMenuItem` protocols respectively.
+To display a list menu, create two types that conform to `YoshiTableViewMenu` and `YoshiTableViewMenuItem` protocols respectively.
 
 ```swift
 struct TableViewMenu: YoshiTableViewMenu {
