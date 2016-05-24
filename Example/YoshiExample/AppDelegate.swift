@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication,
-        didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+                     didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
 
         #if DEBUG
@@ -30,30 +30,48 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func setupDebugMenu() {
-        // YoshiMenuType.TableView
-        let menuItemProd = MenuItem(name: "Production", selected: true)
-        let menuItemStaging = MenuItem(name: "Staging")
-        let menuItemQA = MenuItem(name: "QA")
-        let environmentItems: [YoshiTableViewMenuItem] = [menuItemProd, menuItemStaging, menuItemQA]
+        var menu = [YoshiMenu]()
 
-        let tableViewMenu = TableViewMenu(title: "Environment",
-            subtitle: nil,
-            displayItems: environmentItems, didSelectDisplayItem: { (displayItem) in
-            NSNotificationCenter.defaultCenter()
-                .postNotificationName(Notifications.EnvironmentUpdatedNotification, object: displayItem.name)
-        })
+        menu.append(setupEnvironments())
+        menu.append(setupDateSelector())
+        menu.append(setupCustom())
 
-        // YoshiMenuType.DateSelector
-        let dateSelector = DateSelector(title: "Environment Date",
-            subtitle: nil,
-            didUpdateDate: { (dateSelected) in
-            NSNotificationCenter.defaultCenter()
-                .postNotificationName(Notifications.EnvironmentDateUpdatedNotification, object: dateSelected)
-        })
-
-        Yoshi.setupDebugMenu([tableViewMenu, dateSelector, TestMenuItem()])
+        Yoshi.setupDebugMenu(menu)
     }
 
+    private func setupEnvironments() -> YoshiTableViewMenu {
+        let production = MenuItem(name: "Production")
+        let staging = MenuItem(name: "Staging")
+        let qa = MenuItem(name: "QA", selected: true)
+
+        let environmentItems: [YoshiTableViewMenuItem] = [production, staging, qa]
+
+        return TableViewMenu(title: "Environment",
+                             subtitle: nil,
+                             displayItems: environmentItems,
+                             didSelectDisplayItem: { (displayItem) in
+                                NSNotificationCenter.defaultCenter()
+                                    .postNotificationName(Notifications.EnvironmentUpdatedNotification,
+                                        object: displayItem.name)
+        })
+    }
+
+    private func setupDateSelector() -> YoshiDateSelectorMenu {
+        return DateSelector(title: "Environment Date",
+                            subtitle: nil,
+                            didUpdateDate: { (dateSelected) in
+                                NSNotificationCenter.defaultCenter()
+                                    .postNotificationName(Notifications.EnvironmentDateUpdatedNotification,
+                                        object: dateSelected)
+        })
+    }
+
+    private func setupCustom() -> YoshiMenu {
+        return TestMenuItem()
+    }
+
+
+    // MARK: - Yoshi Invocation options
     // Implement the functionality you want!
 
     override func motionBegan(motion: UIEventSubtype, withEvent event: UIEvent?) {
