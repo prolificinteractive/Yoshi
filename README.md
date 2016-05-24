@@ -36,14 +36,43 @@ github "prolificInteractive/Yoshi"
 
 ## Usage
 
-A common use case for Yoshi would be to present a menu for API environment switching. Yoshi takes care of presenting the UI for environment selection and calls the convenient closure function when a selection is made.
+Yoshi can be set up to display any sort of menu as long as the menu object conforms to `YoshiMenu`. Yoshi comes with two built-in menus: list menu and date menu.
+
+### List Menu
+
+To display a list menu, create two types that conform to `YoshiTableViewMenu` and `YoshiTableViewMenuItem` protocols respectively.
 
 ```swift
-import Yoshi
+struct TableViewMenu: YoshiTableViewMenu {
 
-let menuItemProd = MenuItem(name: "Production")
+    var title: String
+    var subtitle: String?
+    var displayItems: [YoshiTableViewMenuItem]
+    var didSelectDisplayItem: (displayItem: YoshiTableViewMenuItem) -> ()
+
+}
+
+internal final class MenuItem: YoshiTableViewMenuItem {
+
+    let name: String
+    var selected: Bool
+
+    init(name: String,
+         selected: Bool = false) {
+        self.name = name
+        self.selected = selected
+    }
+
+}
+```
+
+Then, set up the menu and present it using Yoshi.
+
+```swift
+let menuItemProd = MenuItem(name: "Production", selected: true)
 let menuItemStaging = MenuItem(name: "Staging")
-let environmentItems: [YoshiTableViewMenuItem] = [menuItemProd, menuItemStaging]
+let menuItemQA = MenuItem(name: "QA")
+let environmentItems: [YoshiTableViewMenuItem] = [menuItemProd, menuItemStaging, menuItemQA]
 
 let tableViewMenu = TableViewMenu(title: "Environment",
   subtitle: nil,
@@ -55,7 +84,80 @@ let tableViewMenu = TableViewMenu(title: "Environment",
 Yoshi.setupDebugMenu([tableViewMenu])
 
 // Invoke Yoshi
-Yoshi.showDebugActionSheet()
+Yoshi.show()
+```
+
+Yoshi will take care of managing selections and call back the convenient closure function when a new selection is made.
+
+### Date Selector Menu
+
+Similarly, to present a date selector menu, create a type that conforms to `YoshiDateSelectorMenu` protocol
+
+```swift
+internal final class DateSelector: YoshiDateSelectorMenu {
+
+    var title: String
+    var subtitle: String?
+    var selectedDate: NSDate
+    var didUpdateDate: (dateSelected: NSDate) -> ()
+
+    init(title: String,
+         subtitle: String? = nil,
+         selectedDate: NSDate = NSDate(),
+         didUpdateDate: (NSDate) -> ()) {
+        self.title = title
+        self.subtitle = subtitle
+        self.selectedDate = selectedDate
+        self.didUpdateDate = didUpdateDate
+    }
+
+}
+```
+
+and present it using the same functions.
+
+```swift
+let dateSelectorMenu = DateSelector(title: "Environment Date",
+    subtitle: nil,
+    didUpdateDate: { (dateSelected) in
+    NSNotificationCenter.defaultCenter()
+        .postNotificationName(Notifications.EnvironmentDateUpdatedNotification, object: dateSelected)
+})
+
+Yoshi.setupDebugMenu([dateSelectorMenu])
+Yoshi.show()
+```
+
+### Custom Menu
+
+Yoshi can also be configured to display custom menus which can be used for triggering custom events or presenting custom view controllers.
+
+For example, we can invoke [Instabug](https://instabug.com) when a custom menu is selected.
+
+```swift
+private struct CustomMenu: YoshiMenu {
+
+    let title: String
+    let subtitle: String?
+    let completion: () -> ()
+
+    func execute() -> YoshiActionResult {
+        return .AsyncAfterDismissing(completion)
+    }
+
+}
+
+Instabug.startWithToken("abcdefghijklmnopqrstuvwxyz", invocationEvent: .None)
+Instabug.setDefaultInvocationMode(.BugReporter)
+
+let instabugMenu = CustomMenu(title: "Start Instabug",
+    subtitle: nil,
+    completion: {
+        Instabug.invoke()
+    })
+
+Yoshi.setupDebugMenu([instabugMenu])
+Yoshi.show()
 ```
 
 ## Contributing to Yoshi
@@ -66,12 +168,10 @@ If you wish to contribute to the project, fork this repo and submit a pull reque
 
 ## License
 
-Yoshi is Copyright (c) 2016 Prolific Interactive. It may be redistributed under the terms specified in the [LICENSE] file.
-
-[LICENSE]: /LICENSE
-
-## Maintainers
-
 ![prolific](https://s3.amazonaws.com/prolificsitestaging/logos/Prolific_Logo_Full_Color.png)
 
-Yoshi is maintained and funded by Prolific Interactive. The names and logos are trademarks of Prolific Interactive.
+Copyright (c) 2016 Prolific Interactive
+
+Yoshi is maintained and sponsored by Prolific Interactive. It may be redistributed under the terms specified in the [LICENSE] file.
+
+[LICENSE]: ./LICENSE
