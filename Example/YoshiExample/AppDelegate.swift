@@ -32,14 +32,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func setupDebugMenu() {
         var menu = [YoshiMenu]()
 
-        menu.append(setupEnvironments())
-        menu.append(setupDateSelector())
-        menu.append(setupCustom())
+        menu.append(environmentMenu())
+        menu.append(dateSelectorMenu())
+        menu.append(instabugMenu())
 
         Yoshi.setupDebugMenu(menu)
     }
 
-    private func setupEnvironments() -> YoshiTableViewMenu {
+    private func environmentMenu() -> YoshiTableViewMenu {
         let production = MenuItem(name: "Production")
         let staging = MenuItem(name: "Staging")
         let qa = MenuItem(name: "QA", selected: true)
@@ -56,7 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         })
     }
 
-    private func setupDateSelector() -> YoshiDateSelectorMenu {
+    private func dateSelectorMenu() -> YoshiDateSelectorMenu {
         return DateSelector(title: "Environment Date",
                             subtitle: nil,
                             didUpdateDate: { (dateSelected) in
@@ -66,8 +66,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         })
     }
 
-    private func setupCustom() -> YoshiMenu {
-        return TestMenuItem()
+    private func instabugMenu() -> YoshiMenu {
+        Instabug.startWithToken("cf779d2e19c0affaad8567a7598e330d", invocationEvent: .None)
+        Instabug.setDefaultInvocationMode(.BugReporter)
+
+        return CustomMenu(title: "Start Instabug",
+                          subtitle: nil,
+                          completion: {
+            Instabug.invoke()
+        })
     }
 
 

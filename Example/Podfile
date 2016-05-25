@@ -3,5 +3,6 @@ platform :ios, '8.0'
 use_frameworks!
 
 target 'YoshiExample', :exclusive => true do
+  pod "Instabug", '5.2.4'
   pod "Yoshi", :path => "../"
 end

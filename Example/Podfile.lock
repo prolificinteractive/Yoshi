@@ -1,14 +1,17 @@
 PODS:
+  - Instabug (5.2.4)
   - Yoshi (0.1.0)
 
 DEPENDENCIES:
+  - Instabug (= 5.2.4)
   - Yoshi (from `../`)
 
 EXTERNAL SOURCES:
   Yoshi:
-    :path: ../
+    :path: "../"
 
 SPEC CHECKSUMS:
-  Yoshi: 80885a8a0fd9def56d4a60a1d538a8ca6d4a076b
+  Instabug: 6fa40a5e2a4620f0589dfc8e4e01b1018c8c42b1
+  Yoshi: 63121d32e06c5165b70f112484f59bb8f6684225
 
 COCOAPODS: 0.39.0
