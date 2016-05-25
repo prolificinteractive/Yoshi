@@ -23,7 +23,7 @@ Pod::Spec.new do |s|
                        DESC
 
   s.homepage         = "https://github.com/prolificinteractive/Yoshi"
-  s.screenshots     = "https://github.com/prolificinteractive/Yoshi/blob/9405ea600838b9ce851400427e5195ac510d1d27/Yoshi.gif", "www.example.com/screenshots_2"
+  s.screenshots     = "https://github.com/prolificinteractive/Yoshi/blob/9405ea600838b9ce851400427e5195ac510d1d27/Yoshi.gif", "https://github.com/prolificinteractive/Yoshi/blob/60dd636bf295d9ab04576fcc9b63d4da288ac3ac/Yoshi_iPad.gif"
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { "Michael Campbell" => "Michael@prolificinteractive.com" }
   s.source           = { :git => "https://github.com/prolificinteractive/Yoshi.git", :tag => s.version.to_s }
