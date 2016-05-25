@@ -75,9 +75,9 @@ internal final class MenuItem: YoshiTableViewMenuItem {
 Then, set up the menu and present it using Yoshi.
 
 ```swift
-let menuItemProd = MenuItem(name: "Production", selected: true)
+let menuItemProd = MenuItem(name: "Production")
 let menuItemStaging = MenuItem(name: "Staging")
-let menuItemQA = MenuItem(name: "QA")
+let menuItemQA = MenuItem(name: "QA", selected: true)
 let environmentItems: [YoshiTableViewMenuItem] = [menuItemProd, menuItemStaging, menuItemQA]
 
 let tableViewMenu = TableViewMenu(title: "Environment",
@@ -126,8 +126,7 @@ and present it using the same functions.
 let dateSelectorMenu = DateSelector(title: "Environment Date",
     subtitle: nil,
     didUpdateDate: { (dateSelected) in
-    NSNotificationCenter.defaultCenter()
-        .postNotificationName(Notifications.EnvironmentDateUpdatedNotification, object: dateSelected)
+      // Do something with the selected date here
 })
 
 Yoshi.setupDebugMenu([dateSelectorMenu])
@@ -136,7 +135,7 @@ Yoshi.show()
 
 ### Custom Menu
 
-Yoshi can also be configured to display custom menus which can be used for triggering custom events or presenting custom view controllers.
+Yoshi can also be configured to display custom menus which can be used for triggering events or presenting view controllers.
 
 For example, we can invoke [Instabug](https://instabug.com) when a custom menu is selected.
 
