@@ -27,7 +27,7 @@ internal final class MenuItem: YoshiTableViewMenuItem {
 /**
  *  A menu item to be displayed in Yoshi.
  */
-struct TableViewMenu: YoshiTableViewMenu {
+internal struct TableViewMenu: YoshiTableViewMenu {
 
     var title: String
     var subtitle: String?
@@ -60,12 +60,13 @@ internal final class DateSelector: YoshiDateSelectorMenu {
 /**
  *  A custom menu item to be displayed in Yoshi.
  */
-struct TestMenuItem: YoshiMenu {
-    let title = "Custom Action"
-    let subtitle: String? = "Runs a custom action"
+internal struct CustomMenu: YoshiMenu {
+
+    let title: String
+    let subtitle: String?
+    let completion: () -> Void
 
     func execute() -> YoshiActionResult {
-        print ("Executed custom functionality.")
-        return .Handled
+        return .AsyncAfterDismissing(completion)
     }
 }
