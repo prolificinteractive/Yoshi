@@ -167,15 +167,37 @@ Yoshi.show()
 
 ### Invocation Options
 
+Yoshi can be invoked a number of different ways. The simplest way is to manually invoke using the `show()` function.
+
+```swift
+Yoshi.show()
+```
+
 In addition to the vanilla invocation option, Yoshi can also be invoked in response to motion or touch events. To do this, simply forward the motion and touch-related `UIResponder` events to their corresponding Yoshi event-handling functions.
 
-For example, we can start Yoshi in response to a shake-motion gesture by overriding and forwarding `motionBegan:withEvent:` function as follows.
+To invoke Yoshi in response to a shake-motion gesture, override and forward `motionBegan:withEvent:` function as follows.
 
 ```swift
 override func motionBegan(motion: UIEventSubtype, withEvent event: UIEvent?) {
     Yoshi.motionBegan(motion, withEvent: event)
 }
 ```
+
+To invoke Yoshi in in response to a multi-touch event, override and forward `touchesBegan:withEvent:` function. Optionally, the minimum number of touches required for invocation can be specified.
+
+```swift
+override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    Yoshi.touchesBegan(touches, withEvent: event)
+}
+```
+
+Finally, to invoke Yoshi in response to a 3D touch event, override and forward `touchesMoved:withEvent:` function with `minimumForcePercent` as an optional parameter.
+
+```swift
+override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    Yoshi.touchesMoved(touches, withEvent: event)
+}
+````
 
 ## Contributing to Yoshi
 
