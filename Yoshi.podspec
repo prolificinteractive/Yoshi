@@ -23,7 +23,7 @@ Pod::Spec.new do |s|
                        DESC
 
   s.homepage         = "https://github.com/prolificinteractive/Yoshi"
-  s.screenshots     = "https://github.com/prolificinteractive/Yoshi/blob/9405ea600838b9ce851400427e5195ac510d1d27/Yoshi.gif", "https://github.com/prolificinteractive/Yoshi/blob/60dd636bf295d9ab04576fcc9b63d4da288ac3ac/Yoshi_iPad.gif"
+  s.screenshots     = "https://raw.githubusercontent.com/prolificinteractive/Yoshi/a6e85e87cbd67f2bb3bfe60157e7b13281d80f20/Images/Yoshi.png", "https://raw.githubusercontent.com/prolificinteractive/Yoshi/c66cdf8dc2ab643fe57996d20d3cd37b8b70ceff/Images/Yoshi_iPad.png"
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { "Michael Campbell" => "Michael@prolificinteractive.com" }
   s.source           = { :git => "https://github.com/prolificinteractive/Yoshi.git", :tag => s.version.to_s }
