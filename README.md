@@ -165,6 +165,10 @@ Yoshi.setupDebugMenu([instabugMenu])
 Yoshi.show()
 ```
 
+### Invocation Options
+
+In addition to the vanilla invocation option, Yoshi can also be invoked in response to motion or touch events. To do this, simply forward the motion and touch-related `UIResponder` events to their corresponding Yoshi event-handling functions.
+
 ## Contributing to Yoshi
 
 To report a bug or enhancement request, feel free to file an issue under the respective heading.
