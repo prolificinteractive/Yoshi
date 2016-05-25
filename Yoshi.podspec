@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = "Yoshi"
   s.version          = "1.0.0"
-  s.summary          = "In app debug panel for iOS"
+  s.summary          = "A helpful companion for your iOS app."
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -17,8 +17,6 @@ Pod::Spec.new do |s|
 #   * Write the description between the DESC delimiters below.
 #   * Finally, don't worry about the indent, CocoaPods strips it!
   s.description      = <<-DESC
-		       A helpful companion for your iOS app.
-
 		       Yoshi is a convenient wrapper around the UI code that is often needed for displaying debug menus. Out of the box, Yoshi provides easy-to-implement date, list and custom menus.
                        DESC
 
