@@ -1,4 +1,4 @@
-![Yoshi](yoshi.jpg)
+![Yoshi](Images/Yoshi_logo.jpg)
 
 [![Travis build status](https://img.shields.io/travis/prolificinteractive/Yoshi.svg?style=flat-square)](https://travis-ci.org/prolificinteractive/Yoshi)
 [![Cocoapods Compatible](https://img.shields.io/cocoapods/v/Yoshi.svg?style=flat-square)](https://img.shields.io/cocoapods/v/Yoshi.svg)
@@ -11,6 +11,12 @@
 A helpful companion for your iOS app.
 
 Yoshi is a convenient wrapper around the UI code that is often needed for displaying debug menus. Out of the box, Yoshi provides easy-to-implement date, list and custom menus.
+
+### iPhone
+![Yoshi.gif](Images/Yoshi.gif)
+
+### iPad
+![Yoshi_iPad.gif](Images/Yoshi_iPad.gif)
 
 ## Requirements
 
