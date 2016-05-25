@@ -75,10 +75,10 @@ internal final class MenuItem: YoshiTableViewMenuItem {
 Then, set up the menu and present it using Yoshi.
 
 ```swift
-let menuItemProd = MenuItem(name: "Production")
-let menuItemStaging = MenuItem(name: "Staging")
-let menuItemQA = MenuItem(name: "QA", selected: true)
-let environmentItems: [YoshiTableViewMenuItem] = [menuItemProd, menuItemStaging, menuItemQA]
+let production = MenuItem(name: "Production")
+let staging = MenuItem(name: "Staging")
+let qa = MenuItem(name: "QA", selected: true)
+let environmentItems: [YoshiTableViewMenuItem] = [production, staging, qa]
 
 let tableViewMenu = TableViewMenu(title: "Environment",
   subtitle: nil,
