@@ -60,6 +60,7 @@ internal final class YoshiConfigurationManager {
      */
     func dismiss(action: VoidCompletionBlock? = nil) {
         debugViewController?.completionHandler(completed: action)
+        presentingWindow = nil
     }
 
     private func presentDebugViewController() {
