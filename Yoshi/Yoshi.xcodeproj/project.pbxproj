@@ -16,6 +16,8 @@
 		276BCEBE1C29A97E002138C7 /* DebugTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276BCEBC1C29A97E002138C7 /* DebugTableViewController.swift */; };
 		276BCEBF1C29A97E002138C7 /* DebugTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 276BCEBD1C29A97E002138C7 /* DebugTableViewController.xib */; };
 		276BCEC11C29AEDD002138C7 /* Yoshi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276BCEC01C29AEDD002138C7 /* Yoshi.swift */; };
+		664E30721DBE970000C313C2 /* UIWindowExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664E30711DBE970000C313C2 /* UIWindowExtension.swift */; };
+		664E30761DBEA72700C313C2 /* YoshiInvocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664E30751DBEA72700C313C2 /* YoshiInvocation.swift */; };
 		F902ED331C694529007975F5 /* YoshiConfigurationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F902ED2D1C694529007975F5 /* YoshiConfigurationManager.swift */; };
 		F902ED351C694529007975F5 /* YoshiDateSelectorMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = F902ED2F1C694529007975F5 /* YoshiDateSelectorMenu.swift */; };
 		F902ED361C694529007975F5 /* YoshiMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = F902ED301C694529007975F5 /* YoshiMenu.swift */; };
@@ -49,6 +51,8 @@
 		276BCEBC1C29A97E002138C7 /* DebugTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DebugTableViewController.swift; path = "View Controllers/Debug Table View Controller/DebugTableViewController.swift"; sourceTree = "<group>"; };
 		276BCEBD1C29A97E002138C7 /* DebugTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DebugTableViewController.xib; path = "View Controllers/Debug Table View Controller/DebugTableViewController.xib"; sourceTree = "<group>"; };
 		276BCEC01C29AEDD002138C7 /* Yoshi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Yoshi.swift; sourceTree = "<group>"; };
+		664E30711DBE970000C313C2 /* UIWindowExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIWindowExtension.swift; path = Utility/UIWindowExtension.swift; sourceTree = "<group>"; };
+		664E30751DBEA72700C313C2 /* YoshiInvocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoshiInvocation.swift; sourceTree = "<group>"; };
 		F902ED2D1C694529007975F5 /* YoshiConfigurationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoshiConfigurationManager.swift; sourceTree = "<group>"; };
 		F902ED2F1C694529007975F5 /* YoshiDateSelectorMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoshiDateSelectorMenu.swift; sourceTree = "<group>"; };
 		F902ED301C694529007975F5 /* YoshiMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoshiMenu.swift; sourceTree = "<group>"; };
@@ -83,6 +87,7 @@
 			children = (
 				27100A981C3B1A9400074B2A /* AppBundleUtility.swift */,
 				F902ED511C6A6FE6007975F5 /* Color.swift */,
+				664E30711DBE970000C313C2 /* UIWindowExtension.swift */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -126,17 +131,18 @@
 		276BCEA31C29A6EF002138C7 /* Yoshi */ = {
 			isa = PBXGroup;
 			children = (
+				276BCEA61C29A6EF002138C7 /* Info.plist */,
+				27100A9A1C3B1A9800074B2A /* Utility */,
+				276BCEBB1C29A8BB002138C7 /* View Controllers */,
+				276BCEA41C29A6EF002138C7 /* Yoshi.h */,
 				276BCEC01C29AEDD002138C7 /* Yoshi.swift */,
 				F902ED531C6A831A007975F5 /* YoshiActionResult.swift */,
 				F902ED2D1C694529007975F5 /* YoshiConfigurationManager.swift */,
 				F902ED2F1C694529007975F5 /* YoshiDateSelectorMenu.swift */,
+				664E30751DBEA72700C313C2 /* YoshiInvocation.swift */,
 				F902ED301C694529007975F5 /* YoshiMenu.swift */,
 				F902ED311C694529007975F5 /* YoshiTableViewMenu.swift */,
 				F902ED321C694529007975F5 /* YoshiTableViewMenuItem.swift */,
-				276BCEBB1C29A8BB002138C7 /* View Controllers */,
-				276BCEA41C29A6EF002138C7 /* Yoshi.h */,
-				276BCEA61C29A6EF002138C7 /* Info.plist */,
-				27100A9A1C3B1A9800074B2A /* Utility */,
 			);
 			path = Yoshi;
 			sourceTree = "<group>";
@@ -153,9 +159,9 @@
 		276BCEBB1C29A8BB002138C7 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				F902ED4C1C6A3B2D007975F5 /* Debug View Controller */,
 				2746E64B1C2C7A2D006C1DEF /* Debug Date Picker View Controller */,
 				2746E64A1C2C7A24006C1DEF /* Debug Table View Controller */,
+				F902ED4C1C6A3B2D007975F5 /* Debug View Controller */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -227,7 +233,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Prolific Interactive";
 				TargetAttributes = {
 					276BCEA01C29A6EF002138C7 = {
@@ -307,7 +313,9 @@
 				2746E6501C2C7AC3006C1DEF /* DebugDatePickerViewController.swift in Sources */,
 				27100A991C3B1A9400074B2A /* AppBundleUtility.swift in Sources */,
 				276BCEC11C29AEDD002138C7 /* Yoshi.swift in Sources */,
+				664E30761DBEA72700C313C2 /* YoshiInvocation.swift in Sources */,
 				F902ED541C6A831A007975F5 /* YoshiActionResult.swift in Sources */,
+				664E30721DBE970000C313C2 /* UIWindowExtension.swift in Sources */,
 				276BCEBE1C29A97E002138C7 /* DebugTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -344,8 +352,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -392,8 +402,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -413,6 +425,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -424,6 +437,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -435,6 +449,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
 		};
@@ -442,6 +457,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -452,6 +468,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.prolificinteractive.Yoshi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 2.3;
 			};
 			name = Release;
 		};
