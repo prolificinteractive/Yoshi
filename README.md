@@ -21,7 +21,7 @@ Yoshi is a convenient wrapper around the UI code that is often needed for displa
 ## Requirements
 
 * iOS 8.0+
-* Xcode 7.2+
+* Xcode 8.0+
 
 ## Installation
 
@@ -29,8 +29,16 @@ Yoshi is a convenient wrapper around the UI code that is often needed for displa
 Yoshi is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your `Podfile`:
 
+###### Swift 3.0
+
 ```ruby
 pod "Yoshi"
+```
+
+###### Swift 2.3
+
+```ruby
+pod 'Yoshi', '1.1.1'
 ```
 
 ### Carthage

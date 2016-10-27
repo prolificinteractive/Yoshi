@@ -17,7 +17,7 @@ public final class Yoshi {
      - parameter menuItems: [YoshiMenu] an array of items to be displayed in the Yoshi Debug Action Sheet.
      - parameter invocations: The invocation types.
      */
-    public class func setupDebugMenu(menuItems: [YoshiMenu], invocations: [YoshiInvocation] = [.all]) {
+    public class func setupDebugMenu(_ menuItems: [YoshiMenu], invocations: [YoshiInvocation] = [.all]) {
         YoshiConfigurationManager.sharedInstance.setupDebugMenuOptions(menuItems, invocations: invocations)
     }
 
@@ -29,8 +29,8 @@ public final class Yoshi {
      - parameter motion: (UIEventSubtype) the motion captured by the original motionBegan call
      - parameter event:  (UIEvent) the event captured by the original motionBegan call
      */
-    public class func motionBegan(motion: UIEventSubtype, withEvent event: UIEvent?) {
-        guard motion == .MotionShake
+    public class func motionBegan(_ motion: UIEventSubtype, withEvent event: UIEvent?) {
+        guard motion == .motionShake
             && YoshiConfigurationManager.sharedInstance.shouldShow(.shakeMotionGesture) else {
             return
         }
@@ -45,8 +45,9 @@ public final class Yoshi {
      - parameter event:                   (UIEvent) the event captured by the original touchesBegan call
      - parameter minimumTouchRequirement: (Int) the minimum number of touches required to show the debug menu.
      */
-    public class func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?, minimumTouchRequirement: Int = 3) {
-        guard event?.allTouches()?.count >= minimumTouchRequirement
+    public class func touchesBegan(_ touches: Set<UITouch>, withEvent event: UIEvent?,
+                                   minimumTouchRequirement: Int = 3) {
+        guard (event?.allTouches?.count)! >= minimumTouchRequirement
             && YoshiConfigurationManager.sharedInstance.shouldShow(.multiTouch) else {
             return
         }
@@ -61,7 +62,8 @@ public final class Yoshi {
      - parameter event:                   (UIEvent) the event captured by the original touchesMoved call
      - parameter minimumForcePercent:     (Int) the minimum force percent required to show the debug menu.
      */
-    public class func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?, minimumForcePercent: Float = 60) {
+    public class func touchesMoved(_ touches: Set<UITouch>, withEvent event: UIEvent?,
+                                   minimumForcePercent: Float = 60) {
         guard #available(iOS 9.0, *) else {
             return
         }
@@ -70,7 +72,7 @@ public final class Yoshi {
             return
         }
 
-        let eventTouches = event?.allTouches()?.filter({ (touch) -> Bool in
+        let eventTouches = event?.allTouches?.filter({ (touch) -> Bool in
             // Guarding against touch.maximumPossibleForce > 0
             // because this value is 0 on non-3D touch capable devices
             guard touch.maximumPossibleForce > 0 else {
@@ -81,7 +83,7 @@ public final class Yoshi {
             return touch.force >= touch.maximumPossibleForce * (percent / 100)
         })
 
-        guard let touches = eventTouches where touches.count > 0 else {
+        guard let touches = eventTouches, touches.count > 0 else {
             return
         }
 
@@ -100,7 +102,7 @@ public final class Yoshi {
 
      - parameter completion: The block to execute upon completion of dismissal.
      */
-    public class func dismiss(completion: (Void -> Void)? = nil) {
+    public class func dismiss(_ completion: ((Void) -> Void)? = nil) {
         YoshiConfigurationManager.sharedInstance.dismiss(completion)
     }
 

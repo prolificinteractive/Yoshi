@@ -29,7 +29,7 @@ internal class AppBundleUtility: NSObject {
         let appBundlePrimaryIconKey = "CFBundlePrimaryIcon"
         let iconFilesKey = "CFBundleIconFiles"
 
-        guard let icons = NSBundle.mainBundle().infoDictionary?[appBundleIconsKey] as? [String: AnyObject],
+        guard let icons = Bundle.main.infoDictionary?[appBundleIconsKey] as? [String: AnyObject],
             let primaryIcons = icons[appBundlePrimaryIconKey] as? [String: AnyObject],
             let iconFiles = primaryIcons[iconFilesKey] as? [String],
             let iconImageName = iconFiles.last else {
@@ -46,7 +46,7 @@ internal class AppBundleUtility: NSObject {
      */
     class func appDisplayName() -> String {
         let appDisplayNameDictionaryKey = "CFBundleName"
-        return NSBundle.mainBundle().objectForInfoDictionaryKey(appDisplayNameDictionaryKey) as? String ?? ""
+        return Bundle.main.object(forInfoDictionaryKey: appDisplayNameDictionaryKey) as? String ?? ""
     }
 
     /**
@@ -54,9 +54,9 @@ internal class AppBundleUtility: NSObject {
 
      - returns: The application version number.
      */
-    private class func appVersionNumber() -> String {
+    fileprivate class func appVersionNumber() -> String {
         let appVersionNumberDictionaryKey = "CFBundleShortVersionString"
-        return NSBundle.mainBundle().objectForInfoDictionaryKey(appVersionNumberDictionaryKey) as? String ?? ""
+        return Bundle.main.object(forInfoDictionaryKey: appVersionNumberDictionaryKey) as? String ?? ""
     }
 
     /**
@@ -64,9 +64,9 @@ internal class AppBundleUtility: NSObject {
 
      - returns: The application build number.
      */
-    private class func appBuildNumber() -> String {
+    fileprivate class func appBuildNumber() -> String {
         let appBuildNumberDictionaryKey = "CFBundleVersion"
-        return NSBundle.mainBundle().objectForInfoDictionaryKey(appBuildNumberDictionaryKey) as? String ?? ""
+        return Bundle.main.object(forInfoDictionaryKey: appBuildNumberDictionaryKey) as? String ?? ""
     }
 
 }

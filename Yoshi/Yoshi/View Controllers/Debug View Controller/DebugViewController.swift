@@ -6,19 +6,19 @@
 //  Copyright © 2016 Prolific Interactive. All rights reserved.
 //
 
-internal typealias VoidCompletionBlock = Void -> Void
+internal typealias VoidCompletionBlock = (Void) -> Void
 
 /// A debug menu.
 internal final class DebugViewController: UIViewController {
 
-    let completionHandler: (completed: VoidCompletionBlock? ) -> Void
+    let completionHandler: (_ completed: VoidCompletionBlock? ) -> Void
 
-    private let tableView = UITableView()
-    private let options: [YoshiMenu]
+    fileprivate let tableView = UITableView()
+    fileprivate let options: [YoshiMenu]
 
-    private let dateFormatter: NSDateFormatter = NSDateFormatter()
+    fileprivate let dateFormatter: DateFormatter = DateFormatter()
 
-    init(options: [YoshiMenu], completion: (VoidCompletionBlock?) -> Void) {
+    init(options: [YoshiMenu], completion: @escaping (VoidCompletionBlock?) -> Void) {
         self.options = options
         self.completionHandler = completion
         super.init(nibName: nil, bundle: nil)
@@ -39,24 +39,24 @@ internal final class DebugViewController: UIViewController {
         setupDateFormatter()
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()
     }
 
-    private func setupTableView() {
+    fileprivate func setupTableView() {
         view.addSubview(tableView)
 
         tableView.translatesAutoresizingMaskIntoConstraints = false
 
-        let topConstraint = NSLayoutConstraint(item: tableView, attribute: .Top,
-            relatedBy: .Equal, toItem: view, attribute: .Top, multiplier: 1.0, constant: 0.0)
-        let leadingConstraint = NSLayoutConstraint(item: tableView, attribute: .Leading,
-            relatedBy: .Equal, toItem: view, attribute: .Leading, multiplier: 1.0, constant: 0.0)
+        let topConstraint = NSLayoutConstraint(item: tableView, attribute: .top,
+            relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1.0, constant: 0.0)
+        let leadingConstraint = NSLayoutConstraint(item: tableView, attribute: .leading,
+            relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1.0, constant: 0.0)
         let trailingConstraint = NSLayoutConstraint(item: tableView,
-            attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .Trailing, multiplier: 1.0, constant: 0.0)
-        let bottomConstraint = NSLayoutConstraint(item: tableView, attribute: .Bottom,
-            relatedBy: .Equal, toItem: bottomLayoutGuide, attribute: .Top, multiplier: 1.0, constant: 0.0)
+            attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1.0, constant: 0.0)
+        let bottomConstraint = NSLayoutConstraint(item: tableView, attribute: .bottom,
+            relatedBy: .equal, toItem: bottomLayoutGuide, attribute: .top, multiplier: 1.0, constant: 0.0)
 
         view.addConstraints([topConstraint, leadingConstraint, trailingConstraint, bottomConstraint])
 
@@ -65,30 +65,30 @@ internal final class DebugViewController: UIViewController {
         tableView.tableHeaderView = tableViewHeader()
     }
 
-    private func tableViewHeader() -> UIView {
+    fileprivate func tableViewHeader() -> UIView {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 160))
         let imageView = UIImageView(image: AppBundleUtility.icon())
         view.addSubview(imageView)
 
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        let centerXConstraint = NSLayoutConstraint(item: imageView, attribute: .CenterX,
-            relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1.0, constant: 0.0)
-        let topConstraint = NSLayoutConstraint(item: imageView, attribute: .Top, relatedBy: .Equal,
-            toItem: view, attribute: .Top, multiplier: 1.0, constant: 38.0)
+        let centerXConstraint = NSLayoutConstraint(item: imageView, attribute: .centerX,
+            relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1.0, constant: 0.0)
+        let topConstraint = NSLayoutConstraint(item: imageView, attribute: .top, relatedBy: .equal,
+            toItem: view, attribute: .top, multiplier: 1.0, constant: 38.0)
 
         view.addConstraints([centerXConstraint, topConstraint])
 
         let versionLabel = UILabel()
         versionLabel.text = AppBundleUtility.appVersionText()
         versionLabel.textColor = Color(105, 105, 105).toUIColor()
-        versionLabel.font = UIFont.systemFontOfSize(12)
+        versionLabel.font = UIFont.systemFont(ofSize: 12)
         versionLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(versionLabel)
 
-        let labelCenterXConstraint = NSLayoutConstraint(item: versionLabel, attribute: .CenterX,
-            relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1.0, constant: 0.0)
-        let labelTopConstraint = NSLayoutConstraint(item: versionLabel, attribute: .Top, relatedBy: .Equal,
-            toItem: imageView, attribute: .Bottom, multiplier: 1.0, constant: 8.0)
+        let labelCenterXConstraint = NSLayoutConstraint(item: versionLabel, attribute: .centerX,
+            relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1.0, constant: 0.0)
+        let labelTopConstraint = NSLayoutConstraint(item: versionLabel, attribute: .top, relatedBy: .equal,
+            toItem: imageView, attribute: .bottom, multiplier: 1.0, constant: 8.0)
         view.addConstraints([labelCenterXConstraint, labelTopConstraint])
 
         let separatorLine = UIView()
@@ -96,52 +96,52 @@ internal final class DebugViewController: UIViewController {
         view.addSubview(separatorLine)
 
         separatorLine.backgroundColor = tableView.separatorColor
-        let lineBottomConstraint = NSLayoutConstraint(item: separatorLine, attribute: .Bottom,
-            relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: 0.0)
-        let lineWidthConstraint = NSLayoutConstraint(item: separatorLine, attribute: .Width,
-            relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 1.0, constant: 0.0)
-        let lineHeightConstraint = NSLayoutConstraint(item: separatorLine, attribute: .Height,
-            relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 0.5)
+        let lineBottomConstraint = NSLayoutConstraint(item: separatorLine, attribute: .bottom,
+            relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1.0, constant: 0.0)
+        let lineWidthConstraint = NSLayoutConstraint(item: separatorLine, attribute: .width,
+            relatedBy: .equal, toItem: view, attribute: .width, multiplier: 1.0, constant: 0.0)
+        let lineHeightConstraint = NSLayoutConstraint(item: separatorLine, attribute: .height,
+            relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 0.5)
         view.addConstraints([lineBottomConstraint, lineWidthConstraint, lineHeightConstraint])
 
         return view
     }
 
-    private func setupNavigationController() {
+    fileprivate func setupNavigationController() {
         let closeButton = UIBarButtonItem(title: "Close",
-                                          style: .Plain,
+                                          style: .plain,
                                           target: self,
                                           action: #selector(DebugViewController.close(_:)))
         navigationItem.leftBarButtonItem = closeButton
         navigationItem.title = AppBundleUtility.appDisplayName()
     }
 
-    private func setupDateFormatter() {
-        dateFormatter.dateStyle = .MediumStyle
-        dateFormatter.timeStyle = .ShortStyle
+    fileprivate func setupDateFormatter() {
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .short
     }
 
-    @objc private func close(sender: UIBarButtonItem) {
-        completionHandler(completed: nil)
+    @objc fileprivate func close(_ sender: UIBarButtonItem) {
+        completionHandler(nil)
     }
 }
 
 extension DebugViewController: UITableViewDataSource {
 
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return options.count
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "DebugViewControllerTableViewCellIdentifier"
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) ??
-            UITableViewCell(style: .Subtitle, reuseIdentifier: cellIdentifier)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) ??
+            UITableViewCell(style: .subtitle, reuseIdentifier: cellIdentifier)
 
-        let option = options[indexPath.row]
+        let option = options[(indexPath as NSIndexPath).row]
         cell.textLabel?.text = option.title
 
         if let subtitle = option.subtitle {
@@ -149,7 +149,7 @@ extension DebugViewController: UITableViewDataSource {
         } else {
             switch option {
             case let dateSelectorMenu as YoshiDateSelectorMenu:
-                cell.detailTextLabel?.text = dateFormatter.stringFromDate(dateSelectorMenu.selectedDate)
+                cell.detailTextLabel?.text = dateFormatter.string(from: dateSelectorMenu.selectedDate as Date)
             case let tableViewMenu as YoshiTableViewMenu:
                 let selectedDisplayItem = tableViewMenu.displayItems.filter { $0.selected == true }.first
                 cell.detailTextLabel?.text = selectedDisplayItem?.name
@@ -160,11 +160,11 @@ extension DebugViewController: UITableViewDataSource {
 
         switch option {
         case _ as YoshiDateSelectorMenu:
-            cell.accessoryType = .DisclosureIndicator
+            cell.accessoryType = .disclosureIndicator
         case _ as YoshiTableViewMenu:
-            cell.accessoryType = .DisclosureIndicator
+            cell.accessoryType = .disclosureIndicator
         default:
-            cell.accessoryType = .None
+            cell.accessoryType = .none
         }
 
         return cell
@@ -174,20 +174,20 @@ extension DebugViewController: UITableViewDataSource {
 
 extension DebugViewController: UITableViewDelegate {
 
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 64
     }
 
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
 
-        let selectedOption = options[indexPath.row]
+        let selectedOption = options[(indexPath as NSIndexPath).row]
         switch selectedOption.execute() {
         case .PresentViewController(let viewController):
             navigationController?.pushViewController(viewController, animated: true)
             break
         case .AsyncAfterDismissing(let asyncAction):
-            completionHandler(completed: asyncAction)
+            completionHandler(asyncAction)
             break
         default:
             return

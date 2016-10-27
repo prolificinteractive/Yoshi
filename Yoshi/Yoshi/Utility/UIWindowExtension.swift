@@ -12,15 +12,15 @@ import UIKit
 // MARK: - UIWindow Extension.
 public extension UIWindow {
 
-    override public func motionBegan(motion: UIEventSubtype, withEvent event: UIEvent?) {
+    override open func motionBegan(_ motion: UIEventSubtype, with event: UIEvent?) {
         Yoshi.motionBegan(motion, withEvent: event)
     }
 
-    override public func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         Yoshi.touchesBegan(touches, withEvent: event)
     }
 
-    override public func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override open func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         Yoshi.touchesMoved(touches, withEvent: event)
     }
 

@@ -10,35 +10,35 @@ import UIKit
 
 internal final class ViewController: UIViewController {
 
-    @IBOutlet private weak var environment: UILabel!
-    @IBOutlet private weak var environmentDate: UILabel!
+    @IBOutlet fileprivate weak var environment: UILabel!
+    @IBOutlet fileprivate weak var environmentDate: UILabel!
 
-    private let dateFormatter: NSDateFormatter = NSDateFormatter()
+    fileprivate let dateFormatter: DateFormatter = DateFormatter()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        dateFormatter.dateStyle = .MediumStyle
-        dateFormatter.timeStyle = .ShortStyle
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .short
 
-        NSNotificationCenter.defaultCenter()
+        NotificationCenter.default
             .addObserver(self,
                          selector: #selector(ViewController.didUpdateEnvironment(_:)),
-                         name: Notifications.EnvironmentUpdatedNotification,
+                         name: NSNotification.Name(rawValue: Notifications.EnvironmentUpdatedNotification),
                          object: nil)
 
-        NSNotificationCenter.defaultCenter()
+        NotificationCenter.default
             .addObserver(self,
                          selector: #selector(ViewController.didUpdateEnvironmentDate(_:)),
-                         name: Notifications.EnvironmentDateUpdatedNotification,
+                         name: NSNotification.Name(rawValue: Notifications.EnvironmentDateUpdatedNotification),
                          object: nil)
     }
 
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
 
-    func didUpdateEnvironment(notification: NSNotification) {
+    func didUpdateEnvironment(_ notification: Notification) {
         guard let environment = notification.object as? String else {
             return
         }
@@ -46,12 +46,12 @@ internal final class ViewController: UIViewController {
         self.environment.text = environment
     }
 
-    func didUpdateEnvironmentDate(notification: NSNotification) {
-        guard let environmentDate = notification.object as? NSDate else {
+    func didUpdateEnvironmentDate(_ notification: Notification) {
+        guard let environmentDate = notification.object as? Date else {
             return
         }
 
-        self.environmentDate.text = dateFormatter.stringFromDate(environmentDate)
+        self.environmentDate.text = dateFormatter.string(from: environmentDate)
     }
 
 }

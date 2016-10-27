@@ -18,8 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    func application(application: UIApplication,
-                     didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(_ application: UIApplication,
+                     didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
 
         #if DEBUG
@@ -39,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Yoshi.setupDebugMenu(menu)
     }
 
-    private func environmentMenu() -> YoshiTableViewMenu {
+    fileprivate func environmentMenu() -> YoshiTableViewMenu {
         let production = MenuItem(name: "Production")
         let staging = MenuItem(name: "Staging")
         let qa = MenuItem(name: "QA", selected: true)
@@ -50,25 +50,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                              subtitle: nil,
                              displayItems: environmentItems,
                              didSelectDisplayItem: { (displayItem) in
-                                NSNotificationCenter.defaultCenter()
-                                    .postNotificationName(Notifications.EnvironmentUpdatedNotification,
+                                NotificationCenter.default
+                                    .post(name:
+                                        NSNotification.Name(rawValue: Notifications.EnvironmentUpdatedNotification),
                                         object: displayItem.name)
         })
     }
 
-    private func dateSelectorMenu() -> YoshiDateSelectorMenu {
+    fileprivate func dateSelectorMenu() -> YoshiDateSelectorMenu {
         return DateSelector(title: "Environment Date",
                             subtitle: nil,
                             didUpdateDate: { (dateSelected) in
-                                NSNotificationCenter.defaultCenter()
-                                    .postNotificationName(Notifications.EnvironmentDateUpdatedNotification,
+                                NotificationCenter.default
+                                    .post(name:
+                                        NSNotification.Name(rawValue: Notifications.EnvironmentDateUpdatedNotification),
                                         object: dateSelected)
         })
     }
 
-    private func instabugMenu() -> YoshiMenu {
-        Instabug.startWithToken("cf779d2e19c0affaad8567a7598e330d", invocationEvent: .None)
-        Instabug.setDefaultInvocationMode(.BugReporter)
+    fileprivate func instabugMenu() -> YoshiMenu {
+        Instabug.start(withToken: "cf779d2e19c0affaad8567a7598e330d", invocationEvent: .none)
+        Instabug.setDefaultInvocationMode(.bugReporter)
 
         return CustomMenu(title: "Start Instabug",
                           subtitle: nil,
@@ -81,15 +83,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Yoshi Invocation options
     // Implement the functionality you want!
 
-    override func motionBegan(motion: UIEventSubtype, withEvent event: UIEvent?) {
+    override func motionBegan(_ motion: UIEventSubtype, with event: UIEvent?) {
         Yoshi.motionBegan(motion, withEvent: event)
     }
 
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         Yoshi.touchesBegan(touches, withEvent: event)
     }
 
-    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         Yoshi.touchesMoved(touches, withEvent: event)
     }
 }

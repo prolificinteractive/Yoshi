@@ -12,10 +12,10 @@ internal final class YoshiConfigurationManager {
     /// The default instance.
     static let sharedInstance = YoshiConfigurationManager()
 
-    private var yoshiMenuItems = [YoshiMenu]()
-    private var invocations: [YoshiInvocation]?
-    private var presentingWindow: UIWindow?
-    private weak var debugViewController: DebugViewController?
+    fileprivate var yoshiMenuItems = [YoshiMenu]()
+    fileprivate var invocations: [YoshiInvocation]?
+    fileprivate var presentingWindow: UIWindow?
+    fileprivate weak var debugViewController: DebugViewController?
 
     /**
      Sets the debug options to use for presenting the debug menu.
@@ -23,7 +23,7 @@ internal final class YoshiConfigurationManager {
      - parameter menuItems: The menu items for presentation.
      - parameter invocations: The invocation types.
      */
-    func setupDebugMenuOptions(menuItems: [YoshiMenu], invocations: [YoshiInvocation]) {
+    func setupDebugMenuOptions(_ menuItems: [YoshiMenu], invocations: [YoshiInvocation]) {
         yoshiMenuItems = menuItems
         self.invocations = invocations
     }
@@ -33,7 +33,7 @@ internal final class YoshiConfigurationManager {
     /// - parameter invocation: Invocation method called.
     ///
     /// - returns: `true` if Yoshi should appear. `false` if not.
-    func shouldShow(invocation: YoshiInvocation) -> Bool {
+    func shouldShow(_ invocation: YoshiInvocation) -> Bool {
         guard let invocations = invocations else {
             return false
         }
@@ -53,13 +53,13 @@ internal final class YoshiConfigurationManager {
             return
         }
 
-        let window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        let window = UIWindow(frame: UIScreen.main.bounds)
         window.windowLevel = UIWindowLevelNormal
 
         // Use a dummy view controller with clear background.
         // This way, we can make the actual view controller we want to present a form sheet on the iPad.
         let rootViewController = UIViewController()
-        rootViewController.view.backgroundColor = UIColor.clearColor()
+        rootViewController.view.backgroundColor = UIColor.clear
 
         window.rootViewController = rootViewController
         window.makeKeyAndVisible()
@@ -68,7 +68,8 @@ internal final class YoshiConfigurationManager {
 
         // iOS doesn't like when modals are presented right away after a window's been made key and visible.
         // We need to delay presenting the debug controller a bit to suppress the warning.
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
+        DispatchQueue.main.asyncAfter(deadline:
+                DispatchTime.now() + Double(Int64(0 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)) {
             self.presentDebugViewController()
         }
     }
@@ -78,28 +79,28 @@ internal final class YoshiConfigurationManager {
 
      - parameter action: The action to take upon completion.
      */
-    func dismiss(action: VoidCompletionBlock? = nil) {
-        debugViewController?.completionHandler(completed: action)
+    func dismiss(_ action: VoidCompletionBlock? = nil) {
+        debugViewController?.completionHandler(action)
         presentingWindow = nil
     }
 
-    private func presentDebugViewController() {
+    fileprivate func presentDebugViewController() {
         if let rootViewController = presentingWindow?.rootViewController {
             let navigationController = UINavigationController()
             let debugViewController = DebugViewController(options: yoshiMenuItems,
                                                           completion: { [weak self] completionBlock in
                                                             rootViewController
-                                                                .dismissViewControllerAnimated(true,
+                                                                .dismiss(animated: true,
                                                                     completion: { () -> Void in
                                                                         self?.presentingWindow = nil
                                                                         completionBlock?()
                                                                 })
                 })
 
-            navigationController.modalPresentationStyle = .FormSheet
+            navigationController.modalPresentationStyle = .formSheet
             navigationController.setViewControllers([debugViewController], animated: false)
 
-            rootViewController.presentViewController(navigationController, animated: true, completion: nil)
+            rootViewController.present(navigationController, animated: true, completion: nil)
             self.debugViewController = debugViewController
         }
     }

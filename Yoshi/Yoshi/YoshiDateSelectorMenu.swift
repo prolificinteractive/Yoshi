@@ -12,10 +12,10 @@
 public protocol YoshiDateSelectorMenu: class, YoshiMenu {
 
     /// The selected date.
-    var selectedDate: NSDate { get set }
+    var selectedDate: Date { get set }
 
     /// Function to handle the date selection.
-    var didUpdateDate: (dateSelected: NSDate) -> () { get }
+    var didUpdateDate: (_ dateSelected: Date) -> () { get }
 
 }
 
@@ -27,10 +27,11 @@ public extension YoshiDateSelectorMenu {
      - returns: A result for handling the selected menu item.
      */
     func execute() -> YoshiActionResult {
-        let bundle = NSBundle(forClass: YoshiConfigurationManager.self)
+        let bundle = Bundle(for: YoshiConfigurationManager.self)
         let datePickerViewController =
-            DebugDatePickerViewController(nibName: String(DebugDatePickerViewController), bundle: bundle)
-        datePickerViewController.modalPresentationStyle = .FormSheet
+            DebugDatePickerViewController(nibName: String(describing: DebugDatePickerViewController.self),
+                                          bundle: bundle)
+        datePickerViewController.modalPresentationStyle = .formSheet
         datePickerViewController.setup(self)
 
         return .PresentViewController(datePickerViewController)
