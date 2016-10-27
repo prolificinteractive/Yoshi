@@ -14,10 +14,11 @@ public final class Yoshi {
     /**
      Should be called in application didFinishLaunchingWithOptions
 
-     - parameter menuItems: [YoshiMenu] an array of items to be displayed in the Yoshi Debug Action Sheet
+     - parameter menuItems: [YoshiMenu] an array of items to be displayed in the Yoshi Debug Action Sheet.
+     - parameter invocations: The invocation types.
      */
-    public class func setupDebugMenu(menuItems: [YoshiMenu]) {
-        YoshiConfigurationManager.sharedInstance.setupDebugMenuOptions(menuItems)
+    public class func setupDebugMenu(menuItems: [YoshiMenu], invocations: [YoshiInvocation] = [.all]) {
+        YoshiConfigurationManager.sharedInstance.setupDebugMenuOptions(menuItems, invocations: invocations)
     }
 
     // MARK: - Invocation Functions
@@ -29,7 +30,8 @@ public final class Yoshi {
      - parameter event:  (UIEvent) the event captured by the original motionBegan call
      */
     public class func motionBegan(motion: UIEventSubtype, withEvent event: UIEvent?) {
-        guard motion == .MotionShake else {
+        guard motion == .MotionShake
+            && YoshiConfigurationManager.sharedInstance.shouldShow(.shakeMotionGesture) else {
             return
         }
 
@@ -44,7 +46,8 @@ public final class Yoshi {
      - parameter minimumTouchRequirement: (Int) the minimum number of touches required to show the debug menu.
      */
     public class func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?, minimumTouchRequirement: Int = 3) {
-        guard event?.allTouches()?.count >= minimumTouchRequirement else {
+        guard event?.allTouches()?.count >= minimumTouchRequirement
+            && YoshiConfigurationManager.sharedInstance.shouldShow(.multiTouch) else {
             return
         }
 
@@ -60,6 +63,10 @@ public final class Yoshi {
      */
     public class func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?, minimumForcePercent: Float = 60) {
         guard #available(iOS 9.0, *) else {
+            return
+        }
+
+        guard YoshiConfigurationManager.sharedInstance.shouldShow(.multiTouch) else {
             return
         }
 

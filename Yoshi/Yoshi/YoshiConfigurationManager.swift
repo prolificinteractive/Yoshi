@@ -13,6 +13,7 @@ internal final class YoshiConfigurationManager {
     static let sharedInstance = YoshiConfigurationManager()
 
     private var yoshiMenuItems = [YoshiMenu]()
+    private var invocations: [YoshiInvocation]?
     private var presentingWindow: UIWindow?
     private weak var debugViewController: DebugViewController?
 
@@ -20,9 +21,28 @@ internal final class YoshiConfigurationManager {
      Sets the debug options to use for presenting the debug menu.
 
      - parameter menuItems: The menu items for presentation.
+     - parameter invocations: The invocation types.
      */
-    func setupDebugMenuOptions(menuItems: [YoshiMenu]) {
+    func setupDebugMenuOptions(menuItems: [YoshiMenu], invocations: [YoshiInvocation]) {
         yoshiMenuItems = menuItems
+        self.invocations = invocations
+    }
+
+    /// Helper function to indicate if the given invocation should show Yoshi.
+    ///
+    /// - parameter invocation: Invocation method called.
+    ///
+    /// - returns: `true` if Yoshi should appear. `false` if not.
+    func shouldShow(invocation: YoshiInvocation) -> Bool {
+        guard let invocations = invocations else {
+            return false
+        }
+
+        if  invocations.contains(.all) {
+            return true
+        }
+
+        return invocations.contains(invocation)
     }
 
     /**

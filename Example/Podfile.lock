@@ -1,6 +1,6 @@
 PODS:
   - Instabug (5.2.4)
-  - Yoshi (1.0.0)
+  - Yoshi (1.1.0)
 
 DEPENDENCIES:
   - Instabug (= 5.2.4)
@@ -12,7 +12,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Instabug: 6fa40a5e2a4620f0589dfc8e4e01b1018c8c42b1
-  Yoshi: b60c2debfe0948b0bfc50a7b4f904c955d179ff3
+  Yoshi: d5cb1bf834e72aa1323180669fe323858b7cbc34
 
 PODFILE CHECKSUM: 67468572b9edbd35e0be95ab66757a16545f110b
 
