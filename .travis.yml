@@ -10,5 +10,5 @@ osx_image: xcode8
 # - gem install cocoapods # Since Travis is not always on latest version
 # - pod install --project-directory=Example
 script:
-- set -o pipefail && xcodebuild test -project Yoshi/Yoshi.xcodeproj -scheme YoshiTests -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO | xcpretty
+- set -o pipefail && xcodebuild test -project Yoshi/Yoshi.xcodeproj -scheme YoshiTests -destination 'platform=iOS Simulator,name=iPhone 6,OS=10.0' | xcpretty
 - pod lib lint
