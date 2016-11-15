@@ -6,9 +6,11 @@ language: objective-c
 osx_image: xcode8
 # cache: cocoapods
 # podfile: Example/Podfile
-# before_install:
-# - gem install cocoapods # Since Travis is not always on latest version
-# - pod install --project-directory=Example
+
+before_install:
+- gem install cocoapods -v 1.1.1
+- pod install --project-directory=Example
+
 script:
 - set -o pipefail && xcodebuild test -project Yoshi/Yoshi.xcodeproj -scheme YoshiTests -destination 'platform=iOS Simulator,name=iPhone 6,OS=10.0' | xcpretty
 - pod lib lint --allow-warnings
