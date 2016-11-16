@@ -10,10 +10,10 @@ import UIKit
 
 internal final class ViewController: UIViewController {
 
-    @IBOutlet fileprivate weak var environment: UILabel!
-    @IBOutlet fileprivate weak var environmentDate: UILabel!
+    @IBOutlet private weak var environment: UILabel!
+    @IBOutlet private weak var environmentDate: UILabel!
 
-    fileprivate let dateFormatter: DateFormatter = DateFormatter()
+    private let dateFormatter: DateFormatter = DateFormatter()
 
     override func viewDidLoad() {
         super.viewDidLoad()

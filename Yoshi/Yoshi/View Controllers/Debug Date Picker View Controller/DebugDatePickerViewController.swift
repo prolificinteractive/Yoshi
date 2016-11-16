@@ -9,9 +9,9 @@
 /// The date picker view controller.
 internal class DebugDatePickerViewController: UIViewController {
 
-    fileprivate var selectorMenu: YoshiDateSelectorMenu?
+    private var selectorMenu: YoshiDateSelectorMenu?
 
-    @IBOutlet fileprivate weak var datePicker: UIDatePicker!
+    @IBOutlet private weak var datePicker: UIDatePicker!
 
     // MARK: - Initializers
 
@@ -43,7 +43,7 @@ internal class DebugDatePickerViewController: UIViewController {
 
     // MARK: - Private Functions
 
-    fileprivate func setupDatePicker() {
+    private func setupDatePicker() {
         datePicker.date = selectorMenu?.selectedDate as Date? ?? Date()
         navigationItem.title = selectorMenu?.title
 
@@ -56,7 +56,7 @@ internal class DebugDatePickerViewController: UIViewController {
 
     // MARK: - IBAction
 
-    @objc fileprivate func apply(_ sender: UIBarButtonItem) {
+    @objc private func apply(_ sender: UIBarButtonItem) {
         let date = datePicker.date
         selectorMenu?.selectedDate = date
         selectorMenu?.didUpdateDate(date)

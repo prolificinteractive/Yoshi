@@ -11,7 +11,7 @@ internal final class DebugTableViewController: UIViewController {
 
     fileprivate let yoshiTableViewCellDefaultIdentifier = "YoshiTableViewCellDefaultIdentifier"
 
-    @IBOutlet fileprivate weak var tableView: UITableView!
+    @IBOutlet private weak var tableView: UITableView!
 
     fileprivate var yoshiTableViewMenu: YoshiTableViewMenu?
 

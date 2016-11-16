@@ -12,10 +12,10 @@ internal final class YoshiConfigurationManager {
     /// The default instance.
     static let sharedInstance = YoshiConfigurationManager()
 
-    fileprivate var yoshiMenuItems = [YoshiMenu]()
-    fileprivate var invocations: [YoshiInvocation]?
-    fileprivate var presentingWindow: UIWindow?
-    fileprivate weak var debugViewController: DebugViewController?
+    private var yoshiMenuItems = [YoshiMenu]()
+    private var invocations: [YoshiInvocation]?
+    private var presentingWindow: UIWindow?
+    private weak var debugViewController: DebugViewController?
 
     /**
      Sets the debug options to use for presenting the debug menu.
@@ -84,7 +84,7 @@ internal final class YoshiConfigurationManager {
         presentingWindow = nil
     }
 
-    fileprivate func presentDebugViewController() {
+    private func presentDebugViewController() {
         if let rootViewController = presentingWindow?.rootViewController {
             let navigationController = UINavigationController()
             let debugViewController = DebugViewController(options: yoshiMenuItems,

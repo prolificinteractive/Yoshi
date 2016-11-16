@@ -54,7 +54,7 @@ internal class AppBundleUtility: NSObject {
 
      - returns: The application version number.
      */
-    fileprivate class func appVersionNumber() -> String {
+    private class func appVersionNumber() -> String {
         let appVersionNumberDictionaryKey = "CFBundleShortVersionString"
         return Bundle.main.object(forInfoDictionaryKey: appVersionNumberDictionaryKey) as? String ?? ""
     }
@@ -64,7 +64,7 @@ internal class AppBundleUtility: NSObject {
 
      - returns: The application build number.
      */
-    fileprivate class func appBuildNumber() -> String {
+    private class func appBuildNumber() -> String {
         let appBuildNumberDictionaryKey = "CFBundleVersion"
         return Bundle.main.object(forInfoDictionaryKey: appBuildNumberDictionaryKey) as? String ?? ""
     }

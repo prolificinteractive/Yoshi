@@ -13,7 +13,7 @@ internal final class DebugViewController: UIViewController {
 
     let completionHandler: (_ completed: VoidCompletionBlock? ) -> Void
 
-    fileprivate let tableView = UITableView()
+    private let tableView = UITableView()
     fileprivate let options: [YoshiMenu]
 
     fileprivate let dateFormatter: DateFormatter = DateFormatter()
@@ -44,7 +44,7 @@ internal final class DebugViewController: UIViewController {
         tableView.reloadData()
     }
 
-    fileprivate func setupTableView() {
+    private func setupTableView() {
         view.addSubview(tableView)
 
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -65,7 +65,7 @@ internal final class DebugViewController: UIViewController {
         tableView.tableHeaderView = tableViewHeader()
     }
 
-    fileprivate func tableViewHeader() -> UIView {
+    private func tableViewHeader() -> UIView {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 160))
         let imageView = UIImageView(image: AppBundleUtility.icon())
         view.addSubview(imageView)
@@ -107,7 +107,7 @@ internal final class DebugViewController: UIViewController {
         return view
     }
 
-    fileprivate func setupNavigationController() {
+    private func setupNavigationController() {
         let closeButton = UIBarButtonItem(title: "Close",
                                           style: .plain,
                                           target: self,
@@ -116,12 +116,12 @@ internal final class DebugViewController: UIViewController {
         navigationItem.title = AppBundleUtility.appDisplayName()
     }
 
-    fileprivate func setupDateFormatter() {
+    private func setupDateFormatter() {
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .short
     }
 
-    @objc fileprivate func close(_ sender: UIBarButtonItem) {
+    @objc private func close(_ sender: UIBarButtonItem) {
         completionHandler(nil)
     }
 }
