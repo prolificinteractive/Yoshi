@@ -175,7 +175,7 @@ Yoshi.show()
 
 ### Invocation Options
 
-Yoshi can be invoked a number of different options. The simplest way is to manually invoke using the `show()` function.
+Yoshi can be invoked with a number of different options. The simplest way is to manually invoke using the `show()` function.
 
 ```swift
 Yoshi.show()
@@ -185,29 +185,29 @@ In addition to the vanilla invocation option, Yoshi can also be invoked in respo
 If you want to enable all of those 3 following options you can simply pass the `all` option to the `setupDebugMenu`, although this option is already the default one.
 
 ```swift
-Yoshi.setupDebugMenu([/* YoshiMenu items */], invocations: [all])
+Yoshi.setupDebugMenu([/* YoshiMenu items */], invocations: [.all])
 /// Or simply
 Yoshi.setupDebugMenu([/* YoshiMenu items */])
 ```
 
-To specify which option you want exacly you just need to pass the ones you want to the `setupDebugMenu` function like this:
+To specify which option you want exactly you just need to pass the ones you want to the `setupDebugMenu` function like this:
 
 * To invoke Yoshi in response to a shake-motion gesture, add the `shakeMotionGesture` option in the `setupDebugMenu` invocations parameter as follows.
 
 ```swift
-Yoshi.setupDebugMenu([/* YoshiMenu items */], invocations: [shakeMotionGesture])
+Yoshi.setupDebugMenu([/* YoshiMenu items */], invocations: [.shakeMotionGesture])
 ```
 
 * To invoke Yoshi in in response to a multi-touch event, add the `multiTouch` option in the `setupDebugMenu` invocations parameter as follows.
 
 ```swift
-Yoshi.setupDebugMenu([/* YoshiMenu items */], invocations: [multiTouch])
+Yoshi.setupDebugMenu([/* YoshiMenu items */], invocations: [.multiTouch])
 ```
 
 * Finally, to invoke Yoshi in response to a 3D touch event, add the `forceTouch` option in the `setupDebugMenu` invocations parameter as follows.
 
 ```swift
-Yoshi.setupDebugMenu([/* YoshiMenu items */], invocations: [forceTouch])
+Yoshi.setupDebugMenu([/* YoshiMenu items */], invocations: [.forceTouch])
 ```
 
 ## Contributing to Yoshi
