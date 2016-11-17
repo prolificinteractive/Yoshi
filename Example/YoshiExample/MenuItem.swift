@@ -32,7 +32,7 @@ internal struct TableViewMenu: YoshiTableViewMenu {
     var title: String
     var subtitle: String?
     var displayItems: [YoshiTableViewMenuItem]
-    var didSelectDisplayItem: (displayItem: YoshiTableViewMenuItem) -> ()
+    var didSelectDisplayItem: (_ displayItem: YoshiTableViewMenuItem) -> ()
 
 }
 
@@ -43,13 +43,13 @@ internal final class DateSelector: YoshiDateSelectorMenu {
 
     var title: String
     var subtitle: String?
-    var selectedDate: NSDate
-    var didUpdateDate: (dateSelected: NSDate) -> ()
+    var selectedDate: Date
+    var didUpdateDate: (_ dateSelected: Date) -> ()
 
     init(title: String,
          subtitle: String? = nil,
-         selectedDate: NSDate = NSDate(),
-         didUpdateDate: (NSDate) -> ()) {
+         selectedDate: Date = Date(),
+         didUpdateDate: @escaping (Date) -> ()) {
         self.title = title
         self.subtitle = subtitle
         self.selectedDate = selectedDate

@@ -15,7 +15,7 @@ internal class DebugDatePickerViewController: UIViewController {
 
     // MARK: - Initializers
 
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
 
@@ -37,18 +37,18 @@ internal class DebugDatePickerViewController: UIViewController {
 
     - parameter yoshiDateSelectorMenu: (YoshiDateSelectorMenu) the selector menu data
     */
-    func setup(yoshiDateSelectorMenu: YoshiDateSelectorMenu) {
+    func setup(_ yoshiDateSelectorMenu: YoshiDateSelectorMenu) {
         selectorMenu = yoshiDateSelectorMenu
     }
 
     // MARK: - Private Functions
 
     private func setupDatePicker() {
-        datePicker.date = selectorMenu?.selectedDate ?? NSDate()
+        datePicker.date = selectorMenu?.selectedDate as Date? ?? Date()
         navigationItem.title = selectorMenu?.title
 
         let closeButton = UIBarButtonItem(title: "Apply",
-                                          style: .Plain,
+                                          style: .plain,
                                           target: self,
                                           action: #selector(DebugDatePickerViewController.apply(_:)))
         navigationItem.rightBarButtonItem = closeButton
@@ -56,11 +56,11 @@ internal class DebugDatePickerViewController: UIViewController {
 
     // MARK: - IBAction
 
-    @objc private func apply(sender: UIBarButtonItem) {
+    @objc private func apply(_ sender: UIBarButtonItem) {
         let date = datePicker.date
         selectorMenu?.selectedDate = date
-        selectorMenu?.didUpdateDate(dateSelected:date)
-        navigationController?.popViewControllerAnimated(true)
+        selectorMenu?.didUpdateDate(date)
+        _ = navigationController?.popViewController(animated: true)
     }
 
 }

@@ -9,15 +9,15 @@
 /// The debug table view controller.
 internal final class DebugTableViewController: UIViewController {
 
-    private let yoshiTableViewCellDefaultIdentifier = "YoshiTableViewCellDefaultIdentifier"
+    fileprivate let yoshiTableViewCellDefaultIdentifier = "YoshiTableViewCellDefaultIdentifier"
 
     @IBOutlet private weak var tableView: UITableView!
 
-    private var yoshiTableViewMenu: YoshiTableViewMenu?
+    fileprivate var yoshiTableViewMenu: YoshiTableViewMenu?
 
     // MARK: - Public Functions
 
-    func setup(yoshiTableViewMenu: YoshiTableViewMenu) {
+    func setup(_ yoshiTableViewMenu: YoshiTableViewMenu) {
         self.yoshiTableViewMenu = yoshiTableViewMenu
     }
 
@@ -33,14 +33,14 @@ internal final class DebugTableViewController: UIViewController {
 
 extension DebugTableViewController: UITableViewDataSource {
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return yoshiTableViewMenu?.displayItems.count ?? 0
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell =
-        UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: yoshiTableViewCellDefaultIdentifier)
-        cell.textLabel?.text = yoshiTableViewMenu?.displayItems[indexPath.row].name
+        UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: yoshiTableViewCellDefaultIdentifier)
+        cell.textLabel?.text = yoshiTableViewMenu?.displayItems[(indexPath as NSIndexPath).row].name
         return cell
     }
 
@@ -50,9 +50,10 @@ extension DebugTableViewController: UITableViewDataSource {
 
 extension DebugTableViewController: UITableViewDelegate {
 
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        guard let selectedItem = yoshiTableViewMenu?.displayItems[indexPath.row] where !selectedItem.selected else {
-            navigationController?.popViewControllerAnimated(true)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let selectedItem = yoshiTableViewMenu?.displayItems[(indexPath as NSIndexPath).row],
+              !selectedItem.selected else {
+            _ = navigationController?.popViewController(animated: true)
             return
         }
 
@@ -64,17 +65,18 @@ extension DebugTableViewController: UITableViewDelegate {
         // Select the newly selected item
         selectedItem.selected = true
 
-        yoshiTableViewMenu?.didSelectDisplayItem(displayItem: selectedItem)
-        navigationController?.popViewControllerAnimated(true)
+        yoshiTableViewMenu?.didSelectDisplayItem(selectedItem)
+        _ = navigationController?.popViewController(animated: true)
    }
 
-    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell,
-                   forRowAtIndexPath indexPath: NSIndexPath) {
-        guard let selectedItem = yoshiTableViewMenu?.displayItems[indexPath.row] where selectedItem.selected else {
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell,
+                   forRowAt indexPath: IndexPath) {
+        guard let selectedItem = yoshiTableViewMenu?.displayItems[(indexPath as NSIndexPath).row],
+              selectedItem.selected else {
             return
         }
 
-        cell.accessoryType = .Checkmark
+        cell.accessoryType = .checkmark
     }
 
 }

@@ -15,7 +15,7 @@ public protocol YoshiTableViewMenu: YoshiMenu {
     var displayItems: [YoshiTableViewMenuItem] { get }
 
     /// Function to be called when an item is selected.
-    var didSelectDisplayItem: (displayItem: YoshiTableViewMenuItem) -> () { get }
+    var didSelectDisplayItem: (_ displayItem: YoshiTableViewMenuItem) -> () { get }
 
 }
 
@@ -27,9 +27,9 @@ public extension YoshiTableViewMenu {
      - returns: A result for handling the selected menu item.
      */
     func execute() -> YoshiActionResult {
-        let bundle = NSBundle(forClass: YoshiConfigurationManager.self)
+        let bundle = Bundle(for: YoshiConfigurationManager.self)
         let tableViewController =
-            DebugTableViewController(nibName: String(DebugTableViewController), bundle: bundle)
+            DebugTableViewController(nibName: String(describing: DebugTableViewController.self), bundle: bundle)
         tableViewController.setup(self)
 
         return .PresentViewController(tableViewController)

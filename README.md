@@ -21,7 +21,7 @@ Yoshi is a convenient wrapper around the UI code that is often needed for displa
 ## Requirements
 
 * iOS 8.0+
-* Xcode 7.2+
+* Xcode 8.0+
 
 ## Installation
 
@@ -29,8 +29,16 @@ Yoshi is a convenient wrapper around the UI code that is often needed for displa
 Yoshi is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your `Podfile`:
 
+###### Swift 3.0
+
 ```ruby
 pod "Yoshi"
+```
+
+###### Swift 2.3
+
+```ruby
+pod 'Yoshi', '1.1.1'
 ```
 
 ### Carthage
@@ -167,37 +175,40 @@ Yoshi.show()
 
 ### Invocation Options
 
-Yoshi can be invoked a number of different ways. The simplest way is to manually invoke using the `show()` function.
+Yoshi can be invoked with a number of different options. The simplest way is to manually invoke using the `show()` function.
 
 ```swift
 Yoshi.show()
 ```
 
-In addition to the vanilla invocation option, Yoshi can also be invoked in response to motion or touch events. To do this, simply forward the motion and touch-related `UIResponder` events to their corresponding Yoshi event-handling functions.
-
-To invoke Yoshi in response to a shake-motion gesture, override and forward `motionBegan:withEvent:` function as follows.
+In addition to the vanilla invocation option, Yoshi can also be invoked in response of 3 different options of motion or touch events.   
+If you want to enable all of those 3 following options you can simply pass the `all` option to the `setupDebugMenu`, although this option is already the default one.
 
 ```swift
-override func motionBegan(motion: UIEventSubtype, withEvent event: UIEvent?) {
-    Yoshi.motionBegan(motion, withEvent: event)
-}
+Yoshi.setupDebugMenu([/* YoshiMenu items */], invocations: [.all])
+/// Or simply
+Yoshi.setupDebugMenu([/* YoshiMenu items */])
 ```
 
-To invoke Yoshi in in response to a multi-touch event, override and forward `touchesBegan:withEvent:` function. Optionally, the minimum number of touches required for invocation can be specified.
+To specify which option you want exactly you just need to pass the ones you want to the `setupDebugMenu` function like this:
+
+* To invoke Yoshi in response to a shake-motion gesture, add the `shakeMotionGesture` option in the `setupDebugMenu` invocations parameter as follows.
 
 ```swift
-override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-    Yoshi.touchesBegan(touches, withEvent: event)
-}
+Yoshi.setupDebugMenu([/* YoshiMenu items */], invocations: [.shakeMotionGesture])
 ```
 
-Finally, to invoke Yoshi in response to a 3D touch event, override and forward `touchesMoved:withEvent:` function with `minimumForcePercent` as an optional parameter.
+* To invoke Yoshi in in response to a multi-touch event, add the `multiTouch` option in the `setupDebugMenu` invocations parameter as follows.
 
 ```swift
-override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
-    Yoshi.touchesMoved(touches, withEvent: event)
-}
-````
+Yoshi.setupDebugMenu([/* YoshiMenu items */], invocations: [.multiTouch])
+```
+
+* Finally, to invoke Yoshi in response to a 3D touch event, add the `forceTouch` option in the `setupDebugMenu` invocations parameter as follows.
+
+```swift
+Yoshi.setupDebugMenu([/* YoshiMenu items */], invocations: [.forceTouch])
+```
 
 ## Contributing to Yoshi
 

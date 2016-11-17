@@ -9,7 +9,7 @@
 import Foundation
 
 /// Set of Yoshi invocation method.
-public struct YoshiInvocation: OptionSetType {
+public struct YoshiInvocation: OptionSet {
 
     /// An `OptionSet`'s `Element` type is normally `Self`.
     public let rawValue: UInt64

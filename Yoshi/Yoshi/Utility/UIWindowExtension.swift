@@ -12,16 +12,32 @@ import UIKit
 // MARK: - UIWindow Extension.
 public extension UIWindow {
 
-    override public func motionBegan(motion: UIEventSubtype, withEvent event: UIEvent?) {
+    /// Function returning the amount of touch required to show Yoshi from a mulitple touch.
+    /// Override this function to update the value.
+    ///
+    /// - Returns: count of touch required to show Yoshi.
+    public func yoshiTouchesBeganMinimumTouchRequirement() -> Int {
+        return 3
+    }
+
+    /// Function returning the amount of force required to show Yoshi from a force touch.
+    /// Override this function to update the value.
+    ///
+    /// - Returns: value of force required to show Yoshi.
+    public func yoshiTouchesMovedMinimumForcePercent() -> Float {
+        return 60
+    }
+
+    override open func motionBegan(_ motion: UIEventSubtype, with event: UIEvent?) {
         Yoshi.motionBegan(motion, withEvent: event)
     }
 
-    override public func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        Yoshi.touchesBegan(touches, withEvent: event)
+    override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        Yoshi.touchesBegan(touches, withEvent: event, minimumTouchRequirement: yoshiTouchesBeganMinimumTouchRequirement())
     }
 
-    override public func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        Yoshi.touchesMoved(touches, withEvent: event)
+    override open func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        Yoshi.touchesMoved(touches, withEvent: event, minimumForcePercent: yoshiTouchesMovedMinimumForcePercent())
     }
 
 }
