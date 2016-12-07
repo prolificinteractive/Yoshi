@@ -211,6 +211,11 @@ Yoshi.setupDebugMenu([/* YoshiMenu items */], invocations: [.multiTouch])
 Yoshi.setupDebugMenu([/* YoshiMenu items */], invocations: [.forceTouch])
 ```
 
+### Extra features
+
+#### Clipboard copy
+Long press on any cell of the Yoshi Menu to copy the subtitle.
+
 ## Contributing to Yoshi
 
 To report a bug or enhancement request, feel free to file an issue under the respective heading.

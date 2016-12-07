@@ -13,7 +13,7 @@ internal final class DebugViewController: UIViewController {
 
     let completionHandler: (_ completed: VoidCompletionBlock? ) -> Void
 
-    private let tableView = UITableView()
+    fileprivate let tableView = UITableView()
     fileprivate let options: [YoshiMenu]
 
     fileprivate let dateFormatter: DateFormatter = DateFormatter()
@@ -167,7 +167,28 @@ extension DebugViewController: UITableViewDataSource {
             cell.accessoryType = .none
         }
 
+        setupCopyGesture(cell: cell)
+
         return cell
+    }
+
+    private func setupCopyGesture(cell: UITableViewCell) {
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(cellLongPress(_:)))
+        cell.addGestureRecognizer(longPressGesture)
+    }
+
+    @objc private func cellLongPress(_ sender: UIGestureRecognizer) {
+        guard sender.state == .ended, let indexPath = tableView.indexPathForRow(at: sender.location(in: tableView)) else {
+            return
+        }
+
+        let cell = tableView.cellForRow(at: indexPath)
+        if let subtitle = cell?.detailTextLabel?.text {
+            UIPasteboard.general.string = subtitle
+
+            let title = cell?.textLabel?.text ?? subtitle
+            print("\(title) - copied!")
+        }
     }
 
 }

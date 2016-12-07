@@ -64,9 +64,13 @@ internal struct CustomMenu: YoshiMenu {
 
     let title: String
     let subtitle: String?
-    let completion: () -> Void
+    let completion: (() -> Void)?
 
     func execute() -> YoshiActionResult {
+        guard let completion = completion else {
+            return .Handled
+        }
+
         return .AsyncAfterDismissing(completion)
     }
 }
