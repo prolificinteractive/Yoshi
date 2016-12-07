@@ -35,6 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         menu.append(environmentMenu())
         menu.append(dateSelectorMenu())
         menu.append(instabugMenu())
+        menu.append(userAccountIdentifier())
 
         Yoshi.setupDebugMenu(menu)
     }
@@ -77,6 +78,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                           completion: {
             Instabug.invoke()
         })
+    }
+
+    private func userAccountIdentifier() -> YoshiMenu {
+        return CustomMenu(title: "User Account Identifier (long press to copy)",
+                          subtitle: "12345567890",
+                          completion: nil)
     }
 
 
