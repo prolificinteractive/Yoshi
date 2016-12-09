@@ -41,9 +41,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func environmentMenu() -> YoshiTableViewMenu {
-        let production = MenuItem(name: "Production")
-        let staging = MenuItem(name: "Staging")
-        let qa = MenuItem(name: "QA", selected: true)
+        let production = MenuItem(name: "Production", subtitle: "https://mobile-api.com")
+        let staging = MenuItem(name: "Staging", subtitle: "https://staging.mobile-api.com")
+        let qa = MenuItem(name: "QA", subtitle: "http://qa.mobile-api.com", selected: true)
 
         let environmentItems: [YoshiTableViewMenuItem] = [production, staging, qa]
 
