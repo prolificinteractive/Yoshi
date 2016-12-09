@@ -13,7 +13,7 @@ internal final class DebugViewController: UIViewController {
 
     let completionHandler: (_ completed: VoidCompletionBlock? ) -> Void
 
-    fileprivate let tableView = UITableView()
+    private let tableView = UITableView()
     fileprivate let options: [YoshiMenu]
 
     fileprivate let dateFormatter: DateFormatter = DateFormatter()
