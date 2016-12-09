@@ -14,11 +14,14 @@ import Yoshi
 internal final class MenuItem: YoshiTableViewMenuItem {
 
     let name: String
+    let subtitle: String?
     var selected: Bool
 
     init(name: String,
+         subtitle: String? = nil,
          selected: Bool = false) {
         self.name = name
+        self.subtitle = subtitle
         self.selected = selected
     }
 

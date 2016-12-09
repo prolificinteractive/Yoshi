@@ -167,28 +167,9 @@ extension DebugViewController: UITableViewDataSource {
             cell.accessoryType = .none
         }
 
-        setupCopyGesture(cell: cell)
+        cell.setupCopyToClipBoard()
 
         return cell
-    }
-
-    private func setupCopyGesture(cell: UITableViewCell) {
-        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(cellLongPress(_:)))
-        cell.addGestureRecognizer(longPressGesture)
-    }
-
-    @objc private func cellLongPress(_ sender: UIGestureRecognizer) {
-        guard sender.state == .ended, let indexPath = tableView.indexPathForRow(at: sender.location(in: tableView)) else {
-            return
-        }
-
-        let cell = tableView.cellForRow(at: indexPath)
-        if let subtitle = cell?.detailTextLabel?.text {
-            UIPasteboard.general.string = subtitle
-
-            let title = cell?.textLabel?.text ?? subtitle
-            print("\(title) - copied!")
-        }
     }
 
 }

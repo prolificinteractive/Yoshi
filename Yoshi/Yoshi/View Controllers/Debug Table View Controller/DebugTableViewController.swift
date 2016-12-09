@@ -39,8 +39,10 @@ extension DebugTableViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell =
-        UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: yoshiTableViewCellDefaultIdentifier)
+        UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: yoshiTableViewCellDefaultIdentifier)
         cell.textLabel?.text = yoshiTableViewMenu?.displayItems[(indexPath as NSIndexPath).row].name
+        cell.detailTextLabel?.text = yoshiTableViewMenu?.displayItems[(indexPath as NSIndexPath).row].subtitle
+        cell.setupCopyToClipBoard()
         return cell
     }
 
