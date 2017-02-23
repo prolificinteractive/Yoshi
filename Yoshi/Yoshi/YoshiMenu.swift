@@ -9,19 +9,31 @@
 /**
  Defines an object as a debug menu option
  */
-public protocol YoshiMenu {
+public protocol YoshiMenu: YoshiGenericMenu {
 
     /// The display name for the menu option.
     var title: String { get }
 
     /// The value for the option. This will be displayed as the subtitle in the menu.
     var subtitle: String? { get }
+}
 
-    /**
-     Function to execute when the menu item is seleted.
-
-     - returns: A result for handling the selected menu item.
-     */
-    func execute() -> YoshiActionResult
-
+extension YoshiMenu {
+    
+    func dequeueReusableCell() -> UITableViewCell {
+        let cellIdentifier = "DebugViewControllerTableViewCellIdentifier"
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: cellIdentifier)
+        
+        cell.textLabel?.text = title
+        
+        if let subtitle = subtitle {
+            cell.detailTextLabel?.text = subtitle
+        } else {
+            cell.detailTextLabel?.text = nil
+        }
+        
+        cell.accessoryType = .none
+        
+        return cell
+    }
 }
