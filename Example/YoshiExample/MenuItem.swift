@@ -14,11 +14,14 @@ import Yoshi
 internal final class MenuItem: YoshiTableViewMenuItem {
 
     let name: String
+    let subtitle: String?
     var selected: Bool
 
     init(name: String,
+         subtitle: String? = nil,
          selected: Bool = false) {
         self.name = name
+        self.subtitle = subtitle
         self.selected = selected
     }
 
@@ -64,9 +67,13 @@ internal struct CustomMenu: YoshiMenu {
 
     let title: String
     let subtitle: String?
-    let completion: () -> Void
+    let completion: (() -> Void)?
 
     func execute() -> YoshiActionResult {
+        guard let completion = completion else {
+            return .Handled
+        }
+
         return .AsyncAfterDismissing(completion)
     }
 }

@@ -167,6 +167,8 @@ extension DebugViewController: UITableViewDataSource {
             cell.accessoryType = .none
         }
 
+        cell.setupCopyToClipBoard()
+
         return cell
     }
 
