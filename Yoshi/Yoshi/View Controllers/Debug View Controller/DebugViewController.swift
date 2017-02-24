@@ -138,37 +138,10 @@ extension DebugViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let option = options[(indexPath as NSIndexPath).row]
-        return option.cellSource.cellFor(tableView: tableView)
-//        cell.textLabel?.text = option.title
-//
-//        if let subtitle = option.subtitle {
-//            cell.detailTextLabel?.text = subtitle
-//        } else {
-//            switch option {
-//            case let dateSelectorMenu as YoshiDateSelectorMenu:
-//                cell.detailTextLabel?.text = dateFormatter.string(from: dateSelectorMenu.selectedDate as Date)
-//            case let tableViewMenu as YoshiTableViewMenu:
-//                let selectedDisplayItem = tableViewMenu.displayItems.filter { $0.selected == true }.first
-//                cell.detailTextLabel?.text = selectedDisplayItem?.name
-//            default:
-//                cell.detailTextLabel?.text = nil
-//            }
-//        }
-//
-//        switch option {
-//        case _ as YoshiDateSelectorMenu:
-//            cell.accessoryType = .disclosureIndicator
-//        case _ as YoshiTableViewMenu:
-//            cell.accessoryType = .disclosureIndicator
-//        default:
-//            cell.accessoryType = .none
-//        }
-//
-//        cell.setupCopyToClipBoard()
-//
-//        return cell
+        let cell = option.cellSource.cellFor(tableView: tableView)
+        cell.setupCopyToClipBoard()
+        return cell
     }
-
 }
 
 extension DebugViewController: UITableViewDelegate {

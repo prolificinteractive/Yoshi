@@ -1,12 +1,13 @@
 //
-//  YoshiDataSelectorMenuCellDataSource.swift
+//  YoshiDateSelectorMenuCellDataSource.swift
 //  Yoshi
 //
 //  Created by Kanglei Fang on 24/02/2017.
 //  Copyright © 2017 Prolific Interactive. All rights reserved.
 //
 
-internal struct YoshiDataSelectorMenuCellDataSource: YoshiResuableCellDataSource {
+/// Cell data source used for YoshiDate
+internal struct YoshiDateSelectorMenuCellDataSource: YoshiResuableCellDataSource {
 
     private let title: String
 

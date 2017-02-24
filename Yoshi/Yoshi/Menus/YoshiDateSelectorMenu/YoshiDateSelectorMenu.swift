@@ -22,7 +22,7 @@ public protocol YoshiDateSelectorMenu: class, YoshiMenu {
 public extension YoshiDateSelectorMenu {
 
     var cellSource: YoshiResuableCellDataSource {
-        return YoshiDataSelectorMenuCellDataSource(title: title, date: selectedDate)
+        return YoshiDateSelectorMenuCellDataSource(title: title, date: selectedDate)
     }
 
     /**
