@@ -6,7 +6,7 @@
 //  Copyright © 2017 Prolific Interactive. All rights reserved.
 //
 
-/// Cell data source used for YoshiDate
+/// Cell data source defining the layout for YoshiDateSelectorMenu's cell
 internal struct YoshiDateSelectorMenuCellDataSource: YoshiResuableCellDataSource {
 
     private let title: String
@@ -20,6 +20,11 @@ internal struct YoshiDateSelectorMenuCellDataSource: YoshiResuableCellDataSource
         return dateFormatter
     }
 
+    /// Intialize the YoshiDateSelectorMenuCellDataSource instance
+    ///
+    /// - Parameters:
+    ///   - title: Main title for the cell
+    ///   - date: Selected Date
     init(title: String, date: Date) {
         self.title = title
         self.date = date

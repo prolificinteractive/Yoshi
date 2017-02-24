@@ -26,10 +26,12 @@ public protocol YoshiResuableCellDataSource {
 
 public extension YoshiResuableCellDataSource {
 
+    /// Default reuseIdentifier implementation, it will use the protocol adopator's name
     static var reuseIdentifier: String {
         return String(describing: Self.self)
     }
 
+    /// Default nib implementation, nil
     static var nib: UINib? {
         return nil
     }

@@ -30,7 +30,7 @@ internal struct YoshiTableViewMenuCellDataSource: YoshiResuableCellDataSource {
         }
 
         cell.accessoryType = .disclosureIndicator
-        
+
         return cell
     }
 }
