@@ -21,6 +21,10 @@ public protocol YoshiDateSelectorMenu: class, YoshiMenu {
 
 public extension YoshiDateSelectorMenu {
 
+    var cellSource: YoshiResuableCellDataSource {
+        return YoshiDataSelectorMenuCellDataSource(title: title, date: selectedDate)
+    }
+
     /**
      Function to execute when the menu item is seleted.
 
