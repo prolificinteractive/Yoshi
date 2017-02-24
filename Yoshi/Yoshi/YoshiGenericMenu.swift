@@ -10,23 +10,12 @@
  Defines an object as a debug menu option
  */
 public protocol YoshiGenericMenu {
-    
-    associatedtype TableViewCellType: UITableViewCell
-    
-    var cellReuseIdentifier: String { get }
-    
-    /**
-     Function to return a cell when being layout on Yoshi Tableview.
-     
-     - returns: An UITableViewCell instance.
-     */
-    func dequeueReusableCell() -> TableViewCellType
-    
-    func setupReusableCell(cell: TableViewCellType)
-    
+
+    var cellSource: YoshiResuableCellDataSource { get }
+
     /**
      Function to execute when the menu item is seleted.
-     
+
      - returns: A result for handling the selected menu item.
      */
     func execute() -> YoshiActionResult

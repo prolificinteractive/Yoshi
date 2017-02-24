@@ -7,11 +7,9 @@
 //
 
 /**
- Defines an object as a debug menu option
+ Defines an object as a normal Yoshi style debug menu option
  */
 public protocol YoshiMenu: YoshiGenericMenu {
-    
-    typealias TableViewCellType = UITableViewCell
 
     /// The display name for the menu option.
     var title: String { get }
@@ -21,28 +19,8 @@ public protocol YoshiMenu: YoshiGenericMenu {
 }
 
 extension YoshiMenu {
-    
-    var cellReuseIdentifier: String {
-        return "DebugViewControllerTableViewCellIdentifier"
-    }
-    
-    func setupReusableCell(cell: UITableViewCell) {
-        
-    }
-    
-    func dequeueReusableCell() -> UITableViewCell {
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: cellReuseIdentifier)
-        
-        cell.textLabel?.text = title
-        
-        if let subtitle = subtitle {
-            cell.detailTextLabel?.text = subtitle
-        } else {
-            cell.detailTextLabel?.text = nil
-        }
-        
-        cell.accessoryType = .none
-        
-        return cell
+
+    var cellSource: YoshiResuableCellDataSource {
+        return YoshiMenuCellDataSource(title: title, subtitle: subtitle)
     }
 }

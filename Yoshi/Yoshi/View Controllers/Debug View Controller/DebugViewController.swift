@@ -137,12 +137,8 @@ extension DebugViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cellIdentifier = "DebugViewControllerTableViewCellIdentifier"
-//        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) ??
-//            UITableViewCell(style: .subtitle, reuseIdentifier: cellIdentifier)
-
         let option = options[(indexPath as NSIndexPath).row]
-        return option.dequeueReusableCell()
+        return option.cellSource.cellFor(tableView: tableView)
 //        cell.textLabel?.text = option.title
 //
 //        if let subtitle = option.subtitle {
