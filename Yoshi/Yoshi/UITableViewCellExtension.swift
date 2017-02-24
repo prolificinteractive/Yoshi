@@ -30,5 +30,4 @@ extension UITableViewCell {
         // Log for user feedback, will be replaced by some kind of alert later on.
         print("\(subtitle) copied!")
     }
-    
 }

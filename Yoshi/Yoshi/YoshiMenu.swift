@@ -18,7 +18,7 @@ public protocol YoshiMenu: YoshiGenericMenu {
     var subtitle: String? { get }
 }
 
-extension YoshiMenu {
+public extension YoshiMenu {
 
     var cellSource: YoshiResuableCellDataSource {
         return YoshiMenuCellDataSource(title: title, subtitle: subtitle)

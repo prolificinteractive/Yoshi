@@ -24,7 +24,7 @@ public protocol YoshiResuableCellDataSource {
     func cellFor(tableView: UITableView) -> UITableViewCell
 }
 
-extension YoshiResuableCellDataSource {
+public extension YoshiResuableCellDataSource {
 
     static var reuseIdentifier: String {
         return String(describing: Self.self)
