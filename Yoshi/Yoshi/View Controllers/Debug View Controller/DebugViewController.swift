@@ -14,11 +14,11 @@ internal final class DebugViewController: UIViewController {
     let completionHandler: (_ completed: VoidCompletionBlock? ) -> Void
 
     private let tableView = UITableView()
-    fileprivate let options: [YoshiMenu]
+    fileprivate let options: [YoshiGenericMenu]
 
     fileprivate let dateFormatter: DateFormatter = DateFormatter()
 
-    init(options: [YoshiMenu], completion: @escaping (VoidCompletionBlock?) -> Void) {
+    init(options: [YoshiGenericMenu], completion: @escaping (VoidCompletionBlock?) -> Void) {
         self.options = options
         self.completionHandler = completion
         super.init(nibName: nil, bundle: nil)
@@ -63,6 +63,17 @@ internal final class DebugViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.tableHeaderView = tableViewHeader()
+        
+        registerCellClasses(options: options)
+    }
+
+    private func registerCellClasses(options: [YoshiGenericMenu]) {
+        for option in options {
+            if let registeredNib = type(of:option.cellSource).nib {
+                let reuseIdentifier = type(of:option.cellSource).reuseIdentifier
+                tableView.register(registeredNib, forCellReuseIdentifier: reuseIdentifier)
+            }
+        }
     }
 
     private func tableViewHeader() -> UIView {

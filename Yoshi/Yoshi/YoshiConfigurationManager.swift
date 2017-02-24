@@ -12,7 +12,7 @@ internal final class YoshiConfigurationManager {
     /// The default instance.
     static let sharedInstance = YoshiConfigurationManager()
 
-    private var yoshiMenuItems = [YoshiMenu]()
+    private var yoshiMenuItems = [YoshiGenericMenu]()
     private var invocations: [YoshiInvocation]?
     private var presentingWindow: UIWindow?
     private weak var debugViewController: DebugViewController?
@@ -23,7 +23,7 @@ internal final class YoshiConfigurationManager {
      - parameter menuItems: The menu items for presentation.
      - parameter invocations: The invocation types.
      */
-    func setupDebugMenuOptions(_ menuItems: [YoshiMenu], invocations: [YoshiInvocation]) {
+    func setupDebugMenuOptions(_ menuItems: [YoshiGenericMenu], invocations: [YoshiInvocation]) {
         yoshiMenuItems = menuItems
         self.invocations = invocations
     }

@@ -16,6 +16,7 @@ public protocol YoshiResuableCellDataSource {
     static var nib: UINib? { get }
 
     /// Function to dequeue the cell for the given Yoshi table view
+    /// - Note: Cell class is registrated automatically when Yoshi tableview initalized
     ///
     /// - Parameters:
     ///   - tableView: Yoshi debug table view, note that this property is used mainly for calling `dequeueReusableCell`.

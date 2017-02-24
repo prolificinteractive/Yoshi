@@ -18,8 +18,8 @@ internal struct YoshiTableViewMenuCellDataSource: YoshiResuableCellDataSource {
     }
 
     func cellFor(tableView: UITableView) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: YoshiMenuCellDataSource.reuseIdentifier) ??
-            UITableViewCell(style: .subtitle, reuseIdentifier: YoshiMenuCellDataSource.reuseIdentifier)
+        let cell = tableView.dequeueReusableCell(withIdentifier: YoshiTableViewMenuCellDataSource.reuseIdentifier) ??
+            UITableViewCell(style: .subtitle, reuseIdentifier: YoshiTableViewMenuCellDataSource.reuseIdentifier)
 
         cell.textLabel?.text = title
 

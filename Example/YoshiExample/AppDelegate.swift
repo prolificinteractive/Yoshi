@@ -30,12 +30,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func setupDebugMenu() {
-        var menu = [YoshiMenu]()
+        var menu = [YoshiGenericMenu]()
 
         menu.append(environmentMenu())
         menu.append(dateSelectorMenu())
         menu.append(instabugMenu())
         menu.append(userAccountIdentifier())
+        menu.append(menuWithCustomUI())
 
         Yoshi.setupDebugMenu(menu)
     }
@@ -84,6 +85,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return CustomMenu(title: "User Account Identifier (long press to copy)",
                           subtitle: "12345567890",
                           completion: nil)
+    }
+    
+    private func menuWithCustomUI() -> YoshiGenericMenu {
+        return MenuWithCustomUI()
     }
 
 

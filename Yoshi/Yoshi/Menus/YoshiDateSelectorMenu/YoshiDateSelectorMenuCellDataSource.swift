@@ -31,8 +31,8 @@ internal struct YoshiDateSelectorMenuCellDataSource: YoshiResuableCellDataSource
     }
 
     func cellFor(tableView: UITableView) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: YoshiMenuCellDataSource.reuseIdentifier) ??
-            UITableViewCell(style: .subtitle, reuseIdentifier: YoshiMenuCellDataSource.reuseIdentifier)
+        let cell = tableView.dequeueReusableCell(withIdentifier: YoshiDateSelectorMenuCellDataSource.reuseIdentifier) ??
+            UITableViewCell(style: .subtitle, reuseIdentifier: YoshiDateSelectorMenuCellDataSource.reuseIdentifier)
 
         cell.textLabel?.text = title
         cell.detailTextLabel?.text = dateFormatter.string(from: date)

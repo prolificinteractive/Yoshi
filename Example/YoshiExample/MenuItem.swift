@@ -77,3 +77,38 @@ internal struct CustomMenu: YoshiMenu {
         return .AsyncAfterDismissing(completion)
     }
 }
+
+/// A menu with custom UI
+internal struct MenuWithCustomUI: YoshiGenericMenu {
+
+    var cellSource: YoshiResuableCellDataSource {
+        return CustomMenuCellDataSource()
+    }
+
+    func execute() -> YoshiActionResult {
+        return .Handled
+    }
+}
+
+/// Datasource for MenuWithCustomUI to dequeue CustomCell
+internal final class CustomMenuCellDataSource: YoshiResuableCellDataSource {
+
+    static var nib: UINib? {
+        return UINib(nibName: "CustomCell", bundle: nil)
+    }
+
+    func cellFor(tableView: UITableView) -> UITableViewCell {
+        guard let cell = (tableView.dequeueReusableCell(withIdentifier: CustomMenuCellDataSource.reuseIdentifier) ??
+            UITableViewCell(style: .subtitle, reuseIdentifier: CustomMenuCellDataSource.reuseIdentifier)) as? CustomCell else {
+                fatalError()
+        }
+        cell.label.text = "This is a custom cell"
+        return cell
+    }
+}
+
+/// A custom UITableViewCell
+internal final class CustomCell: UITableViewCell {
+
+    @IBOutlet weak var label: UILabel!
+}
