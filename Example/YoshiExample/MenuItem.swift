@@ -98,8 +98,7 @@ internal final class CustomMenuCellDataSource: YoshiResuableCellDataSource {
     }
 
     func cellFor(tableView: UITableView) -> UITableViewCell {
-        guard let cell = (tableView.dequeueReusableCell(withIdentifier: CustomMenuCellDataSource.reuseIdentifier) ??
-            UITableViewCell(style: .subtitle, reuseIdentifier: CustomMenuCellDataSource.reuseIdentifier)) as? CustomCell else {
+        guard let cell = (tableView.dequeueReusableCell(withIdentifier: CustomMenuCellDataSource.reuseIdentifier)) as? CustomCell else {
                 fatalError()
         }
         cell.label.text = "This is a custom cell"

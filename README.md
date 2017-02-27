@@ -216,10 +216,12 @@ Yoshi.setupDebugMenu([/* YoshiMenu items */], invocations: [.forceTouch])
 #### Clipboard copy
 Long press on any cell of the Yoshi Menu to copy the subtitle.
 
-#### Custom nib support
+#### Custom your cell UI
 
-You can custom Yoshi menu cells using nib file.
-To support custom UI, create your own `UITableViewCell` subclass, and provide a `YoshiResuableCellDataSource` instance referencing to your cell.
+You can custom Yoshi menu cells using nib file.   
+To support custom UI, provide a `YoshiResuableCellDataSource` instance referencing to your custom cell.      
+
+* With Nib file
 
 ```swift
 private final class CustomMenuCellDataSource: YoshiResuableCellDataSource {
@@ -230,6 +232,24 @@ private final class CustomMenuCellDataSource: YoshiResuableCellDataSource {
     }
 
     func cellFor(tableView: UITableView) -> UITableViewCell {
+    	// Dequeue and cast the cell here like you would normally did
+        guard let cell = (tableView.dequeueReusableCell(withIdentifier: CustomMenuCellDataSource.reuseIdentifier)) as? CustomCell else {
+            fatalError()
+        }
+        // config your cell here
+        cell.label.text = "This is a custom cell"
+        return cell
+    }
+}
+```
+
+* Without Nib file
+
+```swift
+private final class CustomMenuCellDataSource: YoshiResuableCellDataSource {
+
+	func cellFor(tableView: UITableView) -> UITableViewCell {
+    	// Dequeue the cell here like you would normally did, handle the case when deque failed
         guard let cell = (tableView.dequeueReusableCell(withIdentifier: CustomMenuCellDataSource.reuseIdentifier) ??
             UITableViewCell(style: .subtitle, reuseIdentifier: CustomMenuCellDataSource.reuseIdentifier)) as? CustomCell else {
                 fatalError()
