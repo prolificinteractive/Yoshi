@@ -15,7 +15,7 @@ public protocol YoshiTableViewMenu: YoshiMenu {
     var displayItems: [YoshiTableViewMenuItem] { get }
 
     /// Function to be called when an item is selected.
-    var didSelectDisplayItem: (_ displayItem: YoshiTableViewMenuItem) -> () { get }
+    var didSelectDisplayItem: (_ displayItem: YoshiTableViewMenuItem) -> Void { get }
 
 }
 
