@@ -86,7 +86,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                           completion: nil)
     }
 
-
     // MARK: - Yoshi Invocation options
     // Implement the functionality you want!
 
