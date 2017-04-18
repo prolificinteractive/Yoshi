@@ -96,6 +96,13 @@ public final class Yoshi {
     public class func show() {
         YoshiConfigurationManager.sharedInstance.show()
     }
+    
+    /// Return a navigation controller presenting the debug view controller.
+    ///
+    /// - Returns: Debug navigation controller
+    public class func debugNavigationController() -> UINavigationController {
+        return YoshiConfigurationManager.sharedInstance.debugNavigationController()
+    }
 
     /**
      Dismisses the debug menu, if it is opened. The input block is executed after it has dismissed.

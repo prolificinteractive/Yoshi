@@ -74,6 +74,22 @@ internal final class YoshiConfigurationManager {
         }
     }
 
+    /// Return a navigation controller presenting the debug view controller.
+    ///
+    /// - Returns: Debug navigation controller
+    func debugNavigationController() -> UINavigationController {
+        let navigationController = UINavigationController()
+
+        let debugViewController = DebugViewController(options: yoshiMenuItems, completion: { _ in
+            navigationController.dismiss(animated: true)
+        })
+        self.debugViewController = debugViewController
+
+        navigationController.setViewControllers([debugViewController], animated: false)
+
+        return navigationController
+    }
+
     /**
      Dismisses the debug view controller, if possible.
 
