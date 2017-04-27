@@ -15,7 +15,7 @@ public protocol YoshiTableViewMenu: YoshiMenu {
     var displayItems: [YoshiTableViewMenuItem] { get }
 
     /// Function to be called when an item is selected.
-    var didSelectDisplayItem: (_ displayItem: YoshiTableViewMenuItem) -> () { get }
+    var didSelectDisplayItem: (_ displayItem: YoshiTableViewMenuItem) -> Void { get }
 
 }
 
@@ -32,7 +32,7 @@ public extension YoshiTableViewMenu {
             DebugTableViewController(nibName: String(describing: DebugTableViewController.self), bundle: bundle)
         tableViewController.setup(self)
 
-        return .PresentViewController(tableViewController)
+        return .presentViewController(tableViewController)
     }
 
 }

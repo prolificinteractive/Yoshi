@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 // MARK: - UIWindow Extension.
 extension UIWindow {
 
@@ -33,7 +32,9 @@ extension UIWindow {
     }
 
     override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        Yoshi.touchesBegan(touches, withEvent: event, minimumTouchRequirement: yoshiTouchesBeganMinimumTouchRequirement())
+        Yoshi.touchesBegan(touches,
+                           withEvent: event,
+                           minimumTouchRequirement: yoshiTouchesBeganMinimumTouchRequirement())
     }
 
     override open func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {

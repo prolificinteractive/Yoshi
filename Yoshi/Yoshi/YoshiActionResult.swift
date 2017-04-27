@@ -15,7 +15,7 @@
 - AsyncAfterDismissing:  Indicates that the action should be handled asynchronously after the view is dismissed.
 */
 public enum YoshiActionResult {
-    case Handled
-    case PresentViewController(UIViewController)
-    case AsyncAfterDismissing(() -> Void)
+    case handled
+    case presentViewController(UIViewController)
+    case asyncAfterDismissing(() -> Void)
 }

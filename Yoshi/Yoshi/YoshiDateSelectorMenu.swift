@@ -15,7 +15,7 @@ public protocol YoshiDateSelectorMenu: class, YoshiMenu {
     var selectedDate: Date { get set }
 
     /// Function to handle the date selection.
-    var didUpdateDate: (_ dateSelected: Date) -> () { get }
+    var didUpdateDate: (_ dateSelected: Date) -> Void { get }
 
 }
 
@@ -34,7 +34,7 @@ public extension YoshiDateSelectorMenu {
         datePickerViewController.modalPresentationStyle = .formSheet
         datePickerViewController.setup(self)
 
-        return .PresentViewController(datePickerViewController)
+        return .presentViewController(datePickerViewController)
     }
 
 }
