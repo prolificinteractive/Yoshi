@@ -91,7 +91,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return MenuWithCustomUI()
     }
 
-
     // MARK: - Yoshi Invocation options
     // Implement the functionality you want!
 
