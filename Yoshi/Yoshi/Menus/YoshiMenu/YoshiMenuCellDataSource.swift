@@ -28,12 +28,7 @@ internal struct YoshiMenuCellDataSource: YoshiResuableCellDataSource {
             UITableViewCell(style: .subtitle, reuseIdentifier: YoshiMenuCellDataSource.reuseIdentifier)
 
         cell.textLabel?.text = title
-
-        if let subtitle = subtitle {
-            cell.detailTextLabel?.text = subtitle
-        } else {
-            cell.detailTextLabel?.text = nil
-        }
+        cell.detailTextLabel?.text = subtitle
 
         cell.accessoryType = .none
 

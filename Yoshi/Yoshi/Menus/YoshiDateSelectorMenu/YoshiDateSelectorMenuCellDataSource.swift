@@ -17,6 +17,7 @@ internal struct YoshiDateSelectorMenuCellDataSource: YoshiResuableCellDataSource
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .short
+        
         return dateFormatter
     }
 

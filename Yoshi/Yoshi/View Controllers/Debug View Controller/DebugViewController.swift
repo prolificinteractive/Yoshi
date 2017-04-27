@@ -71,7 +71,7 @@ internal final class DebugViewController: UIViewController {
         var registeredCells = Set<String>()
         
         // Register for each reuse Identifer for once
-        for option in options {
+        options.forEach { option in
             let reuseIdentifier = type(of:option.cellSource).reuseIdentifier
             if let registeredNib = type(of:option.cellSource).nib, !registeredCells.contains(reuseIdentifier) {
                 registeredCells.insert(reuseIdentifier)

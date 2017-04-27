@@ -11,6 +11,7 @@
  */
 public protocol YoshiGenericMenu {
 
+    /// Reuse identifier for the cell.
     var cellSource: YoshiResuableCellDataSource { get }
 
     /**
