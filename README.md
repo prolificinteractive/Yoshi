@@ -156,7 +156,7 @@ private struct CustomMenu: YoshiMenu {
     let completion: () -> ()
 
     func execute() -> YoshiActionResult {
-        return .AsyncAfterDismissing(completion)
+        return .asyncAfterDismissing(completion)
     }
 
 }
