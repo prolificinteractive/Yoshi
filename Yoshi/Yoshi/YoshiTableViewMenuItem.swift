@@ -21,3 +21,12 @@ public protocol YoshiTableViewMenuItem: class {
     var selected: Bool { get set }
 
 }
+
+public extension YoshiTableViewMenuItem {
+    
+    /// The display sub text for the table view menu item.
+    var subtitle: String? {
+        return nil
+    }
+    
+}

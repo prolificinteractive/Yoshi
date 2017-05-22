@@ -63,7 +63,7 @@ struct TableViewMenu: YoshiTableViewMenu {
     var title: String
     var subtitle: String?
     var displayItems: [YoshiTableViewMenuItem]
-    var didSelectDisplayItem: (displayItem: YoshiTableViewMenuItem) -> ()
+    var didSelectDisplayItem: (_ displayItem: YoshiTableViewMenuItem) -> ()
 
 }
 
@@ -73,7 +73,7 @@ internal final class MenuItem: YoshiTableViewMenuItem {
     var selected: Bool
 
     init(name: String,
-         selected: Bool = false) {
+        selected: Bool = false) {
         self.name = name
         self.selected = selected
     }
