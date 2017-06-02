@@ -218,8 +218,10 @@ Long press on any cell of the Yoshi Menu to copy the subtitle.
 
 #### Custom your cell UI
 
-You can custom Yoshi menu cells using nib file.   
-To support custom UI, provide a `YoshiResuableCellDataSource` instance referencing to your custom cell.      
+You can custom Yoshi menu cells using nib file or programmatically.   
+To do so, simply create a `YoshiGenericMenu` and a `YoshiResuableCellDataSource`:
+
+To support custom UI, first, provide a `YoshiResuableCellDataSource` instance referencing to your custom cell.      
 
 * With Nib file
 
@@ -277,7 +279,7 @@ internal struct MenuWithCustomUI: YoshiGenericMenu {
 }
 ```
 
-Finally, display this custom menu like a normal menu
+Finally, display this custom menu like a normal Yoshi menu.
 
 ```swift
 Yoshi.setupDebugMenu([MenuWithCustomUI()])
