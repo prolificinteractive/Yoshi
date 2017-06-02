@@ -86,7 +86,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                           subtitle: "12345567890",
                           completion: nil)
     }
-    
     private func menuWithCustomUI() -> YoshiGenericMenu {
         return MenuWithCustomUI()
     }
