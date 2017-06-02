@@ -13,6 +13,7 @@
 		276BCED61C29F060002138C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 276BCED51C29F060002138C7 /* Assets.xcassets */; };
 		276BCED91C29F060002138C7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 276BCED71C29F060002138C7 /* LaunchScreen.storyboard */; };
 		27A952431C2A0CA800F0CCEB /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A952421C2A0CA800F0CCEB /* MenuItem.swift */; };
+		32AA07591E60DD95001516EA /* CustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32AA07581E60DD95001516EA /* CustomCell.xib */; };
 		6A80770C715FF7079F982454 /* Pods_YoshiExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38AED69D51CB2462EC94055C /* Pods_YoshiExample.framework */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +27,7 @@
 		276BCEDA1C29F060002138C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		27A952421C2A0CA800F0CCEB /* MenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		27C7F7EB1CF51D4D0069687F /* YoshiExample-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YoshiExample-Bridging-Header.h"; sourceTree = "<group>"; };
+		32AA07581E60DD95001516EA /* CustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCell.xib; sourceTree = "<group>"; };
 		38AED69D51CB2462EC94055C /* Pods_YoshiExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YoshiExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B69EFE97A45841AA3569F78 /* Pods-YoshiExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YoshiExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-YoshiExample/Pods-YoshiExample.release.xcconfig"; sourceTree = "<group>"; };
 		611645F651489CBB0C351E8B /* Pods-YoshiExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YoshiExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YoshiExample/Pods-YoshiExample.debug.xcconfig"; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				276BCED71C29F060002138C7 /* LaunchScreen.storyboard */,
 				276BCEDA1C29F060002138C7 /* Info.plist */,
 				27A952421C2A0CA800F0CCEB /* MenuItem.swift */,
+				32AA07581E60DD95001516EA /* CustomCell.xib */,
 				27C7F7EB1CF51D4D0069687F /* YoshiExample-Bridging-Header.h */,
 			);
 			path = YoshiExample;
@@ -161,6 +164,7 @@
 			files = (
 				276BCED91C29F060002138C7 /* LaunchScreen.storyboard in Resources */,
 				276BCED61C29F060002138C7 /* Assets.xcassets in Resources */,
+				32AA07591E60DD95001516EA /* CustomCell.xib in Resources */,
 				276BCED41C29F060002138C7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

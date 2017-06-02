@@ -14,10 +14,10 @@ public final class Yoshi {
     /**
      Should be called in application didFinishLaunchingWithOptions
 
-     - parameter menuItems: [YoshiMenu] an array of items to be displayed in the Yoshi Debug Action Sheet.
+     - parameter menuItems: [YoshiGenericMenu] an array of items to be displayed in the Yoshi Debug Action Sheet.
      - parameter invocations: The invocation types.
      */
-    public class func setupDebugMenu(_ menuItems: [YoshiMenu], invocations: [YoshiInvocation] = [.all]) {
+    public class func setupDebugMenu(_ menuItems: [YoshiGenericMenu], invocations: [YoshiInvocation] = [.all]) {
         YoshiConfigurationManager.sharedInstance.setupDebugMenuOptions(menuItems, invocations: invocations)
     }
 
