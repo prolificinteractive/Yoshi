@@ -14,11 +14,11 @@ internal final class DebugViewController: UIViewController {
     let completionHandler: (_ completed: VoidCompletionBlock? ) -> Void
 
     private let tableView = UITableView()
-    fileprivate let options: [YoshiMenu]
+    fileprivate let options: [YoshiGenericMenu]
 
     fileprivate let dateFormatter: DateFormatter = DateFormatter()
 
-    init(options: [YoshiMenu], completion: @escaping (VoidCompletionBlock?) -> Void) {
+    init(options: [YoshiGenericMenu], completion: @escaping (VoidCompletionBlock?) -> Void) {
         self.options = options
         self.completionHandler = completion
         super.init(nibName: nil, bundle: nil)
@@ -63,6 +63,21 @@ internal final class DebugViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.tableHeaderView = tableViewHeader()
+        
+        registerCellClasses(options: options)
+    }
+
+    private func registerCellClasses(options: [YoshiGenericMenu]) {
+        var registeredCells = Set<String>()
+        
+        // Register for each reuse Identifer for once
+        options.forEach { option in
+            let reuseIdentifier = type(of:option.cellSource).reuseIdentifier
+            if let registeredNib = type(of:option.cellSource).nib, !registeredCells.contains(reuseIdentifier) {
+                registeredCells.insert(reuseIdentifier)
+                tableView.register(registeredNib, forCellReuseIdentifier: reuseIdentifier)
+            }
+        }
     }
 
     private func tableViewHeader() -> UIView {
@@ -137,41 +152,11 @@ extension DebugViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdentifier = "DebugViewControllerTableViewCellIdentifier"
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) ??
-            UITableViewCell(style: .subtitle, reuseIdentifier: cellIdentifier)
-
         let option = options[(indexPath as NSIndexPath).row]
-        cell.textLabel?.text = option.title
-
-        if let subtitle = option.subtitle {
-            cell.detailTextLabel?.text = subtitle
-        } else {
-            switch option {
-            case let dateSelectorMenu as YoshiDateSelectorMenu:
-                cell.detailTextLabel?.text = dateFormatter.string(from: dateSelectorMenu.selectedDate as Date)
-            case let tableViewMenu as YoshiTableViewMenu:
-                let selectedDisplayItem = tableViewMenu.displayItems.filter { $0.selected == true }.first
-                cell.detailTextLabel?.text = selectedDisplayItem?.name
-            default:
-                cell.detailTextLabel?.text = nil
-            }
-        }
-
-        switch option {
-        case _ as YoshiDateSelectorMenu:
-            cell.accessoryType = .disclosureIndicator
-        case _ as YoshiTableViewMenu:
-            cell.accessoryType = .disclosureIndicator
-        default:
-            cell.accessoryType = .none
-        }
-
+        let cell = option.cellSource.cellFor(tableView: tableView)
         cell.setupCopyToClipBoard()
-
         return cell
     }
-
 }
 
 extension DebugViewController: UITableViewDelegate {

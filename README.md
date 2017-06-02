@@ -216,6 +216,74 @@ Yoshi.setupDebugMenu([/* YoshiMenu items */], invocations: [.forceTouch])
 #### Clipboard copy
 Long press on any cell of the Yoshi Menu to copy the subtitle.
 
+#### Custom your cell UI
+
+You can custom Yoshi menu cells using nib file.   
+To support custom UI, provide a `YoshiResuableCellDataSource` instance referencing to your custom cell.      
+
+* With Nib file
+
+```swift
+private final class CustomMenuCellDataSource: YoshiResuableCellDataSource {
+
+    static var nib: UINib? {
+        // Return your Nib file here
+        return UINib(nibName: "CustomCell", bundle: nil)
+    }
+
+    func cellFor(tableView: UITableView) -> UITableViewCell {
+    	// Dequeue and cast the cell here like you would normally did
+        guard let cell = (tableView.dequeueReusableCell(withIdentifier: CustomMenuCellDataSource.reuseIdentifier)) as? CustomCell else {
+            fatalError()
+        }
+        // config your cell here
+        cell.label.text = "This is a custom cell"
+        return cell
+    }
+}
+```
+
+* Without Nib file
+
+```swift
+private final class CustomMenuCellDataSource: YoshiResuableCellDataSource {
+
+	func cellFor(tableView: UITableView) -> UITableViewCell {
+    	// Dequeue the cell here like you would normally did, handle the case when deque failed
+        guard let cell = (tableView.dequeueReusableCell(withIdentifier: CustomMenuCellDataSource.reuseIdentifier) ??
+            UITableViewCell(style: .subtitle, reuseIdentifier: CustomMenuCellDataSource.reuseIdentifier)) as? CustomCell else {
+                fatalError()
+        }
+        // config your cell here
+        cell.label.text = "This is a custom cell"
+        return cell
+    }
+}
+```
+
+Then, provide the menu that conforms to `YoshiGenericMenu` referencing to the data source.
+
+```swift
+internal struct MenuWithCustomUI: YoshiGenericMenu {
+
+    var cellSource: YoshiResuableCellDataSource {
+        return CustomMenuCellDataSource()
+    }
+
+    func execute() -> YoshiActionResult {
+        // Do soomething here when the cell is tapped
+        return .Handled
+    }
+}
+```
+
+Finally, display this custom menu like a normal menu
+
+```swift
+Yoshi.setupDebugMenu([MenuWithCustomUI()])
+Yoshi.show()
+```
+
 ## Contributing to Yoshi
 
 To report a bug or enhancement request, feel free to file an issue under the respective heading.
