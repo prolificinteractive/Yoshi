@@ -38,7 +38,7 @@ public extension YoshiTableViewMenu {
             DebugTableViewController(nibName: String(describing: DebugTableViewController.self), bundle: bundle)
         tableViewController.setup(self)
 
-        return .presentViewController(tableViewController)
+        return .push(tableViewController)
     }
 
 }
