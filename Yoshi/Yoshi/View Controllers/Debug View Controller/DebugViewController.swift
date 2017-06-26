@@ -170,9 +170,10 @@ extension DebugViewController: UITableViewDelegate {
 
         let selectedOption = options[(indexPath as NSIndexPath).row]
         switch selectedOption.execute() {
-        case .presentViewController(let viewController):
+        case .push(let viewController):
             navigationController?.pushViewController(viewController, animated: true)
-            break
+        case .present(let viewController):
+            navigationController?.present(viewController, animated: true)
         case .asyncAfterDismissing(let asyncAction):
             completionHandler(asyncAction)
             break

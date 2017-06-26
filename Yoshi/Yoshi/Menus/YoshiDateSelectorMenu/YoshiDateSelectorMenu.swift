@@ -39,7 +39,7 @@ public extension YoshiDateSelectorMenu {
         datePickerViewController.modalPresentationStyle = .formSheet
         datePickerViewController.setup(self)
 
-        return .presentViewController(datePickerViewController)
+        return .push(datePickerViewController)
     }
 
 }
