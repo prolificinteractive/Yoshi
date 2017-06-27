@@ -12,7 +12,7 @@
 public protocol YoshiGenericMenu {
 
     /// Reuse identifier for the cell.
-    var cellSource: YoshiResuableCellDataSource { get }
+    var cellSource: YoshiReusableCellDataSource { get }
 
     /**
      Function to execute when the menu item is seleted.

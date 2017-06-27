@@ -109,7 +109,7 @@ public final class Yoshi {
 
      - parameter completion: The block to execute upon completion of dismissal.
      */
-    public class func dismiss(_ completion: ((Void) -> Void)? = nil) {
+    public class func dismiss(_ completion: (() -> Void)? = nil) {
         YoshiConfigurationManager.sharedInstance.dismiss(completion)
     }
 
