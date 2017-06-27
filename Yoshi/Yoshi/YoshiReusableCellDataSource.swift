@@ -1,5 +1,5 @@
 //
-//  YoshiResuableCellDataSource.swift
+//  YoshiReusableCellDataSource.swift
 //  Yoshi
 //
 //  Created by Kanglei Fang on 24/02/2017.
@@ -7,7 +7,7 @@
 //
 
 /// Defines the data source for DebugViewController custom cell
-public protocol YoshiResuableCellDataSource {
+public protocol YoshiReusableCellDataSource {
 
     /// Reuse identifier for the cell
     static var reuseIdentifier: String { get }
@@ -25,7 +25,7 @@ public protocol YoshiResuableCellDataSource {
     func cellFor(tableView: UITableView) -> UITableViewCell
 }
 
-public extension YoshiResuableCellDataSource {
+public extension YoshiReusableCellDataSource {
 
     /// Default reuseIdentifier implementation, it will use the protocol adopator's name
     static var reuseIdentifier: String {
