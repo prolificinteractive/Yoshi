@@ -22,7 +22,7 @@ public extension YoshiSubmenu {
         return .push(debugViewController)
     }
     
-    var cellSource: YoshiResuableCellDataSource {
+    var cellSource: YoshiReusableCellDataSource {
         return YoshiMenuCellDataSource(title: title, subtitle: subtitle, accessoryType: .disclosureIndicator)
     }
     
