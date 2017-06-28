@@ -21,7 +21,7 @@ public protocol YoshiTableViewMenu: YoshiMenu {
 
 public extension YoshiTableViewMenu {
 
-    var cellSource: YoshiResuableCellDataSource {
+    var cellSource: YoshiReusableCellDataSource {
         let selectedDisplayItem = displayItems.filter { $0.selected == true }.first
         let subtitle = selectedDisplayItem?.name
         return YoshiMenuCellDataSource(title: title, subtitle: subtitle)

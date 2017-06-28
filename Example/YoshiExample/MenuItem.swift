@@ -81,7 +81,7 @@ internal struct CustomMenu: YoshiMenu {
 /// A menu with custom UI
 internal struct MenuWithCustomUI: YoshiGenericMenu {
 
-    var cellSource: YoshiResuableCellDataSource {
+    var cellSource: YoshiReusableCellDataSource {
         return CustomMenuCellDataSource()
     }
 
@@ -91,7 +91,7 @@ internal struct MenuWithCustomUI: YoshiGenericMenu {
 }
 
 /// Datasource for MenuWithCustomUI to dequeue CustomCell
-internal final class CustomMenuCellDataSource: YoshiResuableCellDataSource {
+internal final class CustomMenuCellDataSource: YoshiReusableCellDataSource {
 
     static var nib: UINib? {
         return UINib(nibName: "CustomCell", bundle: nil)

@@ -7,7 +7,7 @@
 //
 
 /// Cell data source defining the layout for YoshiDateSelectorMenu's cell
-internal struct YoshiDateSelectorMenuCellDataSource: YoshiResuableCellDataSource {
+internal struct YoshiDateSelectorMenuCellDataSource: YoshiReusableCellDataSource {
 
     private let title: String
 

@@ -6,7 +6,7 @@
 //  Copyright © 2016 Prolific Interactive. All rights reserved.
 //
 
-internal typealias VoidCompletionBlock = (Void) -> Void
+internal typealias VoidCompletionBlock = () -> Void
 
 /// A debug menu.
 internal final class DebugViewController: UIViewController {
