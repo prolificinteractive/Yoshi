@@ -80,7 +80,7 @@ internal final class YoshiConfigurationManager {
     func debugNavigationController() -> UINavigationController {
         let navigationController = UINavigationController()
 
-        let debugViewController = DebugViewController(options: yoshiMenuItems, completion: { _ in
+        let debugViewController = DebugViewController(options: yoshiMenuItems, isRootYoshiMenu: true, completion: { _ in
             navigationController.dismiss(animated: true)
         })
         self.debugViewController = debugViewController
@@ -96,7 +96,9 @@ internal final class YoshiConfigurationManager {
      - parameter action: The action to take upon completion.
      */
     func dismiss(_ action: VoidCompletionBlock? = nil) {
-        debugViewController?.completionHandler(action)
+        if let completionHandler = debugViewController?.completionHandler {
+            completionHandler(action)
+        }
         presentingWindow = nil
     }
 
@@ -104,6 +106,7 @@ internal final class YoshiConfigurationManager {
         if let rootViewController = presentingWindow?.rootViewController {
             let navigationController = UINavigationController()
             let debugViewController = DebugViewController(options: yoshiMenuItems,
+                                                          isRootYoshiMenu: true,
                                                           completion: { [weak self] completionBlock in
                                                             rootViewController
                                                                 .dismiss(animated: true,

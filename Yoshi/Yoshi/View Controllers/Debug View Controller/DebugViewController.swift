@@ -11,16 +11,19 @@ internal typealias VoidCompletionBlock = (Void) -> Void
 /// A debug menu.
 internal final class DebugViewController: UIViewController {
 
-    let completionHandler: (_ completed: VoidCompletionBlock? ) -> Void
-
+    var completionHandler: ((_ completed: VoidCompletionBlock? ) -> Void)?
+    
+    /// Configures navigation bar and table view header for root Yoshi menu
+    private let isRootYoshiMenu: Bool
     private let tableView = UITableView()
     fileprivate let options: [YoshiGenericMenu]
 
     fileprivate let dateFormatter: DateFormatter = DateFormatter()
 
-    init(options: [YoshiGenericMenu], completion: @escaping (VoidCompletionBlock?) -> Void) {
+    init(options: [YoshiGenericMenu], isRootYoshiMenu: Bool, completion: ((VoidCompletionBlock?) -> Void)?) {
         self.options = options
         self.completionHandler = completion
+        self.isRootYoshiMenu = isRootYoshiMenu
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -62,7 +65,10 @@ internal final class DebugViewController: UIViewController {
 
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.tableHeaderView = tableViewHeader()
+        
+        if isRootYoshiMenu {
+            tableView.tableHeaderView = tableViewHeader()
+        }
         
         registerCellClasses(options: options)
     }
@@ -123,6 +129,12 @@ internal final class DebugViewController: UIViewController {
     }
 
     private func setupNavigationController() {
+        guard isRootYoshiMenu else {
+            
+            /// Non-root Yoshi menus keep default back button
+            return
+        }
+        
         let closeButton = UIBarButtonItem(title: "Close",
                                           style: .plain,
                                           target: self,
@@ -137,7 +149,17 @@ internal final class DebugViewController: UIViewController {
     }
 
     @objc private func close(_ sender: UIBarButtonItem) {
-        completionHandler(nil)
+        if let completionHandler = completionHandler {
+            completionHandler(nil)
+        }
+    }
+    
+    fileprivate func passCompletionHandler(to viewController: UIViewController) {
+        if let debugViewController = viewController as? DebugViewController,
+            let completionHandler = completionHandler,
+            debugViewController.completionHandler == nil {
+            debugViewController.completionHandler = completionHandler
+        }
     }
 }
 
@@ -171,11 +193,15 @@ extension DebugViewController: UITableViewDelegate {
         let selectedOption = options[(indexPath as NSIndexPath).row]
         switch selectedOption.execute() {
         case .push(let viewController):
+            passCompletionHandler(to: viewController)
             navigationController?.pushViewController(viewController, animated: true)
         case .present(let viewController):
+            passCompletionHandler(to: viewController)
             navigationController?.present(viewController, animated: true)
         case .asyncAfterDismissing(let asyncAction):
-            completionHandler(asyncAction)
+            if let completionHandler = completionHandler {
+                completionHandler(asyncAction)
+            }
             break
         default:
             return
