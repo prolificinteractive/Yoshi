@@ -162,7 +162,7 @@ internal final class Submenu: YoshiSubmenu {
 and present it just like the others:
 
 ```swift 
-let apiToolsSubmenu = Submenu(title: "Third Party Integrations",
+let integrationsSubmenu = Submenu(title: "Third Party Integrations",
     subtitle: nil,
     options: [
         instabugMenu,
@@ -170,7 +170,7 @@ let apiToolsSubmenu = Submenu(title: "Third Party Integrations",
     ]
 )
 
-Yoshi.setupDebugMenu([environmentDateMenu])
+Yoshi.setupDebugMenu([integrationsSubmenu])
 Yoshi.show()
 
 ```
