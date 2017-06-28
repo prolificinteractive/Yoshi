@@ -7,30 +7,33 @@
 //
 
 /// Cell data source defining the layout for YoshiMenu's cell
-internal struct YoshiMenuCellDataSource: YoshiResuableCellDataSource {
+public struct YoshiMenuCellDataSource: YoshiResuableCellDataSource {
 
     private let title: String
 
     private let subtitle: String?
-
+    
+    private let accessoryType: UITableViewCellAccessoryType
+    
     /// Initalize the YoshiMenuCellDataSource instance
     ///
     /// - Parameters:
     ///   - title: Main title for the cell
     ///   - subtitle: Subtitle for the cell
-    init(title: String, subtitle: String?) {
+    public init(title: String, subtitle: String?, accessoryType: UITableViewCellAccessoryType = .none) {
         self.title = title
         self.subtitle = subtitle
+        self.accessoryType = accessoryType
     }
 
-    func cellFor(tableView: UITableView) -> UITableViewCell {
+    public func cellFor(tableView: UITableView) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: YoshiMenuCellDataSource.reuseIdentifier) ??
             UITableViewCell(style: .subtitle, reuseIdentifier: YoshiMenuCellDataSource.reuseIdentifier)
 
         cell.textLabel?.text = title
         cell.detailTextLabel?.text = subtitle
 
-        cell.accessoryType = .none
+        cell.accessoryType = accessoryType
 
         return cell
     }
