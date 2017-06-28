@@ -142,6 +142,40 @@ Yoshi.setupDebugMenu([dateSelectorMenu])
 Yoshi.show()
 ```
 
+### Submenu
+
+If you find your debug menu getting out of hand, you can organize it into submenus. To do so, just create a type that conforms to YoshiSubmenu:
+
+
+```swift
+internal final class Submenu: YoshiSubmenu {
+    
+    let title: String
+    
+    let subtitle: String?
+    
+    let options: [YoshiGenericMenu] {
+    
+}
+```
+
+and present it just like the others:
+
+```swift 
+let apiToolsSubmenu = Submenu(title: "Third Party Integrations",
+    subtitle: nil,
+    options: [
+        instabugMenu,
+        crashlyticsMenu
+    ]
+)
+
+Yoshi.setupDebugMenu([environmentDateMenu])
+Yoshi.show()
+
+```
+
+
 ### Custom Menu
 
 Yoshi can also be configured to display custom menus which can be used for triggering events or presenting view controllers.
