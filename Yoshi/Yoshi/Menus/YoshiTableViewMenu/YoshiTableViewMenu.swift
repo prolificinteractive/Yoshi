@@ -9,7 +9,9 @@
 /**
  A menu item for displaying a table view.
  */
-public protocol YoshiTableViewMenu: YoshiMenu {
+
+@available(*, deprecated, message: "Use YoshiSubmenu instead")
+public protocol YoshiTableViewMenu: YoshiSubmenu {
 
     /// The items to display in the table view.
     var displayItems: [YoshiTableViewMenuItem] { get }
@@ -24,7 +26,11 @@ public extension YoshiTableViewMenu {
     var cellSource: YoshiReusableCellDataSource {
         let selectedDisplayItem = displayItems.filter { $0.selected == true }.first
         let subtitle = selectedDisplayItem?.name
-        return YoshiMenuCellDataSource(title: title, subtitle: subtitle)
+        return YoshiMenuCellDataSource(title: title, subtitle: subtitle, accessoryType: .disclosureIndicator)
+    }
+    
+    var options: [YoshiGenericMenu] {
+        return displayItems.map { YoshiTableViewSubmenuItem(tableViewMenuItem: $0) }
     }
 
     /**

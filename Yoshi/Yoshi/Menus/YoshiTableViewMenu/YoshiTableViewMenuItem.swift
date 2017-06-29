@@ -9,6 +9,7 @@
 /**
  A table view menu item.
  */
+@available(*, deprecated, message: "Use YoshiGenericMenu instead")
 public protocol YoshiTableViewMenuItem: class {
 
     /// The display text for the table view menu item.
