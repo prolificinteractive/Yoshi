@@ -6,8 +6,8 @@
 //  Copyright © 2017 Prolific Interactive. All rights reserved.
 //
 
-/// Cell data source defining the layout for YoshiMenu's cell
-
+/// A normal cell data source defining the layout for YoshiMenu's cell.
+/// By default it helps dequeue a system UITableViewCell with the given title, subtitle and the accessoryType.
 public struct YoshiMenuCellDataSource: YoshiReusableCellDataSource {
 
     private let title: String

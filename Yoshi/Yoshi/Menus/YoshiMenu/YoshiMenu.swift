@@ -7,7 +7,7 @@
 //
 
 /**
- Defines an object as a normal Yoshi style debug menu option
+ Defines an object as a normal Yoshi style YoshiGenericMenu.
  */
 public protocol YoshiMenu: YoshiGenericMenu {
 

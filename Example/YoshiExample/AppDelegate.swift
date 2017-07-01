@@ -40,33 +40,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         Yoshi.setupDebugMenu(menu)
     }
+    
+    private func environmentMenu() -> YoshiSubmenu {
+        
+        var environmentItems = [SubviewMenuItem]()
+        
+        let itemSelected: (SubviewMenuItem) -> Void = { item in
+            environmentItems.forEach{ $0.selected = false }
+            item.selected = true
+            NotificationCenter.default.post(name:NSNotification.Name(rawValue: Notifications.EnvironmentUpdatedNotification),
+                                            object: item.title)
+        }
+        
+        let production = SubviewMenuItem(title: "Production", subtitle: "https://mobile-api.com", action: itemSelected)
+        let staging = SubviewMenuItem(title: "Staging", subtitle: "https://staging.mobile-api.com", action: itemSelected)
+        let qa = SubviewMenuItem(title: "QA", subtitle: "http://qa.mobile-api.com", selected: true, action: itemSelected)
 
-    private func environmentMenu() -> YoshiTableViewMenu {
-        let production = MenuItem(name: "Production", subtitle: "https://mobile-api.com")
-        let staging = MenuItem(name: "Staging", subtitle: "https://staging.mobile-api.com")
-        let qa = MenuItem(name: "QA", subtitle: "http://qa.mobile-api.com", selected: true)
+        environmentItems = [production, staging, qa]
 
-        let environmentItems: [YoshiTableViewMenuItem] = [production, staging, qa]
-
-        return TableViewMenu(title: "Environment",
-                             subtitle: nil,
-                             displayItems: environmentItems,
-                             didSelectDisplayItem: { (displayItem) in
-                                NotificationCenter.default
-                                    .post(name:
-                                        NSNotification.Name(rawValue: Notifications.EnvironmentUpdatedNotification),
-                                        object: displayItem.name)
-        })
+        return Submenu(title: "Environment",
+                       options: environmentItems,
+                       dynamicSubtitle: { environmentItems.filter{ $0.selected }.first?.title })
     }
 
     private func dateSelectorMenu() -> YoshiDateSelectorMenu {
-        return DateSelector(title: "Environment Date",
-                            subtitle: nil,
-                            didUpdateDate: { (dateSelected) in
-                                NotificationCenter.default
-                                    .post(name:
-                                        NSNotification.Name(rawValue: Notifications.EnvironmentDateUpdatedNotification),
-                                        object: dateSelected)
+        return DateSelectorMenu(title: "Environment Date",
+                                subtitle: nil,
+                                didUpdateDate: { (dateSelected) in
+                                    NotificationCenter.default.post(name:
+                                        NSNotification.Name(rawValue: Notifications.EnvironmentDateUpdatedNotification),object: dateSelected)
         })
     }
 
@@ -87,7 +89,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                           completion: nil)
     }
     private func menuWithCustomUI() -> YoshiGenericMenu {
-        return MenuWithCustomUI()
+        return CustomUIMenu()
     }
 
     // MARK: - Yoshi Invocation options

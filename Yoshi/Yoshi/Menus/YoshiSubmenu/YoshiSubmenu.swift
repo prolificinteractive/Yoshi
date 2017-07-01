@@ -8,8 +8,11 @@
 
 import Foundation
 
+/// A submenu that contains an array of options.
+/// Once selected, Yoshi will push the navigation stack to display these options.
 public protocol YoshiSubmenu: YoshiMenu {
     
+    /// Options for the submenu to display.
     var options: [YoshiGenericMenu] { get }
     
 }

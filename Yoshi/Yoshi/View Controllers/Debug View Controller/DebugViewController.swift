@@ -198,11 +198,10 @@ extension DebugViewController: UITableViewDelegate {
         case .present(let viewController):
             passCompletionHandler(to: viewController)
             navigationController?.present(viewController, animated: true)
-        case .asyncAfterDismissing(let asyncAction): 
-            if let completionHandler = completionHandler {
-                completionHandler(asyncAction)
-            }
-            break
+        case .asyncAfterDismissing(let asyncAction):
+            completionHandler?(asyncAction)
+        case .pop:
+            navigationController?.popViewController(animated: true)
         default:
             return
         }

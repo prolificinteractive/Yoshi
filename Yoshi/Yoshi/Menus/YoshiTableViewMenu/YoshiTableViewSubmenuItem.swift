@@ -14,10 +14,15 @@ internal struct YoshiTableViewSubmenuItem: YoshiGenericMenu {
     let subtitle: String?
     var selected: Bool
     
-    init(tableViewMenuItem: YoshiTableViewMenuItem) {
+    private var tableViewMenuItem: YoshiTableViewMenuItem
+    private var action: (_ displayItem: YoshiTableViewMenuItem) -> Void
+    
+    init(tableViewMenuItem: YoshiTableViewMenuItem, action: @escaping (_ displayItem: YoshiTableViewMenuItem) -> Void) {
         self.name = tableViewMenuItem.name
         self.subtitle = tableViewMenuItem.subtitle
-        self.selected = false
+        self.selected = tableViewMenuItem.selected
+        self.tableViewMenuItem = tableViewMenuItem
+        self.action = action
     }
     
     var cellSource: YoshiReusableCellDataSource {
@@ -25,7 +30,8 @@ internal struct YoshiTableViewSubmenuItem: YoshiGenericMenu {
     }
     
     func execute() -> YoshiActionResult {
-        return .handled
+        action(tableViewMenuItem)
+        return .pop
     }
     
 }
