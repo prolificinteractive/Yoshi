@@ -10,7 +10,7 @@
  A menu item for displaying a table view.
  */
 
-@available(*, deprecated, message: " Consider using YoshiSubmenu instead.")
+@available(*, deprecated, message: " Consider using YoshiSingleSelectionMenu instead.")
 public protocol YoshiTableViewMenu: YoshiSubmenu {
 
     /// The items to display in the table view.

@@ -41,7 +41,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Yoshi.setupDebugMenu(menu)
     }
     
-    private func environmentMenu() -> YoshiSubmenu {
+    /// Deprecated Environment menu usage.
+    private func deprecatedEnvironmentMenu() -> YoshiSubmenu {
         
         var environmentItems = [SubviewMenuItem]()
         
@@ -61,6 +62,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return Submenu(title: "Environment",
                        options: environmentItems,
                        dynamicSubtitle: { environmentItems.filter{ $0.selected }.first?.title })
+    }
+    
+    private func environmentMenu() -> YoshiSubmenu {
+        
+        var environmentSelections = [YoshiSingleSelection]()
+        
+        let production = YoshiSingleSelection(title: "Production", subtitle: "https://mobile-api.com")
+        let staging = YoshiSingleSelection(title: "Staging", subtitle: "https://staging.mobile-api.com")
+        let qa = YoshiSingleSelection(title: "QA", subtitle: "http://qa.mobile-api.com")
+        
+        environmentSelections = [production, staging, qa]
+        
+        return YoshiSingleSelectionMenu(title: "Environment",
+                                        options: environmentSelections,
+                                        selectedIndex: 0,
+                                        didSelect: { selection in
+                                            NotificationCenter.default.post(name:NSNotification.Name(rawValue: Notifications.EnvironmentUpdatedNotification),
+                                                                            object: selection.title)
+        })
     }
 
     private func dateSelectorMenu() -> YoshiDateSelectorMenu {
