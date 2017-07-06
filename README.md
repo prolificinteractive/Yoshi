@@ -11,7 +11,7 @@
 
 A helpful companion for your iOS app.
 
-Yoshi is a convenient wrapper around the UI code that is often needed for displaying debug menus. Out of the box, Yoshi provides easy-to-implement date, list and custom menus.
+Yoshi is a convenient wrapper around the UI code that is often needed for displaying debug menus.
 
 ### iPhone
 ![Yoshi.gif](Images/Yoshi.gif)
@@ -51,52 +51,34 @@ github "prolificinteractive/Yoshi"
 
 ## Usage
 
-Yoshi can be set up to display any sort of menu as long as the menu object conforms to `YoshiMenu`. Yoshi comes with two built-in menus: list menu and date menu.
+Yoshi can be set up to display any sort of menu as long as the menu object conforms to `YoshiGenericMenu`. Yoshi provides a single selection menu out of the box, and several easy-to-conform menu protocols.
 
-### List Menu
+### Single Selection Menu
 
-To display a list menu, create two types that conform to `YoshiTableViewMenu` and `YoshiTableViewMenuItem` protocols respectively.
+To display a single selection menu, just construct a `YoshiSingleSelectionMenu` with necessary information as below:
 
 ```swift
-struct TableViewMenu: YoshiTableViewMenu {
 
-    var title: String
-    var subtitle: String?
-    var displayItems: [YoshiTableViewMenuItem]
-    var didSelectDisplayItem: (_ displayItem: YoshiTableViewMenuItem) -> ()
+// Build necessary options.
+let production = YoshiSingleSelection(title: "Production", subtitle: "https://mobile-api.com")
+let staging = YoshiSingleSelection(title: "Staging", subtitle: "https://staging.mobile-api.com")
+let qa = YoshiSingleSelection(title: "QA", subtitle: "http://qa.mobile-api.com")
+let environmentItems: [YoshiTableViewMenuItem] = [production, staging, qa]
 
-}
-
-internal final class MenuItem: YoshiTableViewMenuItem {
-
-    let name: String
-    var selected: Bool
-
-    init(name: String,
-        selected: Bool = false) {
-        self.name = name
-        self.selected = selected
-    }
-
-}
+// Construct YoshiSingleSelectionMenu.
+let singleSelectionMenu = YoshiSingleSelectionMenu(title: "Environment",
+                                                   options: environmentSelections,
+                                                   selectedIndex: 0,
+                                                   didSelect: { selection in /*Select the environment based on selection*/ })
 ```
+
 
 Then, set up the menu and present it using Yoshi.
 
 ```swift
-let production = MenuItem(name: "Production")
-let staging = MenuItem(name: "Staging")
-let qa = MenuItem(name: "QA", selected: true)
-let environmentItems: [YoshiTableViewMenuItem] = [production, staging, qa]
 
-let tableViewMenu = TableViewMenu(title: "Environment",
-  subtitle: nil,
-  displayItems: environmentItems,
-  didSelectDisplayItem: { (displayItem) in
-    // Switch environment here
-})
-
-Yoshi.setupDebugMenu([tableViewMenu])
+// Setup the menu
+Yoshi.setupDebugMenu([singleSelectionMenu])
 
 // Invoke Yoshi
 Yoshi.show()
@@ -106,7 +88,7 @@ Yoshi will take care of managing selections and call back the convenient closure
 
 ### Date Selector Menu
 
-Similarly, to present a date selector menu, create a type that conforms to `YoshiDateSelectorMenu` protocol
+To present a date selector menu, create a type that conforms to `YoshiDateSelectorMenu` protocol
 
 ```swift
 internal final class DateSelector: YoshiDateSelectorMenu {
