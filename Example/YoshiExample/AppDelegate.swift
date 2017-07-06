@@ -41,29 +41,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Yoshi.setupDebugMenu(menu)
     }
     
-    /// Deprecated Environment menu usage.
-    private func deprecatedEnvironmentMenu() -> YoshiSubmenu {
-        
-        var environmentItems = [SubviewMenuItem]()
-        
-        let itemSelected: (SubviewMenuItem) -> Void = { item in
-            environmentItems.forEach{ $0.selected = false }
-            item.selected = true
-            NotificationCenter.default.post(name:NSNotification.Name(rawValue: Notifications.EnvironmentUpdatedNotification),
-                                            object: item.title)
-        }
-        
-        let production = SubviewMenuItem(title: "Production", subtitle: "https://mobile-api.com", action: itemSelected)
-        let staging = SubviewMenuItem(title: "Staging", subtitle: "https://staging.mobile-api.com", action: itemSelected)
-        let qa = SubviewMenuItem(title: "QA", subtitle: "http://qa.mobile-api.com", selected: true, action: itemSelected)
-
-        environmentItems = [production, staging, qa]
-
-        return Submenu(title: "Environment",
-                       options: environmentItems,
-                       dynamicSubtitle: { environmentItems.filter{ $0.selected }.first?.title })
-    }
-    
     private func environmentMenu() -> YoshiSubmenu {
         
         var environmentSelections = [YoshiSingleSelection]()
@@ -78,7 +55,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                         options: environmentSelections,
                                         selectedIndex: 0,
                                         didSelect: { selection in
-                                            NotificationCenter.default.post(name:NSNotification.Name(rawValue: Notifications.EnvironmentUpdatedNotification),
+                                            NotificationCenter.default.post(name:
+                                                NSNotification.Name(rawValue:
+                                                    Notifications.EnvironmentUpdatedNotification),
                                                                             object: selection.title)
         })
     }
@@ -88,7 +67,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                 subtitle: nil,
                                 didUpdateDate: { (dateSelected) in
                                     NotificationCenter.default.post(name:
-                                        NSNotification.Name(rawValue: Notifications.EnvironmentDateUpdatedNotification),object: dateSelected)
+                                        NSNotification.Name(rawValue: Notifications.EnvironmentDateUpdatedNotification),
+                                                                    object: dateSelected)
         })
     }
 
@@ -96,17 +76,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Instabug.start(withToken: "cf779d2e19c0affaad8567a7598e330d", invocationEvent: .none)
         Instabug.setDefaultInvocationMode(.bugReporter)
 
-        return CustomMenu(title: "Start Instabug",
-                          subtitle: nil,
-                          completion: {
+        return YoshiActionMenu(title: "Start Instabug",
+                               subtitle: nil,
+                               completion: {
             Instabug.invoke()
         })
     }
 
     private func userAccountIdentifier() -> YoshiMenu {
-        return CustomMenu(title: "User Account Identifier (long press to copy)",
-                          subtitle: "12345567890",
-                          completion: nil)
+        return YoshiActionMenu(title: "User Account Identifier (long press to copy)",
+                               subtitle: "12345567890",
+                               completion: nil)
     }
     private func menuWithCustomUI() -> YoshiGenericMenu {
         return CustomUIMenu()

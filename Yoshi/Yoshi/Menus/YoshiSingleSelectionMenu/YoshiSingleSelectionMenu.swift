@@ -31,7 +31,8 @@ open class YoshiSingleSelectionMenu: YoshiSubmenu {
     private var selectedIndex: Int
     private var selectedAction: ((YoshiSingleSelection) -> Void)?
     
-    /// Initialize the YoshiSingleSelectionMenu with title, options, initial selected index and the action when one of the options is selected.
+    /// Initialize the YoshiSingleSelectionMenu with title, options, initial selected index,
+    /// and the action when one of the options is selected.
     ///
     /// - Parameters:
     ///   - title: Title for the menu.

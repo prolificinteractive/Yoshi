@@ -51,7 +51,32 @@ github "prolificinteractive/Yoshi"
 
 ## Usage
 
-Yoshi can be set up to display any sort of menu as long as the menu object conforms to `YoshiGenericMenu`. Yoshi provides a single selection menu out of the box, and several easy-to-conform menu protocols.
+To display Yoshi, simply set up the menu and present it.
+
+```swift
+
+// Setup the custom menus
+Yoshi.setupDebugMenu([environmentMenu, instabugMenu, dateSelectionMenu])
+
+// Invoke Yoshi
+Yoshi.show()
+```
+
+By default, Yoshi will display your app's icon, along with the current build and version number.
+
+Yoshi can be set up to display any sort of menu as long as the menu object conforms to `YoshiGenericMenu`. Action menu and single selection menus are available out of the box, with several easy-to-conform menu protocols providing flexibility to customize the cells.
+
+### Action Menu
+
+Action Menu is the simplest Yoshi menu able to execute custom events when tapped.
+
+For example, we can invoke [Instabug](https://instabug.com) when a custom menu is selected.
+
+```swift
+let instabugMenu = YoshiActionMenu(title: "Start Instabug",
+                                   subtitle: nil,
+                                   completion: { Instabug.invoke() })
+```
 
 ### Single Selection Menu
 
@@ -70,18 +95,6 @@ let singleSelectionMenu = YoshiSingleSelectionMenu(title: "Environment",
                                                    options: environmentSelections,
                                                    selectedIndex: 0,
                                                    didSelect: { selection in /*Select the environment based on selection*/ })
-```
-
-
-Then, set up the menu and present it using Yoshi.
-
-```swift
-
-// Setup the menu
-Yoshi.setupDebugMenu([singleSelectionMenu])
-
-// Invoke Yoshi
-Yoshi.show()
 ```
 
 Yoshi will take care of managing selections and call back the convenient closure function when a new selection is made.
@@ -111,17 +124,12 @@ internal final class DateSelector: YoshiDateSelectorMenu {
 }
 ```
 
-and present it using the same functions.
-
 ```swift
 let dateSelectorMenu = DateSelector(title: "Environment Date",
     subtitle: nil,
     didUpdateDate: { (dateSelected) in
       // Do something with the selected date here
 })
-
-Yoshi.setupDebugMenu([dateSelectorMenu])
-Yoshi.show()
 ```
 
 ### Submenu
@@ -141,8 +149,6 @@ internal final class Submenu: YoshiSubmenu {
 }
 ```
 
-and present it just like the others:
-
 ```swift 
 let integrationsSubmenu = Submenu(title: "Third Party Integrations",
     subtitle: nil,
@@ -151,43 +157,6 @@ let integrationsSubmenu = Submenu(title: "Third Party Integrations",
         crashlyticsMenu
     ]
 )
-
-Yoshi.setupDebugMenu([integrationsSubmenu])
-Yoshi.show()
-
-```
-
-
-### Custom Menu
-
-Yoshi can also be configured to display custom menus which can be used for triggering events or presenting view controllers.
-
-For example, we can invoke [Instabug](https://instabug.com) when a custom menu is selected.
-
-```swift
-private struct CustomMenu: YoshiMenu {
-
-    let title: String
-    let subtitle: String?
-    let completion: () -> ()
-
-    func execute() -> YoshiActionResult {
-        return .asyncAfterDismissing(completion)
-    }
-
-}
-
-Instabug.startWithToken("abcdefghijklmnopqrstuvwxyz", invocationEvent: .None)
-Instabug.setDefaultInvocationMode(.BugReporter)
-
-let instabugMenu = CustomMenu(title: "Start Instabug",
-    subtitle: nil,
-    completion: {
-        Instabug.invoke()
-    })
-
-Yoshi.setupDebugMenu([instabugMenu])
-Yoshi.show()
 ```
 
 ### Invocation Options
