@@ -40,33 +40,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         Yoshi.setupDebugMenu(menu)
     }
-
-    private func environmentMenu() -> YoshiTableViewMenu {
-        let production = MenuItem(name: "Production", subtitle: "https://mobile-api.com")
-        let staging = MenuItem(name: "Staging", subtitle: "https://staging.mobile-api.com")
-        let qa = MenuItem(name: "QA", subtitle: "http://qa.mobile-api.com", selected: true)
-
-        let environmentItems: [YoshiTableViewMenuItem] = [production, staging, qa]
-
-        return TableViewMenu(title: "Environment",
-                             subtitle: nil,
-                             displayItems: environmentItems,
-                             didSelectDisplayItem: { (displayItem) in
-                                NotificationCenter.default
-                                    .post(name:
-                                        NSNotification.Name(rawValue: Notifications.EnvironmentUpdatedNotification),
-                                        object: displayItem.name)
+    
+    private func environmentMenu() -> YoshiSubmenu {
+        
+        var environmentSelections = [YoshiSingleSelection]()
+        
+        let production = YoshiSingleSelection(title: "Production", subtitle: "https://mobile-api.com")
+        let staging = YoshiSingleSelection(title: "Staging", subtitle: "https://staging.mobile-api.com")
+        let qa = YoshiSingleSelection(title: "QA", subtitle: "http://qa.mobile-api.com")
+        
+        environmentSelections = [production, staging, qa]
+        
+        return YoshiSingleSelectionMenu(title: "Environment",
+                                        options: environmentSelections,
+                                        selectedIndex: 0,
+                                        didSelect: { selection in
+                                            NotificationCenter.default.post(name:
+                                                NSNotification.Name(rawValue:
+                                                    Notifications.EnvironmentUpdatedNotification),
+                                                                            object: selection.title)
         })
     }
 
     private func dateSelectorMenu() -> YoshiDateSelectorMenu {
-        return DateSelector(title: "Environment Date",
-                            subtitle: nil,
-                            didUpdateDate: { (dateSelected) in
-                                NotificationCenter.default
-                                    .post(name:
+        return DateSelectorMenu(title: "Environment Date",
+                                subtitle: nil,
+                                didUpdateDate: { (dateSelected) in
+                                    NotificationCenter.default.post(name:
                                         NSNotification.Name(rawValue: Notifications.EnvironmentDateUpdatedNotification),
-                                        object: dateSelected)
+                                                                    object: dateSelected)
         })
     }
 
@@ -74,20 +76,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Instabug.start(withToken: "cf779d2e19c0affaad8567a7598e330d", invocationEvent: .none)
         Instabug.setDefaultInvocationMode(.bugReporter)
 
-        return CustomMenu(title: "Start Instabug",
-                          subtitle: nil,
-                          completion: {
+        return YoshiActionMenu(title: "Start Instabug",
+                               subtitle: nil,
+                               completion: {
             Instabug.invoke()
         })
     }
 
     private func userAccountIdentifier() -> YoshiMenu {
-        return CustomMenu(title: "User Account Identifier (long press to copy)",
-                          subtitle: "12345567890",
-                          completion: nil)
+        return YoshiActionMenu(title: "User Account Identifier (long press to copy)",
+                               subtitle: "12345567890",
+                               completion: nil)
     }
     private func menuWithCustomUI() -> YoshiGenericMenu {
-        return MenuWithCustomUI()
+        return CustomUIMenu()
     }
 
     // MARK: - Yoshi Invocation options

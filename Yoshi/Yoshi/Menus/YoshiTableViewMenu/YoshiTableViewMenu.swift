@@ -9,7 +9,9 @@
 /**
  A menu item for displaying a table view.
  */
-public protocol YoshiTableViewMenu: YoshiMenu {
+
+@available(*, deprecated, message: " Consider using YoshiSingleSelectionMenu instead.")
+public protocol YoshiTableViewMenu: YoshiSubmenu {
 
     /// The items to display in the table view.
     var displayItems: [YoshiTableViewMenuItem] { get }
@@ -24,21 +26,21 @@ public extension YoshiTableViewMenu {
     var cellSource: YoshiReusableCellDataSource {
         let selectedDisplayItem = displayItems.filter { $0.selected == true }.first
         let subtitle = selectedDisplayItem?.name
-        return YoshiMenuCellDataSource(title: title, subtitle: subtitle)
+        return YoshiMenuCellDataSource(title: title, subtitle: subtitle, accessoryType: .disclosureIndicator)
     }
-
-    /**
-     Function to execute when the menu item is seleted.
-
-     - returns: A result for handling the selected menu item.
-     */
+    
+    var options: [YoshiGenericMenu] {
+        let selectedAction: (_ displayItem: YoshiTableViewMenuItem) -> Void = { selectedItem in
+            self.displayItems.forEach { $0.selected = false }
+            selectedItem.selected = true
+            self.didSelectDisplayItem(selectedItem)
+        }
+        return displayItems.map { YoshiTableViewSubmenuItem(tableViewMenuItem: $0, action: selectedAction) }
+    }
+    
     func execute() -> YoshiActionResult {
-        let bundle = Bundle(for: YoshiConfigurationManager.self)
-        let tableViewController =
-            DebugTableViewController(nibName: String(describing: DebugTableViewController.self), bundle: bundle)
-        tableViewController.setup(self)
-
-        return .push(tableViewController)
+        let debugViewController = DebugViewController(options: options, isRootYoshiMenu: false, completion: nil)
+        return .push(debugViewController)
     }
 
 }
