@@ -6,6 +6,7 @@
 //  Copyright © 2017 Prolific Interactive. All rights reserved.
 //
 
+/// Internal YoshiGenericMenu used for single selection menu.
 internal final class YoshiSingleSelectionMenuItem: YoshiGenericMenu {
     
     var title: String {

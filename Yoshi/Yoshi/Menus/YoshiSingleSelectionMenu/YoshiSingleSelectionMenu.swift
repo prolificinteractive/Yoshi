@@ -6,8 +6,11 @@
 //  Copyright © 2017 Prolific Interactive. All rights reserved.
 //
 
+/// A tuple with a title and an optional subtitle representing a single selection.
 public typealias YoshiSingleSelection = (title: String, subtitle: String?)
 
+/// A YoshiSubmenu implementation used to host a group of single selection.
+/// Once provided with initial selection and options, Yoshi will maintain the selection and present them in a tableview.
 open class YoshiSingleSelectionMenu: YoshiSubmenu {
     
     open let title: String
@@ -28,7 +31,13 @@ open class YoshiSingleSelectionMenu: YoshiSubmenu {
     private var selectedIndex: Int
     private var selectedAction: ((YoshiSingleSelection) -> Void)?
     
-    
+    /// Initialize the YoshiSingleSelectionMenu with title, options, initial selected index and the action when one of the options is selected.
+    ///
+    /// - Parameters:
+    ///   - title: Title for the menu.
+    ///   - options: Available options under this menu.
+    ///   - selectedIndex: Initial selected index among the options.
+    ///   - didSelect: Action executed when one of the selection is selected by Yoshi.
     public init(title: String,
                 options: [YoshiSingleSelection],
                 selectedIndex: Int,
