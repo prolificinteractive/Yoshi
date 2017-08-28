@@ -4,5 +4,5 @@ use_frameworks!
 
 target 'YoshiExample' do
   pod "Instabug", '5.2.4'
-  pod "Yoshi", :path => "../"
+  pod "Yoshi", :path => "../", :subspecs => ['QAKit']
 end
