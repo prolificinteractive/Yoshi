@@ -40,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         Yoshi.setupDebugMenu(menu)
     }
-    
+
     private func environmentMenu() -> YoshiSubmenu {
        return YoshiEnvironmentMenu(environmentManager: EnvironmentManager())
     }
