@@ -8,6 +8,7 @@
 
 import Yoshi
 
+/// YoshiEnvironment implementation.
 internal struct Environment: YoshiEnvironment {
 
     let name: String
@@ -15,6 +16,7 @@ internal struct Environment: YoshiEnvironment {
     let baseURL: URL
 }
 
+/// A simple EnvironmentManager able to manage different environment options and send notification when one is selected.
 internal final class EnvironmentManager: YoshiEnvironmentManager {
 
     private let environmentOptions = [Environment(name: "Production", baseURL: URL(string: "https://mobile-api.com")!),
