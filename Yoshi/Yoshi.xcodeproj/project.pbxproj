@@ -13,10 +13,10 @@
 		276BCEAC1C29A6EF002138C7 /* Yoshi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 276BCEA11C29A6EF002138C7 /* Yoshi.framework */; };
 		276BCEB11C29A6EF002138C7 /* YoshiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276BCEB01C29A6EF002138C7 /* YoshiTests.swift */; };
 		276BCEC11C29AEDD002138C7 /* Yoshi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276BCEC01C29AEDD002138C7 /* Yoshi.swift */; };
-		320A8C971F54B1EB000797EF /* YoshiEnvironmentMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320A8C961F54B1EB000797EF /* YoshiEnvironmentMenu.swift */; };
-		320A8C991F54B214000797EF /* YoshiEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320A8C981F54B214000797EF /* YoshiEnvironment.swift */; };
-		320A8C9D1F54B736000797EF /* YoshiEnvironmentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320A8C9C1F54B736000797EF /* YoshiEnvironmentManager.swift */; };
 		327D1FB01F0ECA7D008889C2 /* YoshiActionMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327D1FAF1F0ECA7D008889C2 /* YoshiActionMenu.swift */; };
+		32958CC21F55DCFC009F8543 /* YoshiEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32958CBF1F55DCFC009F8543 /* YoshiEnvironment.swift */; };
+		32958CC31F55DCFC009F8543 /* YoshiEnvironmentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32958CC01F55DCFC009F8543 /* YoshiEnvironmentManager.swift */; };
+		32958CC41F55DCFC009F8543 /* YoshiEnvironmentMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32958CC11F55DCFC009F8543 /* YoshiEnvironmentMenu.swift */; };
 		329D104E1F057CDB00087CC1 /* YoshiTableViewSubmenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329D104D1F057CDB00087CC1 /* YoshiTableViewSubmenuItem.swift */; };
 		32AA074E1E60D38B001516EA /* YoshiTableViewMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AA07461E60D38B001516EA /* YoshiTableViewMenu.swift */; };
 		32AA07501E60D38B001516EA /* YoshiTableViewMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AA07481E60D38B001516EA /* YoshiTableViewMenuItem.swift */; };
@@ -59,10 +59,10 @@
 		276BCEB01C29A6EF002138C7 /* YoshiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoshiTests.swift; sourceTree = "<group>"; };
 		276BCEB21C29A6EF002138C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		276BCEC01C29AEDD002138C7 /* Yoshi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Yoshi.swift; sourceTree = "<group>"; };
-		320A8C961F54B1EB000797EF /* YoshiEnvironmentMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoshiEnvironmentMenu.swift; sourceTree = "<group>"; };
-		320A8C981F54B214000797EF /* YoshiEnvironment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoshiEnvironment.swift; sourceTree = "<group>"; };
-		320A8C9C1F54B736000797EF /* YoshiEnvironmentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoshiEnvironmentManager.swift; sourceTree = "<group>"; };
 		327D1FAF1F0ECA7D008889C2 /* YoshiActionMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoshiActionMenu.swift; sourceTree = "<group>"; };
+		32958CBF1F55DCFC009F8543 /* YoshiEnvironment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoshiEnvironment.swift; sourceTree = "<group>"; };
+		32958CC01F55DCFC009F8543 /* YoshiEnvironmentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoshiEnvironmentManager.swift; sourceTree = "<group>"; };
+		32958CC11F55DCFC009F8543 /* YoshiEnvironmentMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoshiEnvironmentMenu.swift; sourceTree = "<group>"; };
 		329D104D1F057CDB00087CC1 /* YoshiTableViewSubmenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoshiTableViewSubmenuItem.swift; sourceTree = "<group>"; };
 		32AA07461E60D38B001516EA /* YoshiTableViewMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoshiTableViewMenu.swift; sourceTree = "<group>"; };
 		32AA07481E60D38B001516EA /* YoshiTableViewMenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoshiTableViewMenuItem.swift; sourceTree = "<group>"; };
@@ -138,7 +138,7 @@
 				94A8BC841F08029300022AE1 /* Utility */,
 				276BCEBB1C29A8BB002138C7 /* View Controllers */,
 				32AA073D1E60D38B001516EA /* Menus */,
-				320A8C941F54B183000797EF /* QAKit */,
+				32958CBD1F55DCFC009F8543 /* QAKit */,
 				276BCEA41C29A6EF002138C7 /* Yoshi.h */,
 				276BCEC01C29AEDD002138C7 /* Yoshi.swift */,
 				F902ED531C6A831A007975F5 /* YoshiActionResult.swift */,
@@ -167,30 +167,30 @@
 			name = "View Controllers";
 			sourceTree = "<group>";
 		};
-		320A8C941F54B183000797EF /* QAKit */ = {
-			isa = PBXGroup;
-			children = (
-				320A8C951F54B183000797EF /* EnvironmentMenu */,
-			);
-			path = QAKit;
-			sourceTree = "<group>";
-		};
-		320A8C951F54B183000797EF /* EnvironmentMenu */ = {
-			isa = PBXGroup;
-			children = (
-				320A8C981F54B214000797EF /* YoshiEnvironment.swift */,
-				320A8C9C1F54B736000797EF /* YoshiEnvironmentManager.swift */,
-				320A8C961F54B1EB000797EF /* YoshiEnvironmentMenu.swift */,
-			);
-			path = EnvironmentMenu;
-			sourceTree = "<group>";
-		};
 		327D1FAE1F0ECA75008889C2 /* YoshiActionMenu */ = {
 			isa = PBXGroup;
 			children = (
 				327D1FAF1F0ECA7D008889C2 /* YoshiActionMenu.swift */,
 			);
 			path = YoshiActionMenu;
+			sourceTree = "<group>";
+		};
+		32958CBD1F55DCFC009F8543 /* QAKit */ = {
+			isa = PBXGroup;
+			children = (
+				32958CBE1F55DCFC009F8543 /* EnvironmentMenu */,
+			);
+			path = QAKit;
+			sourceTree = SOURCE_ROOT;
+		};
+		32958CBE1F55DCFC009F8543 /* EnvironmentMenu */ = {
+			isa = PBXGroup;
+			children = (
+				32958CBF1F55DCFC009F8543 /* YoshiEnvironment.swift */,
+				32958CC01F55DCFC009F8543 /* YoshiEnvironmentManager.swift */,
+				32958CC11F55DCFC009F8543 /* YoshiEnvironmentMenu.swift */,
+			);
+			path = EnvironmentMenu;
 			sourceTree = "<group>";
 		};
 		32AA073D1E60D38B001516EA /* Menus */ = {
@@ -420,17 +420,17 @@
 				94E2C9D51F09544100811CE9 /* YoshiSubmenu.swift in Sources */,
 				32AA07501E60D38B001516EA /* YoshiTableViewMenuItem.swift in Sources */,
 				F902ED331C694529007975F5 /* YoshiConfigurationManager.swift in Sources */,
-				320A8C991F54B214000797EF /* YoshiEnvironment.swift in Sources */,
-				320A8C9D1F54B736000797EF /* YoshiEnvironmentManager.swift in Sources */,
 				F902ED4E1C6A3B2D007975F5 /* DebugViewController.swift in Sources */,
 				94A8BC911F0802A200022AE1 /* UIWindowExtension.swift in Sources */,
+				32958CC41F55DCFC009F8543 /* YoshiEnvironmentMenu.swift in Sources */,
+				32958CC31F55DCFC009F8543 /* YoshiEnvironmentManager.swift in Sources */,
 				32AA07541E60D417001516EA /* YoshiDateSelectorMenu.swift in Sources */,
 				2746E6501C2C7AC3006C1DEF /* DebugDatePickerViewController.swift in Sources */,
 				276BCEC11C29AEDD002138C7 /* Yoshi.swift in Sources */,
 				329D104E1F057CDB00087CC1 /* YoshiTableViewSubmenuItem.swift in Sources */,
 				32AA07551E60D417001516EA /* YoshiDateSelectorMenuCellDataSource.swift in Sources */,
+				32958CC21F55DCFC009F8543 /* YoshiEnvironment.swift in Sources */,
 				664E30761DBEA72700C313C2 /* YoshiInvocation.swift in Sources */,
-				320A8C971F54B1EB000797EF /* YoshiEnvironmentMenu.swift in Sources */,
 				94E2C9DA1F095A8C00811CE9 /* YoshiSingleSelectionMenuItem.swift in Sources */,
 				94E2C9D21F09544100811CE9 /* YoshiGenericMenu.swift in Sources */,
 				327D1FB01F0ECA7D008889C2 /* YoshiActionMenu.swift in Sources */,
