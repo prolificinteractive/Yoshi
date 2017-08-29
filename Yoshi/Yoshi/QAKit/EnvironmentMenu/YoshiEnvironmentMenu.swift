@@ -16,7 +16,7 @@ public final class YoshiEnvironmentMenu: YoshiSingleSelectionMenu {
     /// - Parameters:
     ///   - title: Title of the menu, default to "Environment".
     ///   - environmentManager: A YoshiEnvironmentManager that manage environments.
-    init(title: String = "Environment", environmentManager: YoshiEnvironmentManager) {
+    public init(title: String = "Environment", environmentManager: YoshiEnvironmentManager) {
         super.init(title: title,
                    options: environmentManager.environments.map {
                     YoshiSingleSelection(title: $0.name, subtitle: $0.baseURL.absoluteString)},

@@ -42,24 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func environmentMenu() -> YoshiSubmenu {
-        
-        var environmentSelections = [YoshiSingleSelection]()
-        
-        let production = YoshiSingleSelection(title: "Production", subtitle: "https://mobile-api.com")
-        let staging = YoshiSingleSelection(title: "Staging", subtitle: "https://staging.mobile-api.com")
-        let qa = YoshiSingleSelection(title: "QA", subtitle: "http://qa.mobile-api.com")
-        
-        environmentSelections = [production, staging, qa]
-        
-        return YoshiSingleSelectionMenu(title: "Environment",
-                                        options: environmentSelections,
-                                        selectedIndex: 0,
-                                        didSelect: { selection in
-                                            NotificationCenter.default.post(name:
-                                                NSNotification.Name(rawValue:
-                                                    Notifications.EnvironmentUpdatedNotification),
-                                                                            object: selection.title)
-        })
+       return YoshiEnvironmentMenu(environmentManager: EnvironmentManager())
     }
 
     private func dateSelectorMenu() -> YoshiDateSelectorMenu {
