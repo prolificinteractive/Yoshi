@@ -8,14 +8,20 @@
 
 import Foundation
 
-public class YoshiEnvironmentMenu: YoshiSingleSelectionMenu {
-    
+/// Menu used to present a list of environment options and interact with YoshiEnvironmentManager.
+public final class YoshiEnvironmentMenu: YoshiSingleSelectionMenu {
+
+    /// Initialize the menu with the title and possible environment options.
+    ///
+    /// - Parameters:
+    ///   - title: Title of the menu, default to "Environment".
+    ///   - environmentManager: A YoshiEnvironmentManager that manage environments.
     init(title: String = "Environment", environmentManager: YoshiEnvironmentManager) {
         super.init(title: title,
-                   options: environmentManager.environments.map { YoshiSingleSelection(title: $0.name,
-                                                                                       subtitle: $0.baseURL.absoluteString)},
+                   options: environmentManager.environments.map {
+                    YoshiSingleSelection(title: $0.name, subtitle: $0.baseURL.absoluteString)},
                    selectedIndex: environmentManager.environments.enumerated().reduce (0, { origSelection, env in
-                    env.element.baseURL == environmentManager.currentEnvironment.baseURL ? env.offset : origSelection
+                    env.element == environmentManager.currentEnvironment ? env.offset : origSelection
                    }),
                    didSelect: { selection in
                     guard let selectedEnvironment = environmentManager.environments.filter ({

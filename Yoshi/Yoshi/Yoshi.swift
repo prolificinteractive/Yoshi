@@ -96,7 +96,7 @@ public final class Yoshi {
     public class func show() {
         YoshiConfigurationManager.sharedInstance.show()
     }
-    
+
     /// Return a navigation controller presenting the debug view controller.
     ///
     /// - Returns: Debug navigation controller

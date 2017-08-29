@@ -8,11 +8,12 @@
 
 import Foundation
 
+/// Environement manager contains current and all available environemnts info.
 public protocol YoshiEnvironmentManager: class {
-    
+
     /// The current HTTP environment.
     var currentEnvironment: YoshiEnvironment { get set }
-    
+
     /// All the available HTTP environments.
     var environments: [YoshiEnvironment] { get }
 }
