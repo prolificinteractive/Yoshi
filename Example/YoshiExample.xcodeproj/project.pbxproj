@@ -405,6 +405,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "Kanglei Wildcard Dev";
 				SWIFT_OBJC_BRIDGING_HEADER = "YoshiExample/YoshiExample-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -429,6 +430,7 @@
 				PROVISIONING_PROFILE = "261fb9e2-11a2-488f-9859-d376e144fe16";
 				PROVISIONING_PROFILE_SPECIFIER = "Kanglei Wildcard Dev";
 				SWIFT_OBJC_BRIDGING_HEADER = "YoshiExample/YoshiExample-Bridging-Header.h";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
