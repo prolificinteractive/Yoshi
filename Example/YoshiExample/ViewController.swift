@@ -10,22 +10,26 @@ import UIKit
 
 internal final class ViewController: UIViewController {
 
-    @IBOutlet private weak var environment: UILabel!
+    @IBOutlet private weak var environment: UILabel! {
+        didSet {
+            environment.text = environmentName
+        }
+    }
     @IBOutlet private weak var environmentDate: UILabel!
 
     private let dateFormatter: DateFormatter = DateFormatter()
+    
+    private var environmentName: String? {
+        didSet {
+            environment?.text = environmentName
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .short
-
-        NotificationCenter.default
-            .addObserver(self,
-                         selector: #selector(ViewController.didUpdateEnvironment(_:)),
-                         name: NSNotification.Name(rawValue: Notifications.EnvironmentUpdatedNotification),
-                         object: nil)
 
         NotificationCenter.default
             .addObserver(self,
@@ -38,15 +42,11 @@ internal final class ViewController: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
 
-    func didUpdateEnvironment(_ notification: Notification) {
-        guard let environment = notification.object as? String else {
-            return
-        }
-
-        self.environment.text = environment
+    func updateEnvironment(name: String, url: URL) {
+        environmentName = name
     }
 
-    func didUpdateEnvironmentDate(_ notification: Notification) {
+    @objc func didUpdateEnvironmentDate(_ notification: Notification) {
         guard let environmentDate = notification.object as? Date else {
             return
         }

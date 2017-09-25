@@ -16,9 +16,9 @@ internal final class DebugViewController: UIViewController {
     /// Configures navigation bar and table view header for root Yoshi menu
     private let isRootYoshiMenu: Bool
     private let tableView = UITableView()
-    fileprivate let options: [YoshiGenericMenu]
+    private let options: [YoshiGenericMenu]
 
-    fileprivate let dateFormatter: DateFormatter = DateFormatter()
+    private let dateFormatter: DateFormatter = DateFormatter()
 
     init(options: [YoshiGenericMenu], isRootYoshiMenu: Bool, completion: ((VoidCompletionBlock?) -> Void)?) {
         self.options = options
@@ -154,7 +154,7 @@ internal final class DebugViewController: UIViewController {
         }
     }
 
-    fileprivate func passCompletionHandler(to viewController: UIViewController) {
+    private func passCompletionHandler(to viewController: UIViewController) {
         if let debugViewController = viewController as? DebugViewController,
             let completionHandler = completionHandler,
             debugViewController.completionHandler == nil {

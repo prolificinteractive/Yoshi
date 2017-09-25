@@ -40,9 +40,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         Yoshi.setupDebugMenu(menu)
     }
+    
+    private var homeViewController: ViewController? {
+        return window?.rootViewController as? ViewController
+    }
 
     private func environmentMenu() -> YoshiSubmenu {
-       return YoshiEnvironmentMenu(environmentManager: EnvironmentManager())
+       let environmentOptions = [YoshiEnvironment(name: "Production", baseURL: URL(string: "https://mobile-api.com")!),
+                                 YoshiEnvironment(name: "Staging", baseURL: URL(string: "https://staging.mobile-api.com")!),
+                                 YoshiEnvironment(name: "QA", baseURL: URL(string: "http://qa.mobile-api.com")!)]
+        let environmentManager = YoshiEncodableEnvironmentManager(environments: environmentOptions) { [weak self] (environment) in
+            self?.homeViewController?.updateEnvironment(name: environment.name, url: environment.baseURL)
+        }
+       return YoshiEnvironmentMenu(environmentManager: environmentManager)
     }
 
     private func dateSelectorMenu() -> YoshiDateSelectorMenu {
@@ -71,6 +81,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                subtitle: "12345567890",
                                completion: nil)
     }
+    
     private func menuWithCustomUI() -> YoshiGenericMenu {
         return CustomUIMenu()
     }
