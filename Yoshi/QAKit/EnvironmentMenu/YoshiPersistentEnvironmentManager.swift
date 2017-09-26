@@ -66,8 +66,7 @@ private extension YoshiPersistentEnvironmentManager {
     }
     
     func archive(environment: T) {
-        let encodableEnvironment = YoshiEncodableEnvironment(environment: currentEnvironment)
-        let jsonData = try? encoder.encode(encodableEnvironment)
+        let jsonData = try? encoder.encode(environment)
         UserDefaults.standard.setValue(jsonData, forKey: YoshiEnvironemntKey)
         UserDefaults.standard.synchronize()
     }

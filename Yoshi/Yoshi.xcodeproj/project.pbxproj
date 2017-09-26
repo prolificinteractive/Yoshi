@@ -14,7 +14,6 @@
 		276BCEB11C29A6EF002138C7 /* YoshiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276BCEB01C29A6EF002138C7 /* YoshiTests.swift */; };
 		276BCEC11C29AEDD002138C7 /* Yoshi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276BCEC01C29AEDD002138C7 /* Yoshi.swift */; };
 		32074F0C1F7947D800327CD4 /* YoshiPersistentEnvironmentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32074F0B1F7947D800327CD4 /* YoshiPersistentEnvironmentManager.swift */; };
-		32074F0E1F794A1200327CD4 /* YoshiEncodableEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32074F0D1F794A1200327CD4 /* YoshiEncodableEnvironment.swift */; };
 		327D1FB01F0ECA7D008889C2 /* YoshiActionMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327D1FAF1F0ECA7D008889C2 /* YoshiActionMenu.swift */; };
 		3288D8861F795EEE004C0FA6 /* YoshiEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3288D8851F795EEE004C0FA6 /* YoshiEnvironment.swift */; };
 		32958CC41F55DCFC009F8543 /* YoshiEnvironmentMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32958CC11F55DCFC009F8543 /* YoshiEnvironmentMenu.swift */; };
@@ -61,7 +60,6 @@
 		276BCEB21C29A6EF002138C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		276BCEC01C29AEDD002138C7 /* Yoshi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Yoshi.swift; sourceTree = "<group>"; };
 		32074F0B1F7947D800327CD4 /* YoshiPersistentEnvironmentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoshiPersistentEnvironmentManager.swift; sourceTree = "<group>"; };
-		32074F0D1F794A1200327CD4 /* YoshiEncodableEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoshiEncodableEnvironment.swift; sourceTree = "<group>"; };
 		327D1FAF1F0ECA7D008889C2 /* YoshiActionMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoshiActionMenu.swift; sourceTree = "<group>"; };
 		3288D8851F795EEE004C0FA6 /* YoshiEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoshiEnvironment.swift; sourceTree = "<group>"; };
 		32958CC11F55DCFC009F8543 /* YoshiEnvironmentMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoshiEnvironmentMenu.swift; sourceTree = "<group>"; };
@@ -189,7 +187,6 @@
 			isa = PBXGroup;
 			children = (
 				3288D8851F795EEE004C0FA6 /* YoshiEnvironment.swift */,
-				32074F0D1F794A1200327CD4 /* YoshiEncodableEnvironment.swift */,
 				32074F0B1F7947D800327CD4 /* YoshiPersistentEnvironmentManager.swift */,
 				32958CC11F55DCFC009F8543 /* YoshiEnvironmentMenu.swift */,
 			);
@@ -421,7 +418,6 @@
 				327D1FB01F0ECA7D008889C2 /* YoshiActionMenu.swift in Sources */,
 				94E2C9D41F09544100811CE9 /* YoshiMenuCellDataSource.swift in Sources */,
 				94E2C9D81F0954C900811CE9 /* YoshiSingleSelectionMenu.swift in Sources */,
-				32074F0E1F794A1200327CD4 /* YoshiEncodableEnvironment.swift in Sources */,
 				F902ED541C6A831A007975F5 /* YoshiActionResult.swift in Sources */,
 				32AA074E1E60D38B001516EA /* YoshiTableViewMenu.swift in Sources */,
 				94E2C9D31F09544100811CE9 /* YoshiMenu.swift in Sources */,
