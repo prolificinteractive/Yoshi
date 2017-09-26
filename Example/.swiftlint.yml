@@ -1,5 +1,0 @@
-line_length: 120
-excluded:
-- Pods
-disabled_rules:
-- force_cast
