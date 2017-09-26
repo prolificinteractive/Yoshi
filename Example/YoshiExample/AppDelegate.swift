@@ -49,7 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
        let environmentOptions = [YoshiEnvironment(name: "Production", baseURL: URL(string: "https://mobile-api.com")!),
                                  YoshiEnvironment(name: "Staging", baseURL: URL(string: "https://staging.mobile-api.com")!),
                                  YoshiEnvironment(name: "QA", baseURL: URL(string: "http://qa.mobile-api.com")!)]
-        let environmentManager = YoshiEncodableEnvironmentManager(environments: environmentOptions) { [weak self] (environment) in
+        let environmentManager = YoshiPersistentEnvironmentManager(environments: environmentOptions) { [weak self] (environment) in
             self?.homeViewController?.updateEnvironment(name: environment.name, url: environment.baseURL)
         }
        return YoshiEnvironmentMenu(environmentManager: environmentManager)

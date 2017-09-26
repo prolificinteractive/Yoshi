@@ -12,7 +12,7 @@ import Foundation
 public typealias EnvironmentChangeEvent = (Environment) -> Void
 
 /// A YoshiEnvironmentManager that persisit user's environment selection using NSUserDefaults.
-open class YoshiEncodableEnvironmentManager: YoshiEnvironmentManager {
+open class YoshiPersistentEnvironmentManager: YoshiEnvironmentManager {
     
     public var currentEnvironment: Environment {
         didSet {
@@ -31,7 +31,7 @@ open class YoshiEncodableEnvironmentManager: YoshiEnvironmentManager {
     private var onEnvironmentChange: EnvironmentChangeEvent?
     
     /// Initialize the environement manager with the given environments.
-    /// The manger will retrieve the archaved environment selection from NSUserDefaults if any.
+    /// The manger will retrieve the archived environment selection from NSUserDefaults if any.
     /// Othereise the first environment will be used as the current environment.
     ///
     /// - Parameters:
@@ -41,17 +41,21 @@ open class YoshiEncodableEnvironmentManager: YoshiEnvironmentManager {
     public init(environments: [Environment], onEnvironmentChange: EnvironmentChangeEvent?) {
         self.environments = environments
         self.onEnvironmentChange = onEnvironmentChange
-        if let archivedEnvironment = YoshiEncodableEnvironmentManager.archivedEnvironment {
+        if let archivedEnvironment = YoshiPersistentEnvironmentManager.archivedEnvironment,
+            environments.contains(where: { $0 == archivedEnvironment }) {
             currentEnvironment = archivedEnvironment
         } else {
-            let defaultEnvironment = environments[0]
+            guard let defaultEnvironment = environments.first else {
+                fatalError("YoshiPersistentEnvironmentManager must be initalized with at least one environment")
+            }
+        
             currentEnvironment = defaultEnvironment
-            onEnvironmentChange?(currentEnvironment)
         }
+        onEnvironmentChange?(currentEnvironment)
     }
 }
 
-private extension YoshiEncodableEnvironmentManager {
+private extension YoshiPersistentEnvironmentManager {
     
     class var archivedEnvironment: Environment? {
         guard let archived = UserDefaults.standard.data(forKey: YoshiEnvironemntKey),
@@ -63,8 +67,8 @@ private extension YoshiEncodableEnvironmentManager {
     
     func archive(environment: Environment) {
         let encodableEnvironment = YoshiEncodableEnvironment(environment: currentEnvironment)
-        let jsonData = try? YoshiEncodableEnvironmentManager.encoder.encode(encodableEnvironment)
-        UserDefaults.standard.setValue(jsonData, forKey: YoshiEncodableEnvironmentManager.YoshiEnvironemntKey)
+        let jsonData = try? YoshiPersistentEnvironmentManager.encoder.encode(encodableEnvironment)
+        UserDefaults.standard.setValue(jsonData, forKey: YoshiPersistentEnvironmentManager.YoshiEnvironemntKey)
         UserDefaults.standard.synchronize()
     }
 }

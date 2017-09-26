@@ -13,7 +13,7 @@
 		276BCEAC1C29A6EF002138C7 /* Yoshi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 276BCEA11C29A6EF002138C7 /* Yoshi.framework */; };
 		276BCEB11C29A6EF002138C7 /* YoshiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276BCEB01C29A6EF002138C7 /* YoshiTests.swift */; };
 		276BCEC11C29AEDD002138C7 /* Yoshi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276BCEC01C29AEDD002138C7 /* Yoshi.swift */; };
-		32074F0C1F7947D800327CD4 /* YoshiEncodableEnvironmentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32074F0B1F7947D800327CD4 /* YoshiEncodableEnvironmentManager.swift */; };
+		32074F0C1F7947D800327CD4 /* YoshiPersistentEnvironmentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32074F0B1F7947D800327CD4 /* YoshiPersistentEnvironmentManager.swift */; };
 		32074F0E1F794A1200327CD4 /* YoshiEncodableEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32074F0D1F794A1200327CD4 /* YoshiEncodableEnvironment.swift */; };
 		327D1FB01F0ECA7D008889C2 /* YoshiActionMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327D1FAF1F0ECA7D008889C2 /* YoshiActionMenu.swift */; };
 		3288D8861F795EEE004C0FA6 /* YoshiEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3288D8851F795EEE004C0FA6 /* YoshiEnvironment.swift */; };
@@ -62,7 +62,7 @@
 		276BCEB01C29A6EF002138C7 /* YoshiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoshiTests.swift; sourceTree = "<group>"; };
 		276BCEB21C29A6EF002138C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		276BCEC01C29AEDD002138C7 /* Yoshi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Yoshi.swift; sourceTree = "<group>"; };
-		32074F0B1F7947D800327CD4 /* YoshiEncodableEnvironmentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoshiEncodableEnvironmentManager.swift; sourceTree = "<group>"; };
+		32074F0B1F7947D800327CD4 /* YoshiPersistentEnvironmentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoshiPersistentEnvironmentManager.swift; sourceTree = "<group>"; };
 		32074F0D1F794A1200327CD4 /* YoshiEncodableEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoshiEncodableEnvironment.swift; sourceTree = "<group>"; };
 		327D1FAF1F0ECA7D008889C2 /* YoshiActionMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoshiActionMenu.swift; sourceTree = "<group>"; };
 		3288D8851F795EEE004C0FA6 /* YoshiEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoshiEnvironment.swift; sourceTree = "<group>"; };
@@ -196,7 +196,7 @@
 				3288D8851F795EEE004C0FA6 /* YoshiEnvironment.swift */,
 				32074F0D1F794A1200327CD4 /* YoshiEncodableEnvironment.swift */,
 				32958CC01F55DCFC009F8543 /* YoshiEnvironmentManager.swift */,
-				32074F0B1F7947D800327CD4 /* YoshiEncodableEnvironmentManager.swift */,
+				32074F0B1F7947D800327CD4 /* YoshiPersistentEnvironmentManager.swift */,
 				32958CC11F55DCFC009F8543 /* YoshiEnvironmentMenu.swift */,
 			);
 			path = EnvironmentMenu;
@@ -319,7 +319,6 @@
 				276BCE9D1C29A6EF002138C7 /* Frameworks */,
 				276BCE9E1C29A6EF002138C7 /* Headers */,
 				276BCE9F1C29A6EF002138C7 /* Resources */,
-				27AFFEF51C6574B400C656BA /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -404,29 +403,12 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		27AFFEF51C6574B400C656BA /* SwiftLint */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = SwiftLint;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		276BCE9C1C29A6EF002138C7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				32074F0C1F7947D800327CD4 /* YoshiEncodableEnvironmentManager.swift in Sources */,
+				32074F0C1F7947D800327CD4 /* YoshiPersistentEnvironmentManager.swift in Sources */,
 				94E2C9D51F09544100811CE9 /* YoshiSubmenu.swift in Sources */,
 				32AA07501E60D38B001516EA /* YoshiTableViewMenuItem.swift in Sources */,
 				F902ED331C694529007975F5 /* YoshiConfigurationManager.swift in Sources */,
