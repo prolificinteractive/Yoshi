@@ -46,9 +46,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func environmentMenu() -> YoshiSubmenu {
-       let environmentOptions = [YoshiEnvironment(name: "Production", baseURL: URL(string: "https://mobile-api.com")!),
-                                 YoshiEnvironment(name: "Staging", baseURL: URL(string: "https://staging.mobile-api.com")!),
-                                 YoshiEnvironment(name: "QA", baseURL: URL(string: "http://qa.mobile-api.com")!)]
+       let environmentOptions = [YoshiBaseEnvironment(name: "Production", baseURL: URL(string: "https://mobile-api.com")!),
+                                 YoshiBaseEnvironment(name: "Staging", baseURL: URL(string: "https://staging.mobile-api.com")!),
+                                 YoshiBaseEnvironment(name: "QA", baseURL: URL(string: "http://qa.mobile-api.com")!)]
         let environmentManager = YoshiPersistentEnvironmentManager(environments: environmentOptions) { [weak self] (environment) in
             self?.homeViewController?.updateEnvironment(name: environment.name, url: environment.baseURL)
         }

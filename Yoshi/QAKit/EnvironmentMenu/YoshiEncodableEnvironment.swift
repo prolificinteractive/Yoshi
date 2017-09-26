@@ -9,7 +9,7 @@
 import Foundation
 
 /// Encodable and Codable HTTP environment.
-internal struct YoshiEncodableEnvironment: Environment, Codable {
+internal struct YoshiEncodableEnvironment: YoshiEnvironment, Codable {
  
     public private(set) var name: String
     
@@ -18,7 +18,7 @@ internal struct YoshiEncodableEnvironment: Environment, Codable {
     /// Initialize a YoshiEncodableEnvironment from a generic Environment.
     ///
     /// - Parameter environment: Generic YoshiEnvironment
-    init(environment: Environment) {
+    init(environment: YoshiEnvironment) {
         self.name = environment.name
         self.baseURL = environment.baseURL
     }

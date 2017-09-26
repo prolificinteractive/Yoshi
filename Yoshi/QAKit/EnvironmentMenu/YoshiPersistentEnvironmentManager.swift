@@ -9,19 +9,19 @@
 import Foundation
 
 /// Environment selection event.
-public typealias EnvironmentChangeEvent = (Environment) -> Void
+public typealias EnvironmentChangeEvent = (YoshiEnvironment) -> Void
 
 /// A YoshiEnvironmentManager that persisit user's environment selection using NSUserDefaults.
 open class YoshiPersistentEnvironmentManager: YoshiEnvironmentManager {
     
-    public var currentEnvironment: Environment {
+    public var currentEnvironment: YoshiEnvironment {
         didSet {
             archive(environment: currentEnvironment)
             onEnvironmentChange?(currentEnvironment)
         }
     }
     
-    public private(set) var environments: [Environment]
+    public private(set) var environments: [YoshiEnvironment]
     
     private static let YoshiEnvironemntKey = "YoshiEnvironment"
     
@@ -38,7 +38,7 @@ open class YoshiPersistentEnvironmentManager: YoshiEnvironmentManager {
     ///   - environments: Available Environments.
     ///   - onEnvironmentChange: Callback when environment is changed.
     ///                          Notice that the callback will be invoked when the manager is initialized.
-    public init(environments: [Environment], onEnvironmentChange: EnvironmentChangeEvent?) {
+    public init(environments: [YoshiEnvironment], onEnvironmentChange: EnvironmentChangeEvent?) {
         self.environments = environments
         self.onEnvironmentChange = onEnvironmentChange
         if let archivedEnvironment = YoshiPersistentEnvironmentManager.archivedEnvironment,
@@ -57,7 +57,7 @@ open class YoshiPersistentEnvironmentManager: YoshiEnvironmentManager {
 
 private extension YoshiPersistentEnvironmentManager {
     
-    class var archivedEnvironment: Environment? {
+    class var archivedEnvironment: YoshiEnvironment? {
         guard let archived = UserDefaults.standard.data(forKey: YoshiEnvironemntKey),
             let environment = try? decoder.decode(YoshiEncodableEnvironment.self, from: archived) else {
             return nil
@@ -65,7 +65,7 @@ private extension YoshiPersistentEnvironmentManager {
         return environment
     }
     
-    func archive(environment: Environment) {
+    func archive(environment: YoshiEnvironment) {
         let encodableEnvironment = YoshiEncodableEnvironment(environment: currentEnvironment)
         let jsonData = try? YoshiPersistentEnvironmentManager.encoder.encode(encodableEnvironment)
         UserDefaults.standard.setValue(jsonData, forKey: YoshiPersistentEnvironmentManager.YoshiEnvironemntKey)

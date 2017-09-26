@@ -12,8 +12,8 @@ import Foundation
 public protocol YoshiEnvironmentManager: class {
 
     /// The current HTTP environment.
-    var currentEnvironment: Environment { get set }
+    var currentEnvironment: YoshiEnvironment { get set }
 
     /// All the available HTTP environments.
-    var environments: [Environment] { get }
+    var environments: [YoshiEnvironment] { get }
 }
