@@ -9,26 +9,26 @@
 import Foundation
 
 /// Environment selection event.
-public typealias EnvironmentChangeEvent = (YoshiEnvironment) -> Void
+public typealias EnvironmentChangeEvent<T: YoshiEnvironment & Codable> = (T) -> Void
+
+private let YoshiEnvironemntKey = "YoshiEnvironment"
+
+private let encoder = JSONEncoder()
+private let decoder = JSONDecoder()
 
 /// A YoshiEnvironmentManager that persisit user's environment selection using NSUserDefaults.
-open class YoshiPersistentEnvironmentManager: YoshiEnvironmentManager {
+open class YoshiPersistentEnvironmentManager<T: YoshiEnvironment & Codable> {
     
-    public var currentEnvironment: YoshiEnvironment {
+    public var currentEnvironment: T {
         didSet {
             archive(environment: currentEnvironment)
             onEnvironmentChange?(currentEnvironment)
         }
     }
     
-    public private(set) var environments: [YoshiEnvironment]
+    public private(set) var environments: [T]
     
-    private static let YoshiEnvironemntKey = "YoshiEnvironment"
-    
-    private static let encoder = JSONEncoder()
-    private static let decoder = JSONDecoder()
-    
-    private var onEnvironmentChange: EnvironmentChangeEvent?
+    private var onEnvironmentChange: EnvironmentChangeEvent<T>?
     
     /// Initialize the environement manager with the given environments.
     /// The manger will retrieve the archived environment selection from NSUserDefaults if any.
@@ -38,7 +38,7 @@ open class YoshiPersistentEnvironmentManager: YoshiEnvironmentManager {
     ///   - environments: Available Environments.
     ///   - onEnvironmentChange: Callback when environment is changed.
     ///                          Notice that the callback will be invoked when the manager is initialized.
-    public init(environments: [YoshiEnvironment], onEnvironmentChange: EnvironmentChangeEvent?) {
+    public init(environments: [T], onEnvironmentChange: EnvironmentChangeEvent<T>?) {
         self.environments = environments
         self.onEnvironmentChange = onEnvironmentChange
         if let archivedEnvironment = YoshiPersistentEnvironmentManager.archivedEnvironment,
@@ -57,18 +57,18 @@ open class YoshiPersistentEnvironmentManager: YoshiEnvironmentManager {
 
 private extension YoshiPersistentEnvironmentManager {
     
-    class var archivedEnvironment: YoshiEnvironment? {
+    class var archivedEnvironment: T? {
         guard let archived = UserDefaults.standard.data(forKey: YoshiEnvironemntKey),
-            let environment = try? decoder.decode(YoshiEncodableEnvironment.self, from: archived) else {
+            let environment = try? decoder.decode(T.self, from: archived) else {
             return nil
         }
         return environment
     }
     
-    func archive(environment: YoshiEnvironment) {
+    func archive(environment: T) {
         let encodableEnvironment = YoshiEncodableEnvironment(environment: currentEnvironment)
-        let jsonData = try? YoshiPersistentEnvironmentManager.encoder.encode(encodableEnvironment)
-        UserDefaults.standard.setValue(jsonData, forKey: YoshiPersistentEnvironmentManager.YoshiEnvironemntKey)
+        let jsonData = try? encoder.encode(encodableEnvironment)
+        UserDefaults.standard.setValue(jsonData, forKey: YoshiEnvironemntKey)
         UserDefaults.standard.synchronize()
     }
 }

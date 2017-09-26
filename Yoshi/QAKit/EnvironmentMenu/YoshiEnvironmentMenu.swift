@@ -9,14 +9,14 @@
 import Foundation
 
 /// Menu used to present a list of environment options and interact with YoshiEnvironmentManager.
-public final class YoshiEnvironmentMenu: YoshiSingleSelectionMenu {
+public final class YoshiEnvironmentMenu<T: YoshiEnvironment & Codable>: YoshiSingleSelectionMenu {
 
     /// Initialize the menu with the title and possible environment options.
     ///
     /// - Parameters:
     ///   - title: Title of the menu, default to "Environment".
     ///   - environmentManager: A YoshiEnvironmentManager that manage environments.
-    public init(title: String = "Environment", environmentManager: YoshiEnvironmentManager) {
+    public init(title: String = "Environment", environmentManager: YoshiPersistentEnvironmentManager<T>) {
         super.init(title: title,
                    options: environmentManager.environments.map {
                     YoshiSingleSelection(title: $0.name, subtitle: $0.baseURL.absoluteString)},

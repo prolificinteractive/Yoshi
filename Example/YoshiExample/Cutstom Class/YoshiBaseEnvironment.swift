@@ -6,10 +6,10 @@
 //  Copyright © 2017 Prolific Interactive. All rights reserved.
 //
 
-import Foundation
+import Yoshi
 
 /// Default basic implementation of Environment protocol.
-open class YoshiBaseEnvironment: YoshiEnvironment {
+open class YoshiBaseEnvironment: YoshiEnvironment, Codable {
     
     public private(set) var name: String
     
