@@ -21,6 +21,9 @@ open class YoshiPersistentEnvironmentManager<T: YoshiEnvironment & Codable> {
     
     public var currentEnvironment: T {
         didSet {
+            guard !(currentEnvironment == oldValue) else {
+                return
+            }
             archive(environment: currentEnvironment)
             onEnvironmentChange?(currentEnvironment)
         }
@@ -28,7 +31,8 @@ open class YoshiPersistentEnvironmentManager<T: YoshiEnvironment & Codable> {
     
     public private(set) var environments: [T]
     
-    private var onEnvironmentChange: EnvironmentChangeEvent<T>?
+    /// Callback when new environment is selected.
+    open var onEnvironmentChange: EnvironmentChangeEvent<T>?
     
     /// Initialize the environement manager with the given environments.
     /// The manger will retrieve the archived environment selection from NSUserDefaults if any.
@@ -37,8 +41,8 @@ open class YoshiPersistentEnvironmentManager<T: YoshiEnvironment & Codable> {
     /// - Parameters:
     ///   - environments: Available Environments.
     ///   - onEnvironmentChange: Callback when environment is changed.
-    ///                          Notice that the callback will be invoked when the manager is initialized.
-    public init(environments: [T], onEnvironmentChange: EnvironmentChangeEvent<T>?) {
+    ///                          Notice that the if set here, callback will be invoked when the manager is initialized.
+    public init(environments: [T], onEnvironmentChange: EnvironmentChangeEvent<T>? = nil) {
         self.environments = environments
         self.onEnvironmentChange = onEnvironmentChange
         if let archivedEnvironment = YoshiPersistentEnvironmentManager.archivedEnvironment,
