@@ -11,7 +11,7 @@ import Foundation
 /// Environment selection event.
 public typealias EnvironmentChangeEvent<T: YoshiEnvironment & Codable> = (T) -> Void
 
-private let YoshiEnvironemntKey = "YoshiEnvironment"
+private let YoshiEnvironmentKey = "YoshiEnvironment"
 
 private let encoder = JSONEncoder()
 private let decoder = JSONDecoder()
@@ -46,7 +46,7 @@ open class YoshiPersistentEnvironmentManager<T: YoshiEnvironment & Codable> {
             currentEnvironment = archivedEnvironment
         } else {
             guard let defaultEnvironment = environments.first else {
-                fatalError("YoshiPersistentEnvironmentManager must be initalized with at least one environment")
+                fatalError("YoshiPersistentEnvironmentManager must be initialized with at least one environment")
             }
         
             currentEnvironment = defaultEnvironment
@@ -58,7 +58,7 @@ open class YoshiPersistentEnvironmentManager<T: YoshiEnvironment & Codable> {
 private extension YoshiPersistentEnvironmentManager {
     
     class var archivedEnvironment: T? {
-        guard let archived = UserDefaults.standard.data(forKey: YoshiEnvironemntKey),
+        guard let archived = UserDefaults.standard.data(forKey: YoshiEnvironmentKey),
             let environmentContainer = try? decoder.decode(YoshiPersistentEnvironment<T>.self, from: archived) else {
                 return nil
         }
@@ -68,7 +68,7 @@ private extension YoshiPersistentEnvironmentManager {
     func archive(environment: T) {
         let arcivingEnvironmentContainer = YoshiPersistentEnvironment(environment: environment)
         let jsonData = try? encoder.encode(arcivingEnvironmentContainer)
-        UserDefaults.standard.setValue(jsonData, forKey: YoshiEnvironemntKey)
+        UserDefaults.standard.setValue(jsonData, forKey: YoshiEnvironmentKey)
         UserDefaults.standard.synchronize()
     }
 }
