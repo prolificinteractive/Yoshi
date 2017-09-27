@@ -12,7 +12,7 @@ import Foundation
 public typealias EnvironmentChangeEvent<T: YoshiEnvironment & Codable> = (T) -> Void
 
 /// A YoshiEnvironmentManager that persisit user's environment selection using NSUserDefaults.
-open class YoshiPersistentEnvironmentManager<T: YoshiEnvironment & Codable> {
+public class YoshiPersistentEnvironmentManager<T: YoshiEnvironment & Codable> {
     
     public var currentEnvironment: T {
         didSet {
