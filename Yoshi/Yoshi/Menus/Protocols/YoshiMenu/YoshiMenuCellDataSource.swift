@@ -13,9 +13,9 @@ public struct YoshiMenuCellDataSource: YoshiReusableCellDataSource {
     private let title: String
 
     private let subtitle: String?
-    
+
     private let accessoryType: UITableViewCellAccessoryType
-    
+
     /// Initalize the YoshiMenuCellDataSource instance
     ///
     /// - Parameters:

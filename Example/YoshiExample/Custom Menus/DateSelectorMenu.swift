@@ -10,12 +10,12 @@ import Yoshi
 
 /// A date selector menu item to be displayed in Yoshi.
 internal final class DateSelectorMenu: YoshiDateSelectorMenu {
-    
+
     var title: String
     var subtitle: String?
     var selectedDate: Date
     var didUpdateDate: (_ dateSelected: Date) -> Void
-    
+
     init(title: String,
          subtitle: String? = nil,
          selectedDate: Date = Date(),

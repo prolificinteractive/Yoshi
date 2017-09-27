@@ -23,13 +23,32 @@ Pod::Spec.new do |s|
   s.homepage         = "https://github.com/prolificinteractive/Yoshi"
   s.screenshots     = "https://raw.githubusercontent.com/prolificinteractive/Yoshi/a6e85e87cbd67f2bb3bfe60157e7b13281d80f20/Images/Yoshi.png", "https://raw.githubusercontent.com/prolificinteractive/Yoshi/c66cdf8dc2ab643fe57996d20d3cd37b8b70ceff/Images/Yoshi_iPad.png"
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { "Michael Campbell" => "Michael@prolificinteractive.com" , "Quentin Ribierre" => "quentin@prolificinteractive.com" , "Kanglei Fang" => "kangelei@prolificinteractive.com" }
+  s.author           = { "Michael Campbell" => "Michael@prolificinteractive.com" , "Quentin Ribierre" => "quentin@prolificinteractive.com" , "Kanglei Fang" => "kanglei@prolificinteractive.com" }
   s.source           = { :git => "https://github.com/prolificinteractive/Yoshi.git", :tag => s.version.to_s }
 
   s.platform     = :ios, '8.0'
   s.requires_arc = true
 
-  s.source_files = 'Yoshi/Yoshi/**/*.{swift}'
-  s.resources = 'Yoshi/**/*.{png,jpeg,jpg,storyboard,xib}'
+  # Default subspec that contains all shared code files for the library
+  # All subspecs must declare this as a dependency.
+  s.subspec "Core" do |ss|
+   ss.source_files = "Yoshi/Yoshi/**/*.{swift}"
+   ss.resources = 'Yoshi/**/*.{png,jpeg,jpg,storyboard,xib}'
+  end
 
+  s.default_subspec = "Core"
+
+  # Subspecs
+  qakit     =   { :name => "QAKit" }
+
+  all_specs = [qakit]
+  all_specs.each do |spec|
+
+    # Define a Cocoapods subspec
+    s.subspec spec[:name] do |sp|
+      sp.source_files = "Yoshi/#{spec[:name]}/**/*.swift"
+      sp.dependency "Yoshi/Core"
+    end
+  end
+  
 end

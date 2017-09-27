@@ -28,7 +28,7 @@ public extension YoshiTableViewMenu {
         let subtitle = selectedDisplayItem?.name
         return YoshiMenuCellDataSource(title: title, subtitle: subtitle, accessoryType: .disclosureIndicator)
     }
-    
+
     var options: [YoshiGenericMenu] {
         let selectedAction: (_ displayItem: YoshiTableViewMenuItem) -> Void = { selectedItem in
             self.displayItems.forEach { $0.selected = false }
@@ -37,7 +37,7 @@ public extension YoshiTableViewMenu {
         }
         return displayItems.map { YoshiTableViewSubmenuItem(tableViewMenuItem: $0, action: selectedAction) }
     }
-    
+
     func execute() -> YoshiActionResult {
         let debugViewController = DebugViewController(options: options, isRootYoshiMenu: false, completion: nil)
         return .push(debugViewController)

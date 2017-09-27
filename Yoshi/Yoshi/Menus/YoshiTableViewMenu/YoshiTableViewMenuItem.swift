@@ -24,18 +24,18 @@ public protocol YoshiTableViewMenuItem: class, YoshiGenericMenu {
 }
 
 public extension YoshiTableViewMenuItem {
-    
+
     /// The display sub text for the table view menu item.
     var subtitle: String? {
         return nil
     }
-    
+
     var cellSource: YoshiReusableCellDataSource {
         return YoshiMenuCellDataSource(title: name, subtitle: subtitle, accessoryType: selected ? .checkmark : .none)
     }
-    
+
     func execute() -> YoshiActionResult {
         return .pop
     }
-    
+
 }

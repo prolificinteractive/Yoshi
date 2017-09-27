@@ -41,25 +41,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Yoshi.setupDebugMenu(menu)
     }
     
+    private var homeViewController: ViewController? {
+        return window?.rootViewController as? ViewController
+    }
+
     private func environmentMenu() -> YoshiSubmenu {
-        
-        var environmentSelections = [YoshiSingleSelection]()
-        
-        let production = YoshiSingleSelection(title: "Production", subtitle: "https://mobile-api.com")
-        let staging = YoshiSingleSelection(title: "Staging", subtitle: "https://staging.mobile-api.com")
-        let qa = YoshiSingleSelection(title: "QA", subtitle: "http://qa.mobile-api.com")
-        
-        environmentSelections = [production, staging, qa]
-        
-        return YoshiSingleSelectionMenu(title: "Environment",
-                                        options: environmentSelections,
-                                        selectedIndex: 0,
-                                        didSelect: { selection in
-                                            NotificationCenter.default.post(name:
-                                                NSNotification.Name(rawValue:
-                                                    Notifications.EnvironmentUpdatedNotification),
-                                                                            object: selection.title)
-        })
+        let environmentOptions = [YoshiBaseEnvironment.qa, YoshiBaseEnvironment.production]
+        let environmentManager = YoshiEnvironmentManager(environments: environmentOptions) { [weak self] (environment) in
+            self?.homeViewController?.updateEnvironment(name: environment.name, url: environment.baseURL)
+        }
+        return YoshiEnvironmentMenu(environmentManager: environmentManager)
     }
 
     private func dateSelectorMenu() -> YoshiDateSelectorMenu {
@@ -88,6 +79,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                subtitle: "12345567890",
                                completion: nil)
     }
+    
     private func menuWithCustomUI() -> YoshiGenericMenu {
         return CustomUIMenu()
     }

@@ -12,13 +12,13 @@ internal typealias VoidCompletionBlock = () -> Void
 internal final class DebugViewController: UIViewController {
 
     var completionHandler: ((_ completed: VoidCompletionBlock? ) -> Void)?
-    
+
     /// Configures navigation bar and table view header for root Yoshi menu
     private let isRootYoshiMenu: Bool
     private let tableView = UITableView()
-    fileprivate let options: [YoshiGenericMenu]
+    private let options: [YoshiGenericMenu]
 
-    fileprivate let dateFormatter: DateFormatter = DateFormatter()
+    private let dateFormatter: DateFormatter = DateFormatter()
 
     init(options: [YoshiGenericMenu], isRootYoshiMenu: Bool, completion: ((VoidCompletionBlock?) -> Void)?) {
         self.options = options
@@ -65,17 +65,17 @@ internal final class DebugViewController: UIViewController {
 
         tableView.dataSource = self
         tableView.delegate = self
-        
+
         if isRootYoshiMenu {
             tableView.tableHeaderView = tableViewHeader()
         }
-        
+
         registerCellClasses(options: options)
     }
 
     private func registerCellClasses(options: [YoshiGenericMenu]) {
         var registeredCells = Set<String>()
-        
+
         // Register for each reuse Identifer for once
         options.forEach { option in
             let reuseIdentifier = type(of:option.cellSource).reuseIdentifier
@@ -130,11 +130,11 @@ internal final class DebugViewController: UIViewController {
 
     private func setupNavigationController() {
         guard isRootYoshiMenu else {
-            
+
             /// Non-root Yoshi menus keep default back button
             return
         }
-        
+
         let closeButton = UIBarButtonItem(title: "Close",
                                           style: .plain,
                                           target: self,
@@ -153,8 +153,8 @@ internal final class DebugViewController: UIViewController {
             completionHandler(nil)
         }
     }
-    
-    fileprivate func passCompletionHandler(to viewController: UIViewController) {
+
+    private func passCompletionHandler(to viewController: UIViewController) {
         if let debugViewController = viewController as? DebugViewController,
             let completionHandler = completionHandler,
             debugViewController.completionHandler == nil {

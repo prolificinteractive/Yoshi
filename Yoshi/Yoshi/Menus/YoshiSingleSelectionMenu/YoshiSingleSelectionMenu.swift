@@ -12,13 +12,13 @@ public typealias YoshiSingleSelection = (title: String, subtitle: String?)
 /// A YoshiSubmenu implementation used to host a group of single selection.
 /// Once provided with initial selection and options, Yoshi will maintain the selection and present them in a tableview.
 open class YoshiSingleSelectionMenu: YoshiSubmenu {
-    
+
     open let title: String
-    
+
     open var subtitle: String? {
         return availableSelections[selectedIndex].title
     }
-    
+
     open var options: [YoshiGenericMenu] {
         return availableSelections.enumerated().map {
             YoshiSingleSelectionMenuItem(selection: $0.element,
@@ -26,11 +26,11 @@ open class YoshiSingleSelectionMenu: YoshiSubmenu {
                                          action: selectedAction)
         }
     }
-    
+
     private let availableSelections: [YoshiSingleSelection]
     private var selectedIndex: Int
     private var selectedAction: ((YoshiSingleSelection) -> Void)?
-    
+
     /// Initialize the YoshiSingleSelectionMenu with title, options, initial selected index,
     /// and the action when one of the options is selected.
     ///
@@ -56,5 +56,5 @@ open class YoshiSingleSelectionMenu: YoshiSubmenu {
             didSelect?(selectedSelection)
         }
     }
-    
+
 }

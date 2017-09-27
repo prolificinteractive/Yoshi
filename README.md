@@ -30,16 +30,34 @@ Yoshi is a convenient wrapper around the UI code that is often needed for displa
 Yoshi is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your `Podfile`:
 
+###### Swift 4.0
+
+```ruby
+pod 'Yoshi'
+```
+
 ###### Swift 3.0
 
 ```ruby
-pod "Yoshi"
+pod 'Yoshi', '2.2.2'
 ```
 
 ###### Swift 2.3
 
 ```ruby
 pod 'Yoshi', '1.1.1'
+```
+
+###### Subspec
+
+Starting from version 3, Yoshi provides implementations for some common debugging tasks and category them in its subspecs, including:
+
+* [QAKit](Yoshi/QAKit/README.md)
+
+To install, specify the subspec in your project's Podfile:
+
+```ruby
+pod 'Yoshi', :subspecs => ['QAKit']
 ```
 
 ### Carthage
@@ -85,16 +103,16 @@ To display a single selection menu, just construct a `YoshiSingleSelectionMenu` 
 ```swift
 
 // Build necessary options.
-let production = YoshiSingleSelection(title: "Production", subtitle: "https://mobile-api.com")
-let staging = YoshiSingleSelection(title: "Staging", subtitle: "https://staging.mobile-api.com")
-let qa = YoshiSingleSelection(title: "QA", subtitle: "http://qa.mobile-api.com")
-let environmentItems: [YoshiTableViewMenuItem] = [production, staging, qa]
+let option1 = YoshiSingleSelection(title: "Option1", subtitle: "Select to push")
+let option2 = YoshiSingleSelection(title: "Option2", subtitle: "Select to present")
+let option3 = YoshiSingleSelection(title: "Option3", subtitle: "Select to dismiss")
+let options: [YoshiTableViewMenuItem] = [option1, option2, option3]
 
 // Construct YoshiSingleSelectionMenu.
-let singleSelectionMenu = YoshiSingleSelectionMenu(title: "Environment",
-                                                   options: environmentSelections,
+let singleSelectionMenu = YoshiSingleSelectionMenu(title: "Options",
+                                                   options: options,
                                                    selectedIndex: 0,
-                                                   didSelect: { selection in /*Select the environment based on selection*/ })
+                                                   didSelect: { selection in /*Select the option based on selection*/ })
 ```
 
 Yoshi will take care of managing selections and call back the convenient closure function when a new selection is made.
