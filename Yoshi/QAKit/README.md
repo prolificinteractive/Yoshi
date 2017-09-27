@@ -12,7 +12,7 @@ To set it up, just make your environment model adopt `Codable` and `YoshiEnviron
 
 internal struct YoshiBaseEnvironment: Codable, YoshiEnvironment {
     var name: String
-    var basedURL: URL
+    var baseURL: URL
 }
 
 ```
