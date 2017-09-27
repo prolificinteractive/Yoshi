@@ -1,10 +1,10 @@
 # QAKit
 
-QAKit provides menus for some frequestly used QA tasks.
+QAKit provides menus for some frequently used QA tasks.
 
 ## EnvironmentMenu
 
-Environment Menu is used to globally change and store the networking environment (http base URL) of your app. Yoshi leverages the new `JSONDecoder` and `JSONEnCoder` in Swift 4 to help persist the environment selection in `NSUSerDefaults`. So when user selects the menu, the selection is persisted and will be retrieved automatically next time app is opened.
+Environment Menu is used to globally change and store the networking environment (http base URL) of your app. Yoshi leverages the new `JSONDecoder` and `JSONEnCoder` in Swift 4 to help persist the environment selection in `USerDefaults`. So when user selects the menu, the selection is persisted and will be retrieved automatically next time app is opened.
 
 To set it up, just make your environment model adopt `Codable` and `YoshiEnvironment`:
 
