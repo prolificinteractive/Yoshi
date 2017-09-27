@@ -32,7 +32,14 @@ Then, register the callback and environments to the environment manager.
 
 ```swift
 
+// If you want to get the callback when environment is initialized, register the callback when initializing the manager.
 let environmentManager = YoshiEnvironmentManager(environments: environmentOptions) { (environment) in
+    /// Do something when environment is changed.
+}
+
+// Or, you can register the callback separately.
+// Notice that this way callback won't be invoked when environment is retrieved from the archive.
+environmentManager.onEnvironmentChange = { (environment) in
     /// Do something when environment is changed.
 }
 
