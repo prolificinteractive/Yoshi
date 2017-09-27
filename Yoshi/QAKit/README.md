@@ -11,7 +11,7 @@ To set it up, just make your environment model adopt `Codable` and `YoshiEnviron
 ```swift
 
 internal struct YoshiBaseEnvironment: Codable, YoshiEnvironment {
-    var name: String
+    var name: String
     var baseURL: URL
 }
 
