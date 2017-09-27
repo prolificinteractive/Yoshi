@@ -59,14 +59,15 @@ private extension YoshiPersistentEnvironmentManager {
     
     class var archivedEnvironment: T? {
         guard let archived = UserDefaults.standard.data(forKey: YoshiEnvironemntKey),
-            let environment = try? decoder.decode(T.self, from: archived) else {
-            return nil
+            let environmentContainer = try? decoder.decode(YoshiPersistentEnvironment<T>.self, from: archived) else {
+                return nil
         }
-        return environment
+        return environmentContainer.persistedEnvironment
     }
     
     func archive(environment: T) {
-        let jsonData = try? encoder.encode(environment)
+        let arcivingEnvironmentContainer = YoshiPersistentEnvironment(environment: environment)
+        let jsonData = try? encoder.encode(arcivingEnvironmentContainer)
         UserDefaults.standard.setValue(jsonData, forKey: YoshiEnvironemntKey)
         UserDefaults.standard.synchronize()
     }

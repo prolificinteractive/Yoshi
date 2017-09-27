@@ -46,13 +46,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func environmentMenu() -> YoshiSubmenu {
-       let environmentOptions = [YoshiBaseEnvironment(name: "Production", baseURL: URL(string: "https://mobile-api.com")!),
-                                 YoshiBaseEnvironment(name: "Staging", baseURL: URL(string: "https://staging.mobile-api.com")!),
-                                 YoshiBaseEnvironment(name: "QA", baseURL: URL(string: "http://qa.mobile-api.com")!)]
+        let environmentOptions = [YoshiBaseEnvironment.qa, YoshiBaseEnvironment.production]
         let environmentManager = YoshiPersistentEnvironmentManager(environments: environmentOptions) { [weak self] (environment) in
             self?.homeViewController?.updateEnvironment(name: environment.name, url: environment.baseURL)
         }
-       return YoshiEnvironmentMenu(environmentManager: environmentManager)
+        return YoshiEnvironmentMenu(environmentManager: environmentManager)
     }
 
     private func dateSelectorMenu() -> YoshiDateSelectorMenu {

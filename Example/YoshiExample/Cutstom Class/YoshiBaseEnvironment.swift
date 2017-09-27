@@ -8,20 +8,26 @@
 
 import Yoshi
 
-/// Default basic implementation of Environment protocol.
-open class YoshiBaseEnvironment: YoshiEnvironment, Codable {
+/// Default basic implementation of YoshiEnvironment protocol.
+internal enum YoshiBaseEnvironment: String, YoshiEnvironment, Codable {
     
-    public private(set) var name: String
+    case qa, production
     
-    public private(set) var baseURL: URL
+    var name: String {
+        switch self {
+        case .qa:
+            return "QA"
+        case .production:
+            return "Production"
+        }
+    }
     
-    /// Initialize the YoshiEnvironment with the given name and URL.
-    ///
-    /// - Parameters:
-    ///   - name: Name of the environment.
-    ///   - baseURL: Base URL of the environment.
-    public init(name: String, baseURL: URL) {
-        self.name = name
-        self.baseURL = baseURL
+    var baseURL: URL {
+        switch self {
+        case .qa:
+            return URL(string: "https://www.qa.com")!
+        case .production:
+            return URL(string: "https://www.production.com")!
+        }
     }
 }
