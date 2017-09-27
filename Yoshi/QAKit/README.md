@@ -32,7 +32,7 @@ Then, register the callback and environments to the environment manager.
 
 ```swift
 
-let environmentManager = YoshiEncodableEnvironmentManager(environments: environmentOptions) { (environment) in
+let environmentManager = YoshiEnvironmentManager(environments: environmentOptions) { (environment) in
     /// Do something when environment is changed.
 }
 

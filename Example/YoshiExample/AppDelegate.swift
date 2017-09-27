@@ -47,7 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private func environmentMenu() -> YoshiSubmenu {
         let environmentOptions = [YoshiBaseEnvironment.qa, YoshiBaseEnvironment.production]
-        let environmentManager = YoshiPersistentEnvironmentManager(environments: environmentOptions) { [weak self] (environment) in
+        let environmentManager = YoshiEnvironmentManager(environments: environmentOptions) { [weak self] (environment) in
             self?.homeViewController?.updateEnvironment(name: environment.name, url: environment.baseURL)
         }
         return YoshiEnvironmentMenu(environmentManager: environmentManager)

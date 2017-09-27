@@ -11,15 +11,15 @@ import Foundation
 /// Environment selection event.
 public typealias EnvironmentChangeEvent<T: YoshiEnvironment & Codable> = (T) -> Void
 
-/// A YoshiEnvironmentManager that persisit user's environment selection using NSUserDefaults.
-public class YoshiPersistentEnvironmentManager<T: YoshiEnvironment & Codable> {
+/// A YoshiEnvironmentManager that persisits user's environment selection using NSUserDefaults.
+public class YoshiEnvironmentManager<T: YoshiEnvironment & Codable> {
     
     public var currentEnvironment: T {
         didSet {
             guard !(currentEnvironment == oldValue) else {
                 return
             }
-            YoshiPersistentEnvironmentManager.archive(environment: currentEnvironment)
+            YoshiEnvironmentManager.archive(environment: currentEnvironment)
             onEnvironmentChange?(currentEnvironment)
         }
     }
@@ -40,7 +40,7 @@ public class YoshiPersistentEnvironmentManager<T: YoshiEnvironment & Codable> {
     public init(environments: [T], onEnvironmentChange: EnvironmentChangeEvent<T>? = nil) {
         self.environments = environments
         self.onEnvironmentChange = onEnvironmentChange
-        if let archivedEnvironment = YoshiPersistentEnvironmentManager.archivedEnvironment,
+        if let archivedEnvironment = YoshiEnvironmentManager.archivedEnvironment,
             environments.contains(where: { $0 == archivedEnvironment }) {
             currentEnvironment = archivedEnvironment
         } else {
@@ -61,7 +61,7 @@ private struct Constants {
     static let decoder = JSONDecoder()
 }
 
-private extension YoshiPersistentEnvironmentManager {
+private extension YoshiEnvironmentManager {
 
     class var archivedEnvironment: T? {
         guard let archived = UserDefaults.standard.data(forKey: Constants.YoshiEnvironmentKey),
