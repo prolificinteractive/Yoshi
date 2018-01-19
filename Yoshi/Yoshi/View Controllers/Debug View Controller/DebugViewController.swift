@@ -56,10 +56,10 @@ internal final class DebugViewController: UIViewController {
             relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1.0, constant: 0.0)
         let leadingConstraint = NSLayoutConstraint(item: tableView, attribute: .leading,
             relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1.0, constant: 0.0)
-        let trailingConstraint = NSLayoutConstraint(item: tableView,
-            attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1.0, constant: 0.0)
+        let trailingConstraint = NSLayoutConstraint(item: tableView, attribute: .trailing,
+            relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1.0, constant: 0.0)
         let bottomConstraint = NSLayoutConstraint(item: tableView, attribute: .bottom,
-            relatedBy: .equal, toItem: bottomLayoutGuide, attribute: .top, multiplier: 1.0, constant: 0.0)
+            relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1.0, constant: 0.0)
 
         view.addConstraints([topConstraint, leadingConstraint, trailingConstraint, bottomConstraint])
 
