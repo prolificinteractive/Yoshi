@@ -1,7 +1,7 @@
 PODS:
   - Instabug (5.2.4)
-  - Yoshi/Core (2.2.2)
-  - Yoshi/QAKit (2.2.2):
+  - Yoshi/Core (3.0.0-beta.1)
+  - Yoshi/QAKit (3.0.0-beta.1):
     - Yoshi/Core
 
 DEPENDENCIES:
@@ -14,7 +14,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Instabug: 6fa40a5e2a4620f0589dfc8e4e01b1018c8c42b1
-  Yoshi: 032a56c87369104a3a1ee80a247e551d91bddc99
+  Yoshi: 53a4349a09f1efbc7ee40774251843a5e86e7187
 
 PODFILE CHECKSUM: 3e1269998b54f9d27d611d2231c251556652c10a
 
