@@ -7,31 +7,54 @@
 //
 
 /**
- Protocol for defining a menu option for choosing a date.
+ A date menu used to display and select from date picker.
  */
-public protocol YoshiDateSelectorMenu: class, YoshiMenu {
-
-    /// The selected date.
-    var selectedDate: Date { get set }
-
-    /// Function to handle the date selection.
-    var didUpdateDate: (_ dateSelected: Date) -> Void { get }
-
-}
-
-public extension YoshiDateSelectorMenu {
-
-    /// Data source for the date selector style cell
-    var cellSource: YoshiReusableCellDataSource {
-        return YoshiDateSelectorMenuCellDataSource(title: title, date: selectedDate)
+open class YoshiDateSelectorMenu: YoshiMenu {
+    
+    public var title: String
+    public var subtitle: String?
+    
+    /// Selected Date of the menu.
+    public var selectedDate: Date
+    
+    /// The callback when date is selected.
+    public var didUpdateDate: (_ dateSelected: Date) -> Void
+    
+    private let dateFormatter: DateFormatter
+    
+    open static var defaultDateFormatter: DateFormatter {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .short
+        
+        return dateFormatter
     }
-
-    /**
-     Function to execute when the menu item is seleted.
-
-     - returns: A result for handling the selected menu item.
-     */
-    func execute() -> YoshiActionResult {
+    
+    /// Intialize a YoshiDateSelectorMenu
+    ///
+    /// - Parameters:
+    ///   - title: Main title for the cell.
+    ///   - subtitle: Subtitle for the cell.
+    ///   - selectedDate: Selected Date.
+    ///   - dateFormatter: date formatter of the date picker. default to medium date style and short time style.
+    ///   - didUpdateDate: Callback when the date is selected.
+    public init(title: String,
+         subtitle: String? = nil,
+         selectedDate: Date = Date(),
+         dateFormatter: DateFormatter = defaultDateFormatter,
+         didUpdateDate: @escaping (Date) -> Void) {
+        self.title = title
+        self.subtitle = subtitle
+        self.selectedDate = selectedDate
+        self.didUpdateDate = didUpdateDate
+        self.dateFormatter = dateFormatter
+    }
+    
+    public var cellSource: YoshiReusableCellDataSource {
+        return YoshiDateSelectorMenuCellDataSource(title: title, date: selectedDate, dateFormatter: dateFormatter)
+    }
+    
+    public func execute() -> YoshiActionResult {
         let bundle = Bundle(for: YoshiConfigurationManager.self)
         let datePickerViewController =
             DebugDatePickerViewController(nibName: String(describing: DebugDatePickerViewController.self),
@@ -41,5 +64,4 @@ public extension YoshiDateSelectorMenu {
 
         return .push(datePickerViewController)
     }
-
 }

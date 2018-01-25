@@ -12,23 +12,21 @@ internal struct YoshiDateSelectorMenuCellDataSource: YoshiReusableCellDataSource
     private let title: String
 
     private let date: Date
-
-    private var dateFormatter: DateFormatter {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .short
-
-        return dateFormatter
-    }
+    
+    private let dateFormatter: DateFormatter
 
     /// Intialize the YoshiDateSelectorMenuCellDataSource instance
     ///
     /// - Parameters:
     ///   - title: Main title for the cell
     ///   - date: Selected Date
-    init(title: String, date: Date) {
+    ///   - dateFormatter: DateFormatter for the date picker, default to medium dateStyle and short timeStyle
+    init(title: String,
+         date: Date,
+         dateFormatter: DateFormatter) {
         self.title = title
         self.date = date
+        self.dateFormatter = dateFormatter
     }
 
     func cellFor(tableView: UITableView) -> UITableViewCell {

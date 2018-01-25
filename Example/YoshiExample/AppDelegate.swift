@@ -54,10 +54,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func dateSelectorMenu() -> YoshiDateSelectorMenu {
-        return DateSelectorMenu(title: "Environment Date",
-                                subtitle: nil,
-                                didUpdateDate: { (dateSelected) in
-                                    NotificationCenter.default.post(name:
+        return YoshiDateSelectorMenu(title: "Environment Date",
+                                     subtitle: nil,
+                                     didUpdateDate: { (dateSelected) in
+                                        NotificationCenter.default.post(name:
                                         NSNotification.Name(rawValue: Notifications.EnvironmentDateUpdatedNotification),
                                                                     object: dateSelected)
         })
