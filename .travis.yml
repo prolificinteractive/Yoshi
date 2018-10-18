@@ -12,5 +12,5 @@ before_install:
 - pod install --project-directory=Example
 
 script:
-- set -o pipefail && travis_retry xcodebuild test -project Yoshi/Yoshi.xcodeproj -scheme YoshiTests -destination 'platform=iOS Simulator,name=iPhone 6,OS=11.0' | xcpretty
+- set -o pipefail && travis_retry xcodebuild test -project Yoshi/Yoshi.xcodeproj -scheme YoshiTests -destination 'platform=iOS Simulator,name=iPhone 8,OS=12.0' | xcpretty
 - pod lib lint --allow-warnings
