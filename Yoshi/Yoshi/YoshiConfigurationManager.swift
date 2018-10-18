@@ -54,7 +54,7 @@ internal final class YoshiConfigurationManager {
         }
 
         let window = UIWindow(frame: UIScreen.main.bounds)
-        window.windowLevel = UIWindowLevelNormal
+        window.windowLevel = CGFloat(UIWindowLevelNormal)
 
         // Use a dummy view controller with clear background.
         // This way, we can make the actual view controller we want to present a form sheet on the iPad.
