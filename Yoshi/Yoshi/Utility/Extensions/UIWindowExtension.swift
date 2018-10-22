@@ -27,7 +27,7 @@ extension UIWindow {
         return 60
     }
 
-    override open func motionBegan(_ motion: UIEventSubtype, with event: UIEvent?) {
+    override open func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         Yoshi.motionBegan(motion, withEvent: event)
     }
 

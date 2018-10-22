@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication,
-                     didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
 
         #if DEBUG
@@ -87,7 +87,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Yoshi Invocation options
     // Implement the functionality you want!
 
-    override func motionBegan(_ motion: UIEventSubtype, with event: UIEvent?) {
+    override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         Yoshi.motionBegan(motion, withEvent: event)
     }
 
