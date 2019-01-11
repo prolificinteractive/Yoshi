@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "Yoshi"
-  s.version          = "3.0.0-beta.2"
+  s.version          = "3.0.0"
   s.summary          = "A helpful companion for your iOS app."
 
 # This description is used to generate tags and improve search results.
@@ -23,7 +23,7 @@ Pod::Spec.new do |s|
   s.homepage         = "https://github.com/prolificinteractive/Yoshi"
   s.screenshots     = "https://raw.githubusercontent.com/prolificinteractive/Yoshi/a6e85e87cbd67f2bb3bfe60157e7b13281d80f20/Images/Yoshi.png", "https://raw.githubusercontent.com/prolificinteractive/Yoshi/c66cdf8dc2ab643fe57996d20d3cd37b8b70ceff/Images/Yoshi_iPad.png"
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { "Michael Campbell" => "Michael@prolificinteractive.com" , "Quentin Ribierre" => "quentin@prolificinteractive.com" , "Kanglei Fang" => "kanglei@prolificinteractive.com" }
+  s.author           = { "Michael Campbell" => "Michael@prolificinteractive.com" , "Luna An" => "luna@prolificinteractive.com"}
   s.source           = { :git => "https://github.com/prolificinteractive/Yoshi.git", :tag => s.version.to_s }
 
   s.platform     = :ios, '8.0'
@@ -50,5 +50,5 @@ Pod::Spec.new do |s|
       sp.dependency "Yoshi/Core"
     end
   end
-  
+
 end

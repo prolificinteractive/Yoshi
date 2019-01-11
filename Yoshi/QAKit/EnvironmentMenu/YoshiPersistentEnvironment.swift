@@ -9,7 +9,7 @@
 import Foundation
 
 /// An class container used to help enum YoshiEnvironment encoding since enum encoding is not supported.
-internal class YoshiPersistentEnvironment<T: YoshiEnvironment & Codable>: Codable {
+class YoshiPersistentEnvironment<T: YoshiEnvironment & Codable>: Codable {
     
     /// Persisted Environment.
     private(set) var persistedEnvironment: T

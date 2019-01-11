@@ -7,7 +7,7 @@
 //
 
 /// The configuration manager for the debug menu.
-internal final class YoshiConfigurationManager {
+final class YoshiConfigurationManager {
 
     /// The default instance.
     static let sharedInstance = YoshiConfigurationManager()

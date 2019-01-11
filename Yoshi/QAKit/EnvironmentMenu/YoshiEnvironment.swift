@@ -8,7 +8,7 @@
 
 import Foundation
 
-internal func == (left: YoshiEnvironment, right: YoshiEnvironment) -> Bool {
+func == (left: YoshiEnvironment, right: YoshiEnvironment) -> Bool {
     return left.baseURL == right.baseURL
 }
 

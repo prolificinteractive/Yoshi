@@ -8,7 +8,7 @@
 
 import UIKit
 
-internal final class ViewController: UIViewController {
+final class ViewController: UIViewController {
 
     @IBOutlet private weak var environment: UILabel! {
         didSet {
