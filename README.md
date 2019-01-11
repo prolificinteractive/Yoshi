@@ -122,17 +122,17 @@ Yoshi will take care of managing selections and call back the convenient closure
 To present a date selector menu, create a type that conforms to `YoshiDateSelectorMenu` protocol
 
 ```swift
-internal final class DateSelector: YoshiDateSelectorMenu {
+internal final class DateSelectorMenu: YoshiDateSelectorMenu {
 
     var title: String
     var subtitle: String?
-    var selectedDate: NSDate
-    var didUpdateDate: (dateSelected: NSDate) -> ()
+    var selectedDate: Date
+    var didUpdateDate: (dateSelected: Date) -> ()
 
     init(title: String,
          subtitle: String? = nil,
-         selectedDate: NSDate = NSDate(),
-         didUpdateDate: (NSDate) -> ()) {
+         selectedDate: Date = Date(),
+         didUpdateDate: (Date) -> ()) {
         self.title = title
         self.subtitle = subtitle
         self.selectedDate = selectedDate
@@ -143,7 +143,7 @@ internal final class DateSelector: YoshiDateSelectorMenu {
 ```
 
 ```swift
-let dateSelectorMenu = DateSelector(title: "Environment Date",
+let dateSelectorMenu = DateSelectorMenu(title: "Environment Date",
     subtitle: nil,
     didUpdateDate: { (dateSelected) in
       // Do something with the selected date here
