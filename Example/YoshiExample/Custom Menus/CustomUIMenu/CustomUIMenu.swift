@@ -9,7 +9,7 @@
 import Yoshi
 
 /// A menu with custom UI.
-internal struct CustomUIMenu: YoshiGenericMenu {
+struct CustomUIMenu: YoshiGenericMenu {
 
     var cellSource: YoshiReusableCellDataSource {
         return CustomMenuCellDataSource()
@@ -21,7 +21,7 @@ internal struct CustomUIMenu: YoshiGenericMenu {
 }
 
 /// UI data source for CustomUIMenu that uses a custom xib file.
-internal final class CustomMenuCellDataSource: YoshiReusableCellDataSource {
+final class CustomMenuCellDataSource: YoshiReusableCellDataSource {
 
     static var nib: UINib? {
         return UINib(nibName: "CustomCell", bundle: nil)
@@ -38,7 +38,7 @@ internal final class CustomMenuCellDataSource: YoshiReusableCellDataSource {
 }
 
 /// A custom UITableViewCell.
-internal final class CustomCell: UITableViewCell {
+final class CustomCell: UITableViewCell {
 
     /// Label outlet from storyboard
     @IBOutlet weak var label: UILabel!

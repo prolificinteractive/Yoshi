@@ -7,7 +7,7 @@
 //
 
 /// Utility for retrieving items from the App Bundle
-internal class AppBundleUtility: NSObject {
+class AppBundleUtility: NSObject {
 
     /**
      The application version + build number text.

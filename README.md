@@ -122,7 +122,7 @@ Yoshi will take care of managing selections and call back the convenient closure
 To present a date selector menu, create a type that conforms to `YoshiDateSelectorMenu` protocol
 
 ```swift
-internal final class DateSelectorMenu: YoshiDateSelectorMenu {
+final class DateSelectorMenu: YoshiDateSelectorMenu {
 
     var title: String
     var subtitle: String?
@@ -156,7 +156,7 @@ If you find your debug menu getting out of hand, you can organize it into submen
 
 
 ```swift
-internal final class Submenu: YoshiSubmenu {
+final class Submenu: YoshiSubmenu {
 
     let title: String
 
@@ -269,7 +269,7 @@ private final class CustomMenuCellDataSource: YoshiResuableCellDataSource {
 Then, provide the menu that conforms to `YoshiGenericMenu` referencing to the data source.
 
 ```swift
-internal struct MenuWithCustomUI: YoshiGenericMenu {
+struct MenuWithCustomUI: YoshiGenericMenu {
 
     var cellSource: YoshiResuableCellDataSource {
         return CustomMenuCellDataSource()

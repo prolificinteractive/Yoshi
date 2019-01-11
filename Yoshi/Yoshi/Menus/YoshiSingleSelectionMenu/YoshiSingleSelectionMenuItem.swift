@@ -7,7 +7,7 @@
 //
 
 /// Internal YoshiGenericMenu used for single selection menu.
-internal final class YoshiSingleSelectionMenuItem: YoshiGenericMenu {
+final class YoshiSingleSelectionMenuItem: YoshiGenericMenu {
 
     var title: String {
         return selection.title

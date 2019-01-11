@@ -9,7 +9,7 @@
 import Yoshi
 
 /// Default basic implementation of YoshiEnvironment protocol.
-internal enum YoshiBaseEnvironment: String, YoshiEnvironment, Codable {
+enum YoshiBaseEnvironment: String, YoshiEnvironment, Codable {
     
     case qa, production
     

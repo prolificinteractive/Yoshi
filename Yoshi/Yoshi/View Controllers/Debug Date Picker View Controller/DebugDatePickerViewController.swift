@@ -7,7 +7,7 @@
 //
 
 /// The date picker view controller.
-internal class DebugDatePickerViewController: UIViewController {
+class DebugDatePickerViewController: UIViewController {
 
     private var selectorMenu: YoshiDateSelectorMenu?
 
