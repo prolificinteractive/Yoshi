@@ -30,7 +30,7 @@ Yoshi is a convenient wrapper around the UI code that is often needed for displa
 Yoshi is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your `Podfile`:
 
-###### Swift 4.0
+###### Swift 4.2
 
 ```ruby
 pod 'Yoshi'
@@ -157,17 +157,17 @@ If you find your debug menu getting out of hand, you can organize it into submen
 
 ```swift
 internal final class Submenu: YoshiSubmenu {
-    
+
     let title: String
-    
+
     let subtitle: String?
-    
+
     let options: [YoshiGenericMenu] {
-    
+
 }
 ```
 
-```swift 
+```swift
 let integrationsSubmenu = Submenu(title: "Third Party Integrations",
     subtitle: nil,
     options: [
