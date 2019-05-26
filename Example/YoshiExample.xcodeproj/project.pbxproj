@@ -140,7 +140,6 @@
 				276BCEC81C29F060002138C7 /* Frameworks */,
 				276BCEC91C29F060002138C7 /* Resources */,
 				9807FA47239685B35BD1B1CC /* [CP] Embed Pods Frameworks */,
-				2FE9A2C899648AB92ACEAA90 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -202,24 +201,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2FE9A2C899648AB92ACEAA90 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-YoshiExample/Pods-YoshiExample-resources.sh",
-				"${PODS_ROOT}/Instabug/Instabug.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Instabug.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-YoshiExample/Pods-YoshiExample-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		9807FA47239685B35BD1B1CC /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -227,10 +208,14 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-YoshiExample/Pods-YoshiExample-frameworks.sh",
+				"${PODS_ROOT}/Instabug/Instabug.framework",
+				"${PODS_ROOT}/Instabug/Instabug.framework.dSYM",
 				"${BUILT_PRODUCTS_DIR}/Yoshi/Yoshi.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Instabug.framework",
+				"${DWARF_DSYM_FOLDER_PATH}/Instabug.framework.dSYM",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Yoshi.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
