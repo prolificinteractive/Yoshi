@@ -1,11 +1,11 @@
 PODS:
-  - Instabug (5.2.4)
+  - Instabug (8.4)
   - Yoshi/Core (3.0.0)
   - Yoshi/QAKit (3.0.0):
     - Yoshi/Core
 
 DEPENDENCIES:
-  - Instabug (= 5.2.4)
+  - Instabug (= 8.4.0)
   - Yoshi/QAKit (from `../`)
 
 SPEC REPOS:
@@ -17,9 +17,9 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Instabug: 6fa40a5e2a4620f0589dfc8e4e01b1018c8c42b1
-  Yoshi: f681e9474a3d0aa8ec7ec935c579f52c2d00a360
+  Instabug: 239a5252f9631054eadca55209598fdece82378e
+  Yoshi: 46935b08ce44f7db04508237c00a87e7bec8c6a8
 
-PODFILE CHECKSUM: 6937f5f3704e17fb013434d20f6bd261b2e48f51
+PODFILE CHECKSUM: 76f621644a9c4a867a3808ab14d80d7fa58ee9f0
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.7.0
