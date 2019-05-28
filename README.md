@@ -30,10 +30,15 @@ Yoshi is a convenient wrapper around the UI code that is often needed for displa
 Yoshi is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your `Podfile`:
 
-###### Swift 4.0 and above
+###### Swift 5.0
 
 ```ruby
 pod 'Yoshi'
+```
+
+###### Swift 4.0 and 4.2
+```ruby
+pod 'Yoshi', '3.0.0'
 ```
 
 ###### Swift 3.0
