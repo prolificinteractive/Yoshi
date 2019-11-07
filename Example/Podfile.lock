@@ -1,12 +1,16 @@
 PODS:
   - Instabug (5.2.4)
-  - Yoshi/Core (2.2.2)
-  - Yoshi/QAKit (2.2.2):
+  - Yoshi/Core (4.0.0)
+  - Yoshi/QAKit (4.0.0):
     - Yoshi/Core
 
 DEPENDENCIES:
   - Instabug (= 5.2.4)
   - Yoshi/QAKit (from `../`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Instabug
 
 EXTERNAL SOURCES:
   Yoshi:
@@ -14,8 +18,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Instabug: 6fa40a5e2a4620f0589dfc8e4e01b1018c8c42b1
-  Yoshi: 032a56c87369104a3a1ee80a247e551d91bddc99
+  Yoshi: efc151111ba019ff7dc82258c87a68376ec8b699
 
 PODFILE CHECKSUM: 3e1269998b54f9d27d611d2231c251556652c10a
 
-COCOAPODS: 1.2.0
+COCOAPODS: 1.7.5

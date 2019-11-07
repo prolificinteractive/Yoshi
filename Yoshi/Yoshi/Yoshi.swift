@@ -29,7 +29,7 @@ public final class Yoshi {
      - parameter motion: (UIEventSubtype) the motion captured by the original motionBegan call
      - parameter event:  (UIEvent) the event captured by the original motionBegan call
      */
-    public class func motionBegan(_ motion: UIEventSubtype, withEvent event: UIEvent?) {
+    public class func motionBegan(_ motion: UIEvent.EventSubtype, withEvent event: UIEvent?) {
         guard motion == .motionShake
             && YoshiConfigurationManager.sharedInstance.shouldShow(.shakeMotionGesture) else {
             return

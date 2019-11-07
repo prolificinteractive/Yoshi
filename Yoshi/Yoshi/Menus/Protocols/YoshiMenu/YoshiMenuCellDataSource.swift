@@ -14,14 +14,14 @@ public struct YoshiMenuCellDataSource: YoshiReusableCellDataSource {
 
     private let subtitle: String?
 
-    private let accessoryType: UITableViewCellAccessoryType
+    private let accessoryType: UITableViewCell.AccessoryType
 
     /// Initalize the YoshiMenuCellDataSource instance
     ///
     /// - Parameters:
     ///   - title: Main title for the cell
     ///   - subtitle: Subtitle for the cell
-    public init(title: String, subtitle: String?, accessoryType: UITableViewCellAccessoryType = .none) {
+    public init(title: String, subtitle: String?, accessoryType: UITableViewCell.AccessoryType = .none) {
         self.title = title
         self.subtitle = subtitle
         self.accessoryType = accessoryType
