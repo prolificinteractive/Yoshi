@@ -7,7 +7,7 @@
 //
 
 /// The configuration manager for the debug menu.
-final class YoshiConfigurationManager {
+final class YoshiConfigurationManager: NSObject, UIAdaptivePresentationControllerDelegate {
 
     /// The default instance.
     static let sharedInstance = YoshiConfigurationManager()
@@ -131,12 +131,17 @@ final class YoshiConfigurationManager {
                                                                 })
                 })
 
+            navigationController.presentationController?.delegate = self
             navigationController.modalPresentationStyle = .formSheet
             navigationController.setViewControllers([debugViewController], animated: false)
 
             rootViewController.present(navigationController, animated: true, completion: nil)
             self.debugViewController = debugViewController
         }
+    }
+    
+    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        dismiss()
     }
 
 }
