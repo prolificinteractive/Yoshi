@@ -15,6 +15,9 @@ Pod::Spec.new do |s|
   s.authors          = { 'Michael Campbell' => 'Michael@prolificinteractive.com' , 'Luna An' => 'luna@prolificinteractive.com'}
   s.source           = { :git => "https://github.com/prolificinteractive/Yoshi.git", :tag => s.version }
   s.screenshots      = 'https://raw.githubusercontent.com/prolificinteractive/Yoshi/a6e85e87cbd67f2bb3bfe60157e7b13281d80f20/Images/Yoshi.png", "https://raw.githubusercontent.com/prolificinteractive/Yoshi/c66cdf8dc2ab643fe57996d20d3cd37b8b70ceff/Images/Yoshi_iPad.png'
+  s.description      = <<-DESC
+		       Yoshi is a convenient wrapper around the UI code that is often needed for displaying debug menus. Out of the box, Yoshi provides easy-to-implement date, list and custom menus.
+                       DESC
 
   s.ios.deployment_target = '8.0'
   s.swift_versions   = ['4.2', '5.0', '5.1']
