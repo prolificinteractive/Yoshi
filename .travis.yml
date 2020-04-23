@@ -9,7 +9,8 @@ bundler_args: --retry 5
 # podfile: Example/Podfile
 
 before_install:
-- gem install cocoapods -v 1.1.1
+- gem install cocoapods --no-document --quiet
+- pod repo update
 - pod install --project-directory=Example
 
 script:
