@@ -64,13 +64,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func instabugMenu() -> YoshiMenu {
-        Instabug.start(withToken: "cf779d2e19c0affaad8567a7598e330d", invocationEvent: .none)
-        Instabug.setDefaultInvocationMode(.bugReporter)
+        Instabug.start(withToken: "cf779d2e19c0affaad8567a7598e330d", invocationEvents: [.none])
+        BugReporting.promptOptionsEnabledReportTypes = [.bug]
 
         return YoshiActionMenu(title: "Start Instabug",
                                subtitle: nil,
                                completion: {
-            Instabug.invoke()
+            Instabug.show()
         })
     }
 
