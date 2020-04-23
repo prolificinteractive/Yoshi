@@ -4,6 +4,7 @@
 
 language: objective-c
 osx_image: xcode11.3
+bundler_args: --retry 5
 # cache: cocoapods
 # podfile: Example/Podfile
 
