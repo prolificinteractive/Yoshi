@@ -9,7 +9,7 @@
 import Yoshi
 
 /// A date selector menu item to be displayed in Yoshi.
-internal final class DateSelectorMenu: YoshiDateSelectorMenu {
+final class DateSelectorMenu: YoshiDateSelectorMenu {
 
     var title: String
     var subtitle: String?

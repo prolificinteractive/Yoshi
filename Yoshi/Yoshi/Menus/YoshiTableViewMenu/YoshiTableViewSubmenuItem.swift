@@ -8,7 +8,7 @@
 
 /// Internal struct that map the YoshiTableViewMenuItem to a YoshiGenericMenu.
 /// This menu is interannly used to support YoshiTableViewMenu.
-internal struct YoshiTableViewSubmenuItem: YoshiGenericMenu {
+struct YoshiTableViewSubmenuItem: YoshiGenericMenu {
 
     let name: String
     let subtitle: String?

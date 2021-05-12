@@ -9,7 +9,7 @@
 /**
  A color object
  */
-internal struct Color {
+struct Color {
 
     /// The red value.
     let red: UInt8

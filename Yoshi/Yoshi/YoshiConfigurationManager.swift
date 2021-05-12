@@ -7,7 +7,7 @@
 //
 
 /// The configuration manager for the debug menu.
-internal final class YoshiConfigurationManager {
+final class YoshiConfigurationManager {
 
     /// The default instance.
     static let sharedInstance = YoshiConfigurationManager()
@@ -26,6 +26,21 @@ internal final class YoshiConfigurationManager {
     func setupDebugMenuOptions(_ menuItems: [YoshiGenericMenu], invocations: [YoshiInvocation]) {
         yoshiMenuItems = menuItems
         self.invocations = invocations
+    }
+    
+    /**
+     Allows client application to indicate it has restarted.
+     Clears inertnal state.
+     */
+    func restart() {
+        presentingWindow = nil
+        debugViewController = nil
+        
+        guard let invocations = invocations else {
+            return
+        }
+        
+        setupDebugMenuOptions(yoshiMenuItems, invocations: invocations)
     }
 
     /// Helper function to indicate if the given invocation should show Yoshi.

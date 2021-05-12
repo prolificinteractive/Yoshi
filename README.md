@@ -30,7 +30,7 @@ Yoshi is a convenient wrapper around the UI code that is often needed for displa
 Yoshi is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your `Podfile`:
 
-###### Swift 4.0
+###### Swift 4.2
 
 ```ruby
 pod 'Yoshi'
@@ -122,17 +122,17 @@ Yoshi will take care of managing selections and call back the convenient closure
 To present a date selector menu, create a type that conforms to `YoshiDateSelectorMenu` protocol
 
 ```swift
-internal final class DateSelector: YoshiDateSelectorMenu {
+final class DateSelectorMenu: YoshiDateSelectorMenu {
 
     var title: String
     var subtitle: String?
-    var selectedDate: NSDate
-    var didUpdateDate: (dateSelected: NSDate) -> ()
+    var selectedDate: Date
+    var didUpdateDate: (dateSelected: Date) -> ()
 
     init(title: String,
          subtitle: String? = nil,
-         selectedDate: NSDate = NSDate(),
-         didUpdateDate: (NSDate) -> ()) {
+         selectedDate: Date = Date(),
+         didUpdateDate: (Date) -> ()) {
         self.title = title
         self.subtitle = subtitle
         self.selectedDate = selectedDate
@@ -143,7 +143,7 @@ internal final class DateSelector: YoshiDateSelectorMenu {
 ```
 
 ```swift
-let dateSelectorMenu = DateSelector(title: "Environment Date",
+let dateSelectorMenu = DateSelectorMenu(title: "Environment Date",
     subtitle: nil,
     didUpdateDate: { (dateSelected) in
       // Do something with the selected date here
@@ -156,18 +156,18 @@ If you find your debug menu getting out of hand, you can organize it into submen
 
 
 ```swift
-internal final class Submenu: YoshiSubmenu {
-    
+final class Submenu: YoshiSubmenu {
+
     let title: String
-    
+
     let subtitle: String?
-    
+
     let options: [YoshiGenericMenu] {
-    
+
 }
 ```
 
-```swift 
+```swift
 let integrationsSubmenu = Submenu(title: "Third Party Integrations",
     subtitle: nil,
     options: [
@@ -269,7 +269,7 @@ private final class CustomMenuCellDataSource: YoshiResuableCellDataSource {
 Then, provide the menu that conforms to `YoshiGenericMenu` referencing to the data source.
 
 ```swift
-internal struct MenuWithCustomUI: YoshiGenericMenu {
+struct MenuWithCustomUI: YoshiGenericMenu {
 
     var cellSource: YoshiResuableCellDataSource {
         return CustomMenuCellDataSource()

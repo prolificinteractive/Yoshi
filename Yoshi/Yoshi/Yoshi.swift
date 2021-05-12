@@ -20,6 +20,14 @@ public final class Yoshi {
     public class func setupDebugMenu(_ menuItems: [YoshiGenericMenu], invocations: [YoshiInvocation] = [.all]) {
         YoshiConfigurationManager.sharedInstance.setupDebugMenuOptions(menuItems, invocations: invocations)
     }
+    
+    /**
+     Allows client application to indicate it has restarted.
+     Clears inertnal state.
+     */
+    public static func restart() {
+        YoshiConfigurationManager.sharedInstance.restart()
+    }
 
     // MARK: - Invocation Functions
 
