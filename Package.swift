@@ -8,6 +8,9 @@ let package = Package(
     platforms: [
         .iOS(.v11)
     ],
+    products: [
+        .library(name: "Yoshi", targets: ["Yoshi"])
+    ],
     targets: [
         .target(name: "Yoshi", dependencies: [], path: "Yoshi/Yoshi")
     ]
