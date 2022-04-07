@@ -9,6 +9,6 @@ let package = Package(
         .iOS(.v11)
     ],
     targets: [
-        .target(name: "Yoshi", dependencies: [], path: "Yoshi")
+        .target(name: "Yoshi", dependencies: [], path: "Yoshi/Yoshi")
     ]
 )
